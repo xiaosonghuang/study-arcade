@@ -1,0 +1,130 @@
+<section class="room" id="computing" aria-labelledby="computing-title">
+  <header class="room-head">
+    <a href="#home" class="back">← Home</a>
+    <h1 id="computing-title">Computing studio</h1>
+    <p class="intro">Build a page for a comic shop or soccer club. Then test how the browser selects elements and how a sprite responds to your keys.</p>
+  </header>
+  <article class="card">
+    <h2>Start with a shelf</h2>
+    <p>Imagine three books on a shelf. The shelf is the <strong>parent</strong>. The books are its <strong>children</strong>. Give the parent a Flexbox layout, and it can arrange all three books at once.</p>
+    <pre class="cs-code"><code>.shelf {
+  display: flex;
+  justify-content: space-between;
+}</code></pre>
+    <div class="cs-worked" role="img" aria-label="Three labeled books spread evenly from the left edge to the right edge"><span>Maps</span><span>Birds</span><span>Stars</span></div>
+    <p>With a row and extra space, <code>space-between</code> puts the first and last items at the edges and shares the remaining space between neighbours. Try this rule on the banner below.</p>
+  </article>
+  <article class="card">
+    <h2>Choose a design brief</h2>
+    <label for="cs-client">Who needs the page?</label>
+    <select id="cs-client"><option value="">Choose a client</option><option value="comic">Comic shop</option><option value="soccer">Soccer club</option></select>
+    <p id="cs-client-tip" class="tip" aria-live="polite">Pick a client to see the layout request.</p>
+    <label>Where I will keep my sketch and design packet <input type="text" data-note="cs-packet-location" placeholder="Paper notebook, project folder or another place"></label>
+    <div class="grid2">
+      <label>What does the banner need to do? <textarea data-note="cs-difference-1" placeholder="The client needs … The preview begins with …"></textarea></label>
+      <label>What does the gallery need to do? <textarea data-note="cs-difference-2" placeholder="Which items belong together? What changes on a small screen?"></textarea></label>
+    </div>
+  </article>
+  <article class="card">
+    <h2>Build the layout</h2>
+    <p>The banner and the gallery each have a parent that controls its children. Pick a container, predict a change and try it. Use a narrow width to see what happens when the children run out of space.</p>
+    <label>My prediction <input type="text" data-note="cs-flex-prediction" placeholder="If I change … in the gallery, I expect …"></label>
+    <div class="cs-controls">
+      <label>Container <select id="cs-flex-target"><option value="banner">Banner</option><option value="gallery">Gallery</option></select></label>
+      <label>Direction <select id="cs-flex-direction"><option value="row">Row</option><option value="column">Column</option><option value="row-reverse">Reverse row</option></select></label>
+      <label>Line breaks <select id="cs-flex-wrap"><option value="nowrap">One line</option><option value="wrap">Wrap</option></select></label>
+      <label>Main axis <select id="cs-flex-justify"><option value="flex-start">Start</option><option value="center">Center</option><option value="space-between">Space between</option></select></label>
+      <label>Cross axis <select id="cs-flex-align"><option value="flex-start">Start</option><option value="center">Center</option><option value="flex-end">End</option></select></label>
+      <label>Width <select id="cs-flex-size"><option value="wide">Wide</option><option value="narrow">Narrow</option></select></label>
+    </div>
+    <div class="cs-lab-preview">
+      <div class="cs-runway"><b>Banner</b><div id="cs-flex-banner" class="cs-flex-line" tabindex="0" role="group" aria-label="Banner preview"><span>Logo</span><span>Title</span><span>Menu</span><span>News</span></div></div>
+      <div class="cs-runway"><b>Gallery</b><div id="cs-flex-gallery" class="cs-flex-line" tabindex="0" role="group" aria-label="Gallery preview"><span>One</span><span>Two</span><span>Three</span><span>Four</span></div></div>
+    </div>
+    <button type="button" id="cs-check-brief">Check my layout</button>
+    <p id="cs-brief-feedback" class="cs-brief-feedback" aria-live="polite"></p>
+    <details class="cs-explain"><summary>See the CSS for this container</summary><pre class="cs-code"><code id="cs-flex-code"></code></pre></details>
+    <p id="cs-flex-meaning" aria-live="polite"></p>
+    <label>What actually changed? <textarea data-note="cs-flex-observed" placeholder="Name the property, the parent it changed, and what happened to its children."></textarea></label>
+  </article>
+  <article class="card">
+    <h2>Make a design packet</h2>
+    <p>Sketch a version of the page on paper or in your own editor. Draw a box around each group that shares a job. Give each a class name and pick a style you can explain. For example, a museum might use <code>.captions</code> for text beneath photos.</p>
+    <div class="cs-plan-rows">
+      <div><strong>Group 1</strong><label>Elements <input data-note="cs-elements-1"></label><label>Class <input data-note="cs-class-1"></label><label>CSS choice and reason <input data-note="cs-style-1"></label></div>
+      <div><strong>Group 2</strong><label>Elements <input data-note="cs-elements-2"></label><label>Class <input data-note="cs-class-2"></label><label>CSS choice and reason <input data-note="cs-style-2"></label></div>
+      <div><strong>Group 3</strong><label>Elements <input data-note="cs-elements-3"></label><label>Class <input data-note="cs-class-3"></label><label>CSS choice and reason <input data-note="cs-style-3"></label></div>
+    </div>
+    <p>Add both Flexbox parents to your sketch. Put their children inside the boxes and circle the first change you want to try.</p>
+    <label>My first fix <input data-note="cs-first-fix" placeholder="In ___, I will change ___ so the client can ___."></label>
+  </article>
+  <article class="card">
+    <h2>Try, check, then reflect</h2>
+    <p>Use your sketch, code or preview to back up each check. For example, point to the rule that wraps your gallery and show what changes when it is off.</p>
+    <div class="cs-checks">
+      <label><input type="checkbox" data-check="cs-client-fit"> I can point to the client’s requests, my plan, and the matching parts of my page.</label>
+      <label><input type="checkbox" data-check="cs-flex-evidence"> I can show two containers and at least three Flexbox properties, including <code>display: flex</code>.</label>
+      <label><input type="checkbox" data-check="cs-class-evidence"> I can explain at least three classes and how they give different styles to groups of elements.</label>
+      <label><input type="checkbox" data-check="cs-read-evidence"> My HTML and CSS use consistent indentation and spacing.</label>
+      <label><input type="checkbox" data-check="cs-comment-evidence"> My added HTML groups and stylesheet include useful comments.</label>
+      <label><input type="checkbox" data-check="cs-syntax-evidence"> I checked the added HTML and CSS syntax, ran the page and inspected the result.</label>
+    </div>
+    <div class="grid2">
+      <label>Which change are you proud of? What would you do differently? <textarea data-note="cs-reflect-client"></textarea></label>
+      <label>What was difficult, and how did you work through it? <textarea data-note="cs-reflect-debug"></textarea></label>
+    </div>
+
+  </article>
+
+  <article class="card">
+    <h2>HTML &amp; CSS reference</h2>
+    <details><summary>Tags, styles and publishing</summary><ul>
+    <li>Put visible content in <code>&lt;body&gt;</code>. Give the page an <code>&lt;h1&gt;</code> heading, use <code>&lt;p&gt;</code> for a paragraph, and nest <code>&lt;li&gt;</code> items inside <code>&lt;ul&gt;</code> for a bulleted list.</li>
+    <li>An image uses <code>src</code> for its file and <code>alt</code> for its text alternative. A link uses <code>&lt;a href="…"&gt;</code>. A note between <code>&lt;!--</code> and <code>--&gt;</code> is an HTML comment.</li>
+    <li>Placed in the head, <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code> connects pages to shared style rules. <code>color</code> changes the letters. <code>background-color</code> changes the area behind them.</li>
+    <li>A digital footprint can include posts or photos that others save. Use artwork you created or have permission to use, follow its license, ask people before publishing their pictures, and keep personal addresses private.</li>
+    </ul></details>
+  </article>
+  <article class="card">
+    <h2>Predict which lines will change</h2>
+    <p>Two paragraphs share a class. A third has a different job. Which lines will the following selector match?</p>
+    <pre class="cs-code"><code>&lt;p class="caption"&gt;Morning light&lt;/p&gt;
+&lt;p class="caption"&gt;Afternoon light&lt;/p&gt;
+&lt;p class="credit"&gt;Photos by the garden club&lt;/p&gt;</code></pre>
+    <div class="cs-controls">
+      <label>CSS selector <select id="cs-selector"><option value=".caption">.caption</option><option value=".credit">.credit</option><option value="p">p</option></select></label>
+      <label>My prediction <select id="cs-guess"><option value="">Choose lines</option><option value="1">Only the first line</option><option value="2">First and second</option><option value="3">Only the third</option><option value="4">All three</option></select></label>
+      <button type="button" id="cs-run-style">Run the style rule</button>
+    </div>
+    <pre class="cs-code"><code id="cs-selector-code"></code></pre>
+    <div id="cs-style-result" class="cs-style-sample" aria-label="Rendered HTML example">
+      <p class="caption">Morning light</p><p class="caption">Afternoon light</p><p class="credit">Photos by the garden club</p>
+    </div>
+    <p id="cs-style-feedback" aria-live="polite">Choose a selector and a prediction, then run the rule.</p>
+  </article>
+  <article class="card">
+    <h2>HTML &amp; CSS practice</h2>
+    <p>Try a question, then explain why your choice works. Use the hint to correct a miss and try a fresh example.</p>
+    <div data-quiz="computing"></div>
+    <label>One idea I want to explore further <input data-note="cs-retake-question"></label>
+  </article>
+  <article class="card">
+    <h2>Move a sprite with a condition</h2>
+    <p>A <strong>sprite</strong> is an object that can move on a screen. A game can check for key input on each frame. Our grid runner takes one step per keypress. If you start at x = 2, pressing right moves you to x = 3.</p>
+    <pre class="cs-code"><code>if (keyDown("right") &amp;&amp; player.x &lt; 4) {
+  player.x = player.x + 1;
+}</code></pre>
+    <p><strong>Predict.</strong> If the sprite is at x = 4 and you press right, what should happen? Move the runner to the flag, try the edge, then turn the corner. Row 0 is at the top.</p>
+    <div id="cs-board" class="cs-game-board" tabindex="0" role="group" aria-label="Sprite board. Five columns, four rows. Focus here and use arrow keys, or use the buttons below."></div>
+    <div id="cs-pad" class="cs-game-pad" aria-label="Move the runner">
+      <button type="button" data-cs-move="up">↑ Up</button>
+      <button type="button" data-cs-move="left">← Left</button>
+      <button type="button" data-cs-move="down">↓ Down</button>
+      <button type="button" data-cs-move="right">→ Right</button>
+      <button type="button" id="cs-game-reset">Start again</button>
+    </div>
+    <p id="cs-game-feedback" aria-live="polite"></p>
+    <label>What condition kept the runner on the board? <input data-note="cs-game-reflection" placeholder="At x = 4, pressing right … because …"></label>
+
+  </article>
+</section>

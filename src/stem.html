@@ -1,0 +1,123 @@
+<section id="math" class="room">
+  <a class="back" href="#home">← All rooms</a>
+  <p class="eyebrow">Math room</p>
+  <h1>Algebra tiles</h1>
+  <p class="intro">Build a rectangle, count its tiles, and give the same area two names. Can you run the pattern backward?</p>
+  <article class="card">
+    <h2>Rectangle lab</h2>
+    <p>A long tile has area <strong>x</strong>. A small square has area <strong>1</strong>. The tiles in one row form a group. Count all the rows to expand, or find equal rows to factor.</p>
+    <div class="stem-controls">
+      <label>Direction <select id="stem-math-mode"><option value="expand">Expand</option><option value="factor">Factor</option></select></label>
+      <label>Rectangle <select id="stem-math-case"><option value="0">Garden beds</option><option value="1">Library shelves</option><option value="2">Art panels</option><option value="3">Theater rows</option></select></label>
+    </div>
+    <p id="stem-math-question" class="stem-question"></p>
+    <div id="stem-tiles" class="stem-tiles" role="img" aria-label="Algebra tile rectangle"></div>
+    <div class="stem-controls" id="stem-answer-box">
+      <label><span id="stem-math-label-a">Coefficient of x</span><input id="stem-math-a" inputmode="numeric" type="number" min="0" max="100"></label>
+      <label><span id="stem-math-label-b">Constant</span><input id="stem-math-b" inputmode="numeric" type="number" min="0" max="100"></label>
+      <label id="stem-math-c-wrap" hidden><span>Constant in each row</span><input id="stem-math-c" inputmode="numeric" type="number" min="0" max="100"></label>
+    </div>
+    <div class="stem-actions"><button type="button" id="stem-math-check">Check my model</button><button type="button" id="stem-math-next">Try another rectangle</button></div>
+    <p class="tip stem-feedback" id="stem-math-feedback" aria-live="polite"></p>
+  </article>
+  <article class="card">
+    <h2>Catch the missing term</h2>
+    <p>A stage crew lays out four identical rows. Each row needs <strong>2x + 3</strong> tiles. A crew member writes <strong>4(2x + 3) = 8x + 3</strong>. In a group of four rows, where did the other nine small tiles go?</p>
+    <details><summary>Walk through the correction</summary>
+      <p>Every row gets three small tiles, so four rows need 12. The long tiles give 4 × 2x = 8x. The finished expression is <strong>8x + 12</strong>. Reading the rectangle backward shows why 4 is the greatest common factor of 8 and 12.</p>
+    </details>
+    <div class="stem-controls">
+      <label>Expression to test <select id="stem-claim"><option value="short">8x + 3</option><option value="full">8x + 12</option></select></label>
+      <label>Substitute x = <select id="stem-value"><option value="-2">−2</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+    </div>
+    <p id="stem-substitution" class="stem-board stem-equation" aria-live="polite"></p>
+    <p>One mismatch disproves a claim. One match gives you a clue. To explain why two expressions agree for <em>every</em> value, show what happens to both terms when you distribute.</p>
+    <label for="nav-math-dm">Describe the original mistake and your correction</label>
+    <textarea id="nav-math-dm" data-note="math-deltamath-evidence" rows="2" placeholder="The multiplier reaches __. When x is __, the two totals are __."></textarea>
+  </article>
+  <details class="card">
+    <summary>Algebra word bank</summary>
+    <dl class="stem-terms">
+      <dt>Term</dt><dd>A piece of a sum, including its sign. In 5x − 2, the terms are 5x and −2.</dd>
+      <dt>Coefficient</dt><dd>The numerical factor multiplying a variable. The coefficient of 5x is 5.</dd>
+      <dt>Constant</dt><dd>A fixed value that does not depend on the variable. In 5x − 2, the constant term is −2.</dd>
+      <dt>Distribute</dt><dd>Multiply each term inside the parentheses by the factor outside.</dd>
+      <dt>Greatest common factor</dt><dd>The largest positive integer that divides each whole-number coefficient and constant without a remainder.</dd>
+    </dl>
+  </details>
+  <div data-quiz="math"></div>
+  <article class="card">
+    <h2>Explain both directions</h2>
+    <label for="nav-expand-proof">My expansion</label>
+    <textarea id="nav-expand-proof" data-note="math-expand-proof" rows="2" placeholder="I started with __. The two partial products are __ and __."></textarea>
+    <label for="nav-factor-proof">My factorization</label>
+    <textarea id="nav-factor-proof" data-note="math-factor-proof" rows="2" placeholder="The greatest factor shared by both terms is __. I checked my result by __."></textarea>
+    <div class="stem-checklist">
+      <label><input type="checkbox" data-check="math-check-distribute"> I explained why the multiplier reaches every term.</label>
+      <label><input type="checkbox" data-check="math-check-factor"> I checked a factorization by expanding it again.</label>
+    </div>
+  </article>
+</section>
+<section id="science" class="room">
+  <a class="back" href="#home">← All rooms</a>
+  <p class="eyebrow">Science room</p>
+  <h1>Particle lab</h1>
+  <p class="intro">Change the way the atoms are grouped while keeping the inventory of each element the same.</p>
+  <article class="card">
+    <h2>Rearrange the particles</h2>
+    <p>Look at the starting molecules. Predict how many product molecules you can make if every starting atom is used. Try that count, then compare both sides.</p>
+    <label>Particle set <select id="stem-atom-case"><option value="0">Water model</option><option value="1">Carbon dioxide model</option></select></label>
+    <div class="stem-sides">
+      <div><h3>Before</h3><div id="stem-before" class="stem-particles"></div></div>
+      <div><h3>Your after model</h3><div class="stem-controls">
+        <label><span id="stem-product-label"></span> <select id="stem-product-count"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+      </div><div id="stem-after" class="stem-particles"></div></div>
+    </div>
+    <p id="stem-atom-counts" aria-live="polite"></p>
+    <div class="stem-actions"><button id="stem-atom-check" type="button">Check conservation</button></div>
+    <p class="tip stem-feedback" id="stem-atom-feedback" aria-live="polite"></p>
+    <p><strong>Read the formula.</strong> The small 2 in H₂O is a subscript. Each water molecule contains two H atoms. The 2 in <strong>2</strong> H₂O is a coefficient. It counts two whole water molecules, for four H atoms and two O atoms in all.</p>
+  </article>
+  <article class="card" id="stem-builder">
+    <h2>Build the products yourself</h2>
+    <p>Use the atoms from the starting molecules in the model above. Each tray is one new molecule. Select a tray, then add an atom from the shared supply.</p>
+    <p id="stem-build-target" class="stem-question"></p>
+    <div class="stem-controls">
+      <label>Active tray <select id="stem-tray"><option value="0">Tray A</option><option value="1">Tray B</option></select></label>
+      <button type="button" id="stem-choose-first">Add atom</button>
+      <button type="button" id="stem-choose-second">Add atom</button>
+    </div>
+    <div class="stem-builder-grid">
+      <div><h3>Tray A</h3><div id="stem-build-a" class="stem-board" aria-live="polite"></div></div>
+      <div><h3>Tray B</h3><div id="stem-build-b" class="stem-board" aria-live="polite"></div></div>
+    </div>
+    <div class="stem-actions"><button type="button" id="stem-build-undo">Return last atom from active tray</button><button type="button" id="stem-build-check">Check my two molecules</button></div>
+    <p id="stem-build-result" class="tip stem-feedback" aria-live="polite"></p>
+  </article>
+  <article class="card">
+    <h2>What counts as evidence?</h2>
+    <p>On a page of molecule sketches, two CO₂ molecules are drawn close together. A second drawing shows the same two molecules farther apart. A third drawing shows two CO molecules and one O₂ molecule.</p>
+    <details><summary>Which drawing shows different substances?</summary>
+      <p>The first and second drawings differ in spacing. Each still contains two CO₂ molecules. In the third drawing the atoms have new partners. Both carbon atoms and all four oxygen atoms are accounted for, and the molecules have changed. This is a comparison of particle diagrams.</p>
+    </details>
+  </article>
+  <div data-quiz="science"></div>
+  <article class="card">
+    <h2>From memory</h2>
+    <p>Cover the model. Sketch the starting and ending molecules from one set. Label the atoms, tally both sides, then reopen the model and correct one detail.</p>
+    <label for="nav-u0-retrieval">My first explanation and my revision</label>
+    <textarea id="nav-u0-retrieval" data-note="science-u0-retrieval" rows="3" placeholder="I first drew __. My count showed __. I changed __ because __."></textarea>
+    <label for="nav-science-question">A question my model raises</label>
+    <textarea id="nav-science-question" data-note="science-show-and-ask" rows="2" placeholder="I wonder what would happen if __. My model predicts __."></textarea>
+    <div class="stem-checklist">
+      <label><input type="checkbox" data-check="science-check-inventory"> I counted each element separately on both sides.</label>
+      <label><input type="checkbox" data-check="science-check-formula"> I explained what a coefficient changes and what a subscript changes.</label>
+      <label><input type="checkbox" data-check="science-check-evidence"> I used evidence to revise or support my original prediction.</label>
+    </div>
+  </article>
+</section>
+<style>
+.stem-controls,.stem-actions,.stem-particles{display:flex;align-items:center;flex-wrap:wrap;gap:.65rem 1rem;margin:.75rem 0}.stem-controls label{display:grid;gap:.3rem;max-width:100%}.stem-controls input{max-width:8em}.stem-controls [hidden]{display:none!important}.stem-controls input,.stem-controls select,#stem-atom-case{font:inherit;padding:.48rem;max-width:100%;min-height:44px}.stem-question{font-weight:700}.stem-tiles{display:inline-flex;flex-direction:column;gap:.2rem;border:1px solid #547963;border-radius:.45rem;padding:.5rem;background:#f3f8f3;max-width:100%;margin:.35rem 0;box-sizing:border-box}.stem-tile-row{display:flex;gap:.17rem}.stem-tile{display:grid;place-items:center;font-size:.82rem;height:1.45rem;line-height:1;border:1px solid;box-sizing:border-box}.stem-x{width:clamp(2rem,6vw,3.5rem);background:#ddedcc;color:#254521}.stem-one{width:1.45rem;background:#ffead7;color:#673410}.stem-sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:1rem;margin:1rem 0}.stem-sides>div{border:1px solid #adbab2;border-radius:.5rem;padding:.8rem}.stem-sides h3{margin:.15rem 0 .45rem}.stem-molecule{display:inline-flex;align-items:center;border:1px dashed #87958f;padding:.38rem;border-radius:.75rem}.stem-ball{display:inline-grid;place-items:center;border:1px solid;border-radius:50%;width:1.75rem;height:1.75rem;font-weight:700;font-size:.83rem}.stem-H{background:#e4f2fc;color:#193d56}.stem-O{background:#fce2d2;color:#65341e}.stem-C{background:#e4e1f5;color:#34255a}.stem-feedback:empty{display:none}
+
+.stem-builder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:.8rem;margin:1rem 0}.stem-builder-grid>div{border:1px solid #aaa6c0;border-radius:.55rem;padding:.8rem}.stem-builder-grid h3{margin:.15rem 0 .55rem}.stem-controls button,.stem-actions button,#stem-builder input,#stem-builder select{min-height:44px}.stem-board{padding:.75rem;border:1px dashed currentColor;border-radius:.45rem}.stem-equation{font-size:clamp(1rem,2.5vw,1.32rem);font-weight:700;font-variant-numeric:tabular-nums}.stem-terms dt{font-weight:bold}.stem-terms dd{margin:0 0 .65rem}.stem-molecule,.stem-ball{box-sizing:border-box}.stem-circle{width:1.75em;height:1.75em;border-radius:50%;display:inline-grid;place-items:center;font-weight:bold;margin:.1em}.stem-actions button{cursor:pointer}.stem-checklist{display:grid;gap:.6rem;margin:1rem 0}.stem-checklist label{display:flex;gap:.6rem;align-items:baseline}.stem-grid-note{margin-top:.75rem}
+</style>

@@ -1,0 +1,84 @@
+{
+  "computing": [
+    {
+      "q": "A page title belongs on the browser tab. A paragraph belongs on the page. Which container should hold the paragraph?",
+      "options": ["head", "body", "title", "link"],
+      "answer": 1, "hint": "The part of an HTML document displayed in the page has a name that means its main contents.", "why": "The body contains visible page content, including paragraphs, images and headings. The head contains information about the page."
+    },
+    {
+      "q": "A museum page needs a main heading followed by a paragraph. Which pair expresses those jobs?",
+      "options": ["h1 then p", "p then h1", "head then link", "div then title"],
+      "answer": 0, "hint": "One tag gives the page its top-level heading. The other marks a paragraph.", "why": "h1 identifies the main heading. A p element groups the following sentences as a paragraph."
+    },
+    {
+      "q": "A club wants a bulleted list of three meeting supplies. Which structure fits?",
+      "options": ["Three p elements inside an img", "An ol containing three headings", "A ul containing three li elements", "A link with three href attributes"],
+      "answer": 2, "hint": "First choose an unordered list. Then choose the element for each list item.", "why": "ul starts an unordered list, and each supply belongs in its own li. The browser gives these items bullets by default."
+    },
+    {
+      "q": "The picture file on your site is named maple.png. Which attribute tells an img element where to find it?",
+      "options": ["href", "class", "alt", "src"],
+      "answer": 3, "hint": "Think of the image's source.", "why": "src supplies the image file location. alt describes the image for a reader who cannot see it."
+    },
+    {
+      "q": "A reader should be able to click 'Practice log' and go to log.html. Which line creates that link?",
+      "options": ["<a href=\"log.html\">Practice log</a>", "<p src=\"log.html\">Practice log</p>", "<a class=\"log.html\">Practice log</a>", "<img href=\"log.html\">"],
+      "answer": 0, "hint": "A clickable link needs an anchor and a destination.", "why": "The a element is an anchor. Its href attribute names the destination, and the text between the tags becomes the link label."
+    },
+    {
+      "q": "Which note explains an HTML layout to a classmate without appearing as a sentence on the page?",
+      "options": ["# Start the gallery here", "// Start the gallery here", "<!-- Start the gallery here -->", "<p>Start the gallery here</p>"],
+      "answer": 2, "hint": "An HTML comment has an opening marker starting with a left angle bracket and an exclamation mark.", "why": "The browser treats text between <!-- and --> as a comment. A p element draws visible text."
+    },
+    {
+      "q": "A page has five p elements. Two use class=\"score\". Which selector reaches just those two paragraphs on this page?",
+      "options": ["p", ".score", "#score", "score"],
+      "answer": 1, "hint": "A class selector starts with a dot.", "why": ".score selects elements with the score class. The p selector would match all five paragraphs."
+    },
+    {
+      "q": "You already have the rule .notice { color: navy; }. Which opening tag makes the rule apply to a paragraph?",
+      "options": ["<p notice>", "<p id=\"notice\">", "<notice p>", "<p class=\"notice\">"],
+      "answer": 3, "hint": "In the HTML, put the class name in a class attribute. Leave out the CSS dot.", "why": "class=\"notice\" attaches the class in HTML. The CSS selector .notice finds it."
+    },
+    {
+      "q": "You want navy letters on a yellow card. Which rule makes that happen?",
+      "options": [".card { color: navy; background-color: yellow; }", ".card { color: yellow; background-color: navy; }", ".card { font: navy; src: yellow; }", ".card { class: navy; href: yellow; }"],
+      "answer": 0, "hint": "color changes the letters. A different property paints behind them.", "why": "color controls the text color, and background-color fills the area behind the text."
+    },
+    {
+      "q": "Three pages should share the same look. Where should each page link to styles.css?",
+      "options": ["In the alt text of its first image", "Inside the last paragraph", "In its head, using a link element", "In a separate heading shown on the page"],
+      "answer": 2, "hint": "Stylesheet information belongs with other information about the page.", "why": "A link element in each head can load the same external stylesheet. Editing one CSS file updates the rules used by all three pages."
+    },
+    {
+      "q": "You want every club announcement to have the same border. Which change will be easiest to maintain next month?",
+      "options": ["Draw the border into every photograph", "Put one .announcement rule in the shared stylesheet", "Copy a style attribute into each paragraph by hand", "Rename each HTML file whenever the border changes"],
+      "answer": 1, "hint": "Imagine needing to change the border on twenty announcements.", "why": "A single class rule can style many announcements. Changing that rule updates every element using it."
+    },
+    {
+      "q": "You are choosing content for a public book-review page. Which detail fits the purpose and keeps personal information private?",
+      "options": ["Your route home after school", "Your phone number", "The exact time your family leaves home every day", "Your favorite genre and a review in your own words"],
+      "answer": 3, "hint": "What would help someone choose a book without telling them how to find you?", "why": "Book opinions fit the page. A daily routine, route or phone number shares private information with an unknown audience."
+    },
+    {
+      "q": "A friend took a group photo. You want to use it for a public club page. What is a sound first step?",
+      "options": ["Ask the photographer for permission and ask the people pictured before posting", "Post it because the club is a school group", "Post it smaller to avoid asking", "Assume that being in the picture means everyone agreed"],
+      "answer": 0, "hint": "Think about both the creator of the photo and the people shown.", "why": "Permission to use the photo and permission from the people it shows address different concerns. You can choose another image if someone declines."
+    },
+    {
+      "q": "A photo appears in search results for your website. How can you decide whether to include it?",
+      "options": ["Every search result is free to republish", "Removing its creator's name makes it available", "Check permission or licensing terms, or create your own suitable image", "Use it if your page has very few visitors"],
+      "answer": 2, "hint": "Finding an image and having permission to publish it are different steps.", "why": "The creator may set rules for reuse, such as giving credit. Your own suitable artwork is another option."
+    },
+    {
+      "q": "Someone deletes a public post a day after publishing it. Why can the post still be part of a digital footprint?",
+      "options": ["Every website keeps the exact same backup forever", "Someone may already have copied or shared it", "The post becomes visible only to its author", "A deleted post becomes a stylesheet"],
+      "answer": 1, "hint": "Think about what a reader could do before the original disappeared.", "why": "Screenshots, downloads and reposts can outlast the original copy. It helps to think about the audience before publishing."
+    },
+    {
+      "q": "A club page has a main headline, a photo and a paragraph. Only the paragraph needs a new text color on every club page. Which plan fits?",
+      "options": ["Set the whole body's background color", "Add an HTML comment to every photo", "Rename the headline's image file", "Update the p color rule in the stylesheet all club pages use"],
+      "answer": 3, "hint": "Match the selector to the element, the property to the change, and the file to all pages.", "why": "A shared p rule targets the paragraphs across the linked pages, and color changes the letters."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#322852">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Study Arcade · Workshop</title><style>@@CSS@@</style></head><body>
+<a class="skip" href="#workspace">Skip to workspace</a>
+<header class="sitehead"><div class="frame nav"><a href="#home" class="brand"><span aria-hidden="true" class="mark"><i></i><i></i><i></i><i></i></span>Study Arcade</a><nav aria-label="Main navigation"><a href="#home">Workshop</a><a href="#plan">My plan</a><a href="#progress">Progress</a></nav></div></header>
+<a id="saveWarning" class="frame" href="#progress" hidden></a><noscript><p class="frame">Enable JavaScript in your browser to use the activities and save progress.</p></noscript>
+<main id="workspace" class="frame" tabindex="-1">
+<section id="home" class="room active">
+<div class="hero"><div class="hero-text"><p class="eyebrow"><span class="led"></span> Learning workshop</p><h1>What will you<br><em>build today?</em></h1><p>Design a page, untangle an equation, read between the lines, or rearrange a molecule.</p><a class="primary" id="continue" href="#computing">Continue today’s work <span aria-hidden="true">→</span></a></div>
+<article class="quick"><div class="quick-head"><b>Warm-up card</b><button id="shuffle" aria-label="Next warm-up card" title="Next card">↻</button></div><div id="warmArt" aria-hidden="true"></div><h2 id="warmPrompt"></h2><button id="reveal" aria-expanded="false" aria-controls="warmAnswer">Reveal answer</button><p id="warmAnswer" hidden></p></article></div>
+<div class="section-title"><div><p class="eyebrow">Choose a room</p><h2>Your workbench</h2></div><span id="roomCount">4 subjects</span></div>
+<div id="roomCards" class="room-cards"></div><aside id="reviewPanel" class="review" hidden></aside>
+<div id="planTease" class="shelf"></div>
+</section>
+@@ROOMS@@
+<section id="rehearsal" class="room"><a href="#math" class="back">← Math room</a><p class="eyebrow">Math · Try it on your own</p><h1>Mixed rehearsal</h1><p class="intro">Take six untimed questions on expansion, factoring, checking equivalence, and vocabulary. See the explanations when you finish.</p><div class="card" id="exam"></div></section>
+<section id="plan" class="room"><a href="#home" class="back">← Workshop</a><p class="eyebrow">Your schedule</p><h1>My plan</h1><div id="planner"></div><article class="card"><details id="familyDetails"><summary>Open a private family plan</summary><p>Choose the family-plan JSON file from your private folder. This browser reads the schedule on this device. On another device, open the same plan there.</p><label>Family-plan file<input type="file" id="familyFile" accept=".json,application/json"></label><div id="planPreview" hidden><p id="pendingPlan"></p><button type="button" id="usePlan">Use this plan</button> <button type="button" id="cancelPlan">Cancel</button></div><p role="status" id="planMessage"></p></details></article></section>
+<section id="sheet" class="room"><a href="#plan" class="back">← My plan</a><p class="eyebrow">Bring to school</p><h1>School-return sheet</h1><p class="intro">Gather work you can show, questions to ask, and what to pack.</p><div id="sheetBody"></div></section>
+<section id="progress" class="room"><a href="#home" class="back">← Workshop</a><p class="eyebrow">Practice record</p><h1>My progress</h1><div id="mastery"></div><div class="grid2"><article class="card"><h2>Switch devices</h2><p id="storeStatus"></p><button class="primary" id="export" type="button">Export progress ↓</button><p>Save your export in your private Box folder. On the next device, open this site and choose that file below.</p><label>Import progress<input type="file" id="progressFile" accept=".json,application/json,text/plain"></label><p>Progress files from the earlier break workbook work here too. Choose the family-plan file separately to see the schedule.</p>
+<details><summary>Use a text backup</summary><button id="showText" type="button">Show current backup</button><label>Progress JSON<textarea id="backupText" spellcheck="false"></textarea></label><button type="button" id="reviewText">Review pasted backup</button></details>
+<div id="progressPreview" hidden><p id="pendingProgress"></p><button type="button" id="useProgress">Use this backup</button> <button type="button" id="cancelProgress">Cancel</button></div><p id="progressMessage" role="status"></p></article>
+<article class="card"><h2>Take the workshop offline</h2><p>Download the complete workshop once. Open that HTML file in a browser and import your plan and latest progress. School assignment links need an internet connection.</p><a id="offline" class="secondary" download="Study_Arcade.html" href="./index.html">Download offline edition ↓</a><p><a href="#sheet">Open school-return sheet →</a></p></article></div></section>
+</main><footer class="frame"><span class="footbrand">Study Arcade</span><span>Build · Explore · Practice</span><a href="#progress">Save &amp; switch devices →</a></footer><div id="paper"></div>
+<script>const BANK=@@BANK@@;
+@@APP@@
+@@LABS@@
+bootArcade();</script></body></html>

@@ -1,0 +1,294 @@
+{
+  "math": [
+    {
+      "q": "Four rows each hold x long tiles and 3 squares. Which expression counts every tile area?",
+      "options": [
+        "4x + 3",
+        "4x + 12",
+        "x + 12",
+        "7x"
+      ],
+      "answer": 1,
+      "hint": "Every row contains three squares. Count the squares in all four rows.",
+      "why": "4(x + 3) = 4x + 12 because the 4 multiplies both terms."
+    },
+    {
+      "q": "A student expands 3(2x − 5) as 6x − 5. Which part needs to change?",
+      "options": [
+        "Replace 6x with 5x.",
+        "Change the minus sign to plus.",
+        "Multiply −5 by 3 to get −15.",
+        "Delete the outside 3 and keep 2x."
+      ],
+      "answer": 2,
+      "hint": "Distribute the multiplier to the second term with its sign.",
+      "why": "The expanded form is 6x − 15. Substituting x = 4 gives 9 in both the original and corrected expressions."
+    },
+    {
+      "q": "Eight x tiles and twelve squares must form the greatest possible number of identical rows. What belongs in each row?",
+      "options": [
+        "2 x tiles and 3 squares",
+        "4 x tiles and 6 squares",
+        "8 x tiles and 12 squares",
+        "3 x tiles and 2 squares"
+      ],
+      "answer": 0,
+      "hint": "List the factors that 8 and 12 share. Divide both quantities by the greatest one.",
+      "why": "The greatest common factor of 8 and 12 is 4. Four rows of (2x + 3) give 8x + 12."
+    },
+    {
+      "q": "Which expression factors 18x − 12 using the greatest common factor?",
+      "options": [
+        "3(6x − 4)",
+        "6(3x − 12)",
+        "6(3x + 2)",
+        "6(3x − 2)"
+      ],
+      "answer": 3,
+      "hint": "Six divides both terms. Keep the negative sign when dividing the constant.",
+      "why": "18x ÷ 6 = 3x and −12 ÷ 6 = −2. The factor 3 works too, but leaves a common factor of 2 inside."
+    },
+    {
+      "q": "Five teams each need 2x sheets for signs and 4 sheets for instructions. What is the total number of sheets?",
+      "options": [
+        "10x + 4",
+        "7x + 20",
+        "10x + 20",
+        "10x + 9"
+      ],
+      "answer": 2,
+      "hint": "Imagine five copies of the same list of supplies.",
+      "why": "5(2x + 4) = 10x + 20. For x = 1, both expressions count 30 sheets."
+    },
+    {
+      "q": "Use factoring to explain a garden with area 15x + 25. Which side lengths show the greatest whole-number common width?",
+      "options": [
+        "5 and (3x + 5)",
+        "3 and (5x + 8)",
+        "5 and (3x + 25)",
+        "15 and (x + 25)"
+      ],
+      "answer": 0,
+      "hint": "Find the largest whole number that divides 15 and 25.",
+      "why": "5 is the greatest common factor. Multiplying 5 by each term in (3x + 5) restores the original area."
+    },
+    {
+      "q": "A classmate claims 2(x + 6) and 2x + 6 are equivalent. What happens when x = 2?",
+      "options": [
+        "Both are 10.",
+        "The first is 16 and the second is 10.",
+        "Both are 16.",
+        "The first is 10 and the second is 16."
+      ],
+      "answer": 1,
+      "hint": "Evaluate inside parentheses first, and then calculate the other expression independently.",
+      "why": "2(2 + 6) = 16, while 2 × 2 + 6 = 10. One different result disproves equivalence."
+    },
+    {
+      "q": "In 7x − 4, which value is the constant term?",
+      "options": [
+        "7",
+        "x",
+        "−4",
+        "4x"
+      ],
+      "answer": 2,
+      "hint": "Read the expression as the sum of 7x and a signed number.",
+      "why": "The term −4 has the same value for every possible x. The 7 is the coefficient of x."
+    },
+    {
+      "q": "Which statement correctly uses the word coefficient?",
+      "options": [
+        "In 9y + 2, the coefficient of y is 9.",
+        "In 9y + 2, the coefficient of y is 2.",
+        "In 9y + 2, the coefficient of y is y.",
+        "In 9y + 2, the coefficient of y is 11."
+      ],
+      "answer": 0,
+      "hint": "Find the number that multiplies the variable.",
+      "why": "9y means 9 times y, so the coefficient is 9. The separate 2 is a constant."
+    },
+    {
+      "q": "One reply to “factor 12x + 18 using the greatest common factor” is 3(4x + 6). How could you improve it?",
+      "options": [
+        "Add the 4 and 6 together.",
+        "Write 6(2x + 3), since a factor of 2 remains inside.",
+        "Change the plus sign to a minus sign.",
+        "Multiply 12 and 18."
+      ],
+      "answer": 1,
+      "hint": "Do 4 and 6 still share a whole-number factor?",
+      "why": "3(4x + 6) is equivalent. Extracting another factor of 2 gives 6(2x + 3), which uses the greatest common factor."
+    },
+    {
+      "q": "A display frame has length 3x + 2 and width 2. What is its area when x = 5?",
+      "options": [
+        "19 square units",
+        "30 square units",
+        "32 square units",
+        "34 square units"
+      ],
+      "answer": 3,
+      "hint": "Substitute 5 into the length before multiplying by the width.",
+      "why": "3 × 5 + 2 = 17. Two rows of 17 make 34 square units. The expanded expression 6x + 4 gives the same value."
+    },
+    {
+      "q": "Someone distributes −2 over (x − 3) and writes −2x − 6. Which calculation fixes the error?",
+      "options": [
+        "−2 × −3 = +6, so the result is −2x + 6.",
+        "−2 × x = 2x, so the result is 2x − 6.",
+        "−2 − 3 = −5, so the result is −2x − 5.",
+        "−2 + 3 = 1, so the result is x."
+      ],
+      "answer": 0,
+      "hint": "Track the sign of the second term when you multiply it by −2.",
+      "why": "Both factors of the constant product are negative. Its value is positive 6."
+    }
+  ],
+  "science": [
+    {
+      "q": "A particle model shows three separate H₂O molecules. How many H atoms and O atoms does it contain?",
+      "options": [
+        "2 H and 3 O",
+        "3 H and 6 O",
+        "6 H and 3 O",
+        "6 H and 6 O"
+      ],
+      "answer": 2,
+      "hint": "A single molecule has two H atoms and one O atom. Count three copies.",
+      "why": "The coefficient counts whole molecules, so multiply each element’s count by 3."
+    },
+    {
+      "q": "How does changing 2 O₂ to 3 O₂ affect the model?",
+      "options": [
+        "Each molecule gains an atom.",
+        "The model gains one complete two-atom molecule.",
+        "Oxygen becomes a different element.",
+        "Each molecule loses an atom."
+      ],
+      "answer": 1,
+      "hint": "Only the number in front changed. Look at the subscript in each formula.",
+      "why": "The coefficient increases the count of O₂ molecules from two to three. Each still has two oxygen atoms."
+    },
+    {
+      "q": "A closed particle model starts with 2 carbon atoms and 4 oxygen atoms. Which ending keeps every atom and uses them all in carbon dioxide?",
+      "options": [
+        "1 CO₂",
+        "2 CO",
+        "4 CO₂",
+        "2 CO₂"
+      ],
+      "answer": 3,
+      "hint": "One CO₂ uses one C and two O atoms.",
+      "why": "Two CO₂ molecules contain two C atoms and four O atoms, exactly matching the start."
+    },
+    {
+      "q": "In a closed system a model starts with six red atoms but ends with four. What should you investigate first?",
+      "options": [
+        "Whether the diagram left atoms out of one side",
+        "Whether color can change the number of atoms",
+        "Whether all the remaining atoms became heavier",
+        "Whether a larger label can repair the drawing"
+      ],
+      "answer": 0,
+      "hint": "In a chemical reaction atoms may change partners. Count each kind before and after.",
+      "why": "The closed model must account for the same atoms on both sides. Look for particles that were omitted or miscounted."
+    },
+    {
+      "q": "You want a model to show that new substances formed in a closed sample. Which observation about its particles would support that idea?",
+      "options": [
+        "The same molecules are drawn larger.",
+        "The same molecules are drawn farther apart.",
+        "The same kinds and counts of atoms are connected in new groups.",
+        "The diagram uses brighter colors."
+      ],
+      "answer": 2,
+      "hint": "Ask whether the atoms have new partners or the picture only looks different.",
+      "why": "When atoms are joined into different molecules, the model shows a change in substances. Scale and spacing alone cannot establish that."
+    },
+    {
+      "q": "A classmate writes H₂O₂ to represent two water molecules. Which revision keeps the water formula correct?",
+      "options": [
+        "H₄O",
+        "2 H₂O",
+        "H₂ + O₂",
+        "H₂O₄"
+      ],
+      "answer": 1,
+      "hint": "Keep every atom in a single molecule in place, then count the whole molecules.",
+      "why": "2 H₂O means two water molecules. H₂O₂ has two O atoms inside each molecule and represents a different substance."
+    },
+    {
+      "q": "An old class model predicted one outcome, but the next observation disagreed. What would make your revised model more useful?",
+      "options": [
+        "Erase the prediction and leave the page blank.",
+        "Copy the outcome without explaining it.",
+        "Keep the same model and ignore the observation.",
+        "Identify the mismatch, revise a relationship, and use the revised model to predict a fresh case."
+      ],
+      "answer": 3,
+      "hint": "A useful model connects evidence, an explanation, and a prediction that someone can check.",
+      "why": "Naming the mismatch lets you revise a specific part of the model. A fresh prediction gives you a way to test whether the revision improved it."
+    },
+    {
+      "q": "Which word describes every O atom counted together in a particle drawing, regardless of its partners?",
+      "options": [
+        "Mixture",
+        "Coefficient",
+        "Element",
+        "Molecule"
+      ],
+      "answer": 2,
+      "hint": "Each O symbol labels a single kind of atom.",
+      "why": "Oxygen is an element. A particular oxygen atom can occur in water, oxygen gas or another substance."
+    },
+    {
+      "q": "What does the small 2 in CO₂ tell you?",
+      "options": [
+        "There are two carbon dioxide molecules.",
+        "There are two oxygen atoms in one carbon dioxide molecule.",
+        "There are two carbon atoms in one carbon dioxide molecule.",
+        "The molecule gains two electrons."
+      ],
+      "answer": 1,
+      "hint": "A subscript belongs to the symbol immediately before it.",
+      "why": "CO₂ has one carbon atom and two oxygen atoms in each molecule."
+    },
+    {
+      "q": "A closed box begins with two H₂ molecules and one O₂ molecule. An ending drawing shows one H₂O molecule and nothing else. Which atoms are missing from the ending inventory?",
+      "options": [
+        "Two H and one O",
+        "Four H and two O",
+        "One H and two O",
+        "Two O only"
+      ],
+      "answer": 0,
+      "hint": "Subtract the atoms in the one drawn water molecule from those in the starting box.",
+      "why": "The starting box has four H and two O. One H₂O accounts for two H and one O, leaving two H and one O unaccounted for."
+    },
+    {
+      "q": "A closed model begins with two C atoms and four O atoms. An ending with three C atoms and three O atoms still totals six. Why should the model be revised?",
+      "options": [
+        "The model should always end with more molecules.",
+        "All products must contain the same number of atoms.",
+        "The carbon atoms should be larger.",
+        "The count of each element must match across the reaction."
+      ],
+      "answer": 3,
+      "hint": "Compare carbon with carbon and oxygen with oxygen.",
+      "why": "The total number of atoms matches, but the number of each kind changes. A chemical reaction rearranges atoms without changing one element into another."
+    },
+    {
+      "q": "Each bracket surrounds a molecule. Which sketch represents 2 H₂O?",
+      "options": [
+        "[H O] [H O]",
+        "[H H O] [H H O]",
+        "[H H O O]",
+        "[H H] [O O]"
+      ],
+      "answer": 1,
+      "hint": "Make two copies of a group that contains two H symbols and one O symbol.",
+      "why": "The coefficient gives the number of groups. The subscripts give the atoms inside a single group."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "poetry": [
+    {
+      "q": "In the practice stanza, which pair of end words tells you that lines 1 and 3 share a rhyme?",
+      "options": [
+        "light / sight",
+        "start / sight",
+        "pencil / page"
+      ],
+      "answer": 0,
+      "hint": "Read the last word of each line aloud. Listen to the vowel and the sounds that follow it.",
+      "why": "Light and sight share the same ending sound. Start and heart form the other pair, so the pattern is ABAB."
+    },
+    {
+      "q": "What does the description “my pencil shivers” suggest about the person holding it?",
+      "options": [
+        "The pencil has been left outdoors.",
+        "The writer feels uncertain about starting.",
+        "The writer has already filled the page."
+      ],
+      "answer": 1,
+      "hint": "A pencil cannot feel nervous. Look at what the speaker is about to try.",
+      "why": "The pencil carries the writer’s nervous movement. That gives us a feeling to compare with the confidence in the final line."
+    },
+    {
+      "q": "Which explanation makes the strongest case that the crooked star matters?",
+      "options": [
+        "Stars usually have five points.",
+        "The star is mentioned near the end.",
+        "The first imperfect drawing helps the writer begin."
+      ],
+      "answer": 2,
+      "hint": "Compare the blank page at the beginning with the speaker’s feeling after drawing.",
+      "why": "The drawing can symbolize a first attempt. Its effect on the speaker connects a specific image to a message about getting started."
+    },
+    {
+      "q": "Try a fresh line: “The gate sighed as I started for school.” Which choice identifies the device and its effect?",
+      "options": [
+        "Personification makes the departure feel reluctant.",
+        "Rhyme makes every word sound the same.",
+        "A simile compares school to a gate using “like”."
+      ],
+      "answer": 0,
+      "hint": "Ask which action normally belongs to a person and consider the mood that action creates.",
+      "why": "Giving the gate a sigh lets the setting echo a feeling. The explanation uses both a detail and its effect."
+    },
+    {
+      "q": "A different stanza ends with “stone / rain / alone / train.” What rhyme scheme do you hear?",
+      "options": [
+        "AABB",
+        "ABAB",
+        "ABBA"
+      ],
+      "answer": 1,
+      "hint": "Assign A to stone, then reuse A only for a matching sound. Do the same for rain.",
+      "why": "Stone rhymes with alone and rain rhymes with train. The two pairs alternate."
+    },
+    {
+      "q": "You wrote “This line uses a metaphor.” Which revision adds analysis?",
+      "options": [
+        "This line has several words.",
+        "The author uses many different devices.",
+        "Calling a worry a stone suggests that the speaker carries its weight."
+      ],
+      "answer": 2,
+      "hint": "Look for a sentence that explains how the comparison changes the reader’s understanding.",
+      "why": "The revised sentence connects a precise comparison to the speaker’s experience. That reasoning helps support a claim."
+    },
+    {
+      "q": "“I cupped the sound and held it in.” How does the metaphor work?",
+      "options": [
+        "The speaker measures the noise with a tool.",
+        "It treats a fading sound like something the speaker can keep.",
+        "It tells the exact size of the platform."
+      ],
+      "answer": 1,
+      "hint": "Think about what hands can usually hold and why someone might want to hold a sound.",
+      "why": "A sound cannot sit in a palm. The gesture makes the wish to keep hearing it feel physical."
+    },
+    {
+      "q": "Which words give a reader the strongest clue about sound?",
+      "options": [
+        "“bright as tin”",
+        "“crooked star”",
+        "“the train hums”"
+      ],
+      "answer": 2,
+      "hint": "Try reading with your eyes closed and imagine what you could hear.",
+      "why": "“Hums” names a sound. Brightness and shape are visual clues."
+    },
+    {
+      "q": "Two lines read “The hall was a hive / before the curtain rose.” Which detail best explains the metaphor?",
+      "options": [
+        "People moved and talked busily in the hall.",
+        "A beehive was hanging above the stage.",
+        "The curtain had six sides."
+      ],
+      "answer": 0,
+      "hint": "What shared quality could connect a crowd waiting for a show to a hive?",
+      "why": "The metaphor brings the sound and activity of a hive into the hall, suggesting energy before the show."
+    },
+    {
+      "q": "A speaker calls an old glove “a small home for my hand.” Which background detail would best support a reading about comfort?",
+      "options": [
+        "A shelf label gives the price.",
+        "The speaker puts the glove on when they miss their family.",
+        "The glove has five fingers."
+      ],
+      "answer": 1,
+      "hint": "Which detail helps show an emotional connection between this speaker and the object?",
+      "why": "Putting on the glove when homesick links an ordinary object with a feeling of belonging."
+    },
+    {
+      "q": "A poem repeats “wait” in three short lines, then begins the last line with “run.” What is worth investigating?",
+      "options": [
+        "Whether the poem must be describing a race",
+        "How many pages the poem needs",
+        "How the change from waiting to action shapes the ending"
+      ],
+      "answer": 2,
+      "hint": "Read the repeated verb aloud three times, then listen to what happens when it changes.",
+      "why": "The repeated word sets a pace and an expectation. The new verb can make the final line feel sudden."
+    },
+    {
+      "q": "Which caption gives a reader an interpretive reason for a poster design?",
+      "options": [
+        "“I left the top half blank so the tiny star feels like a first step.”",
+        "“I filled a sheet of paper.”",
+        "“Some words are near the bottom.”"
+      ],
+      "answer": 0,
+      "hint": "Look for a choice the artist made and the meaning the viewer might take from it.",
+      "why": "The caption connects the space around the star to its meaning. A viewer can look at the page and test that reading."
+    }
+  ]
+}

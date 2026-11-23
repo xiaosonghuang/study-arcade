@@ -1,0 +1,101 @@
+<section id="english" class="room" aria-labelledby="english-room-title">
+  <a href="#home" class="back">Back to the arcade</a>
+  <p class="eyebrow">English</p>
+  <h1 id="english-room-title">Poetry studio</h1>
+  <p class="intro">A crooked star. A train heard from an empty platform. Choose a poem and see how much a few words can reveal about its speaker.</p>
+
+  <article class="card">
+    <h2>Try reading like a poet</h2>
+    <blockquote>Under the pier, the moon sets down<br>a silver plate on the water.</blockquote>
+    <p><strong>Notice.</strong> The two lines compare moonlight on the water to a silver plate. You can picture its round shape and gleaming surface.</p>
+    <p><strong>Interpret.</strong> The words “sets down” make the moon sound gentle. A reader might imagine the water staying still long enough to hold the reflection. This reading connects a quoted detail to a particular effect.</p>
+  </article>
+
+  <article class="card" id="poetry-lab" aria-labelledby="poetry-lab-title">
+    <h2 id="poetry-lab-title">Choose your evidence</h2>
+    <label for="poetry-stanza">Read a stanza</label>
+    <select id="poetry-stanza"><option value="pencil">The first mark</option><option value="platform">After the last train</option></select>
+    <p>Read all four lines aloud. Select up to two lines that you would bring to a discussion of the speaker’s feelings. You can change your selection.</p>
+    <fieldset>
+      <legend>Lines I want to discuss</legend>
+      <div id="poetry-lines"></div>
+    </fieldset>
+    <p id="poetry-evidence-status" role="status"></p>
+    <h3>Listen for the pattern</h3>
+    <p>Give the first end sound an A. Reuse a letter for a matching sound. Use the next letter for a new sound.</p>
+    <div id="poetry-rhyme-choices" style="display:flex;gap:.75rem;flex-wrap:wrap"></div>
+    <button type="button" id="poetry-check-rhyme">Check my rhyme scheme</button>
+    <p id="poetry-rhyme-feedback" role="status"></p>
+
+    <h3>Tag an image</h3>
+    <p id="poetry-sense-stem"></p>
+    <label for="poetry-sense">Which sense does that phrase most directly call on?</label>
+    <select id="poetry-sense">
+      <option value="">Choose a sense</option><option value="sight">Sight</option><option value="sound">Sound</option><option value="touch">Touch</option>
+    </select>
+    <button type="button" id="poetry-check-sense">Check my image tag</button>
+    <p id="poetry-sense-feedback" role="status"></p>
+
+    <h3>Compare two readings</h3>
+    <p>Both readers noticed something. Which reading explains more of the poem, from its opening to its last line? Pick one and test it against the lines you selected.</p>
+    <fieldset>
+      <legend>Which reading can I better support?</legend>
+      <div id="poetry-interpretations"></div>
+    </fieldset>
+    <button type="button" id="poetry-compare">Compare my evidence</button>
+    <p id="poetry-claim-feedback" role="status"></p>
+    <label>My chosen poem and one question I have about it
+      <textarea data-note="poetryChoice" rows="2" placeholder="I’m reading… I want to understand why…"></textarea>
+    </label>
+    <label><input type="checkbox" data-check="poetryRead"> I have chosen a poem and read it aloud.</label>
+  </article>
+
+  <article class="card">
+    <h2>Write, then revise</h2>
+    <p>Use the lines you selected to explain a change, a feeling or an idea in your own words. A different interpretation can work if you can show how the poem supports it.</p>
+    <div class="grid2">
+      <label>First detail and its effect
+        <textarea data-note="poetryEvidence1" rows="3" placeholder="In line ___, the word or image ___ suggests…"></textarea>
+      </label>
+      <label>Second detail and its effect
+        <textarea data-note="poetryEvidence2" rows="3" placeholder="By line ___, the word or image ___ adds…"></textarea>
+      </label>
+    </div>
+    <label>My first draft
+      <textarea data-note="poetryClaim" rows="3" placeholder="What do the two details help you understand about the speaker?"></textarea>
+    </label>
+    <fieldset>
+      <legend>Editor’s self-check</legend>
+      <label><input type="checkbox" data-check="poetryCheckClaim"> I can underline the sentence that gives my interpretation.</label>
+      <label><input type="checkbox" data-check="poetryCheckDetail"> I can point to two exact words or phrases from the poem.</label>
+      <label><input type="checkbox" data-check="poetryCheckEffect"> After each detail, I explain the picture, feeling or change it creates.</label>
+    </fieldset>
+    <label>My revision
+      <textarea data-note="poetryRevision" rows="4" placeholder="Choose the least specific part of your first draft. Rewrite it here with a stronger link between a word and an idea."></textarea>
+    </label>
+  </article>
+
+  <article class="card">
+    <h2>Practice another reading</h2>
+    <p>The opening questions revisit “The first mark.” Later questions use fresh lines to try the same skills in a new setting.</p>
+    <details>
+      <summary>Reread “The first mark”</summary>
+      <blockquote>My pencil shivers in the light.<br>The blank page waits for me to start.<br>One crooked star appears in sight.<br>Its five small lines unstick my heart.</blockquote>
+    </details>
+    <div data-quiz="poetry"></div>
+  </article>
+
+  <article class="card">
+    <h2>Make a response worth showing</h2>
+    <p><strong>Digital response.</strong> Put your revised interpretation and two pieces of evidence into a document, then read the paragraph aloud. Record where you saved it.</p>
+    <label>Where I saved my digital response
+      <input type="text" data-note="poetryOnlineLocation" placeholder="Document title or folder">
+    </label>
+    <label><input type="checkbox" data-check="poetryOnline"> I submitted my digital response in the required place.</label>
+    <p><strong>Paper poster.</strong> Sketch a title, one image inspired by your chosen poem, and a short caption. Explain how an artistic choice draws attention to the poem’s idea.</p>
+    <label>My visual idea and why it fits
+      <textarea data-note="poetryPoster" rows="2" placeholder="I will place ___ near ___ because the poem…"></textarea>
+    </label>
+    <label><input type="checkbox" data-check="poetryPaper"> I finished my physical poster and packed it for class.</label>
+  </article>
+</section>
