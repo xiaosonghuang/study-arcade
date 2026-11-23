@@ -29,3 +29,20 @@ assert not re.search(r"@@[A-Z]+@@",page)
 (root / "docs/index.html").write_text(page)
 (root / "docs/.nojekyll").touch()
 print("Built", len(page.encode()), "bytes;", {k:len(v) for k,v in banks.items()})
+
+# The Grade 2 edition runs from both a Pages subdirectory and a downloaded file.
+grade = src / "grade2"
+illustrations = [
+    "data:image/jpeg;base64," + base64.b64encode((grade / f"scene-{n}.jpg").read_bytes()).decode("ascii")
+    for n in range(1, 5)
+]
+script_order = ["data.js", "quest-data.js", "core.js", "lessons.js", "adventure.js", "app.js"]
+fieldbook = (grade / "page.html").read_text()
+fieldbook = fieldbook.replace("@@ART@@", json.dumps(illustrations))
+fieldbook = fieldbook.replace("@@CSS@@", "\n".join(fonts) + "\n" + (grade / "style.css").read_text())
+fieldbook = fieldbook.replace("@@CODE@@", "\n".join((grade / part).read_text() for part in script_order))
+assert not re.search(r"@@[A-Z]+@@", fieldbook)
+grade_output = root / "docs" / "grade-2"
+grade_output.mkdir(exist_ok=True)
+(grade_output / "index.html").write_text(fieldbook)
+print("Built Grade 2 Fieldbook:", len(fieldbook.encode()), "bytes")
