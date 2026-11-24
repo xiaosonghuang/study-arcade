@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#322852">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://script.google.com https://script.googleusercontent.com; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Family progress · Study Arcade</title>
+<style>
+:root{color-scheme:light;--ink:#302c38;--muted:#635d6c;--line:#dcd7ce;--paper:#fffefa;--purple:#322852;--green:#d7ee94;--reading:#f6f4ed;--heading:"Bricolage Grotesque",ui-rounded,"Trebuchet MS",system-ui,sans-serif;--body:"DM Sans",system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#faf9f5;color:var(--ink);font-family:var(--body);line-height:1.45}button{font:inherit}.frame{width:min(65rem,calc(100% - 2.5rem));margin-inline:auto}.sitehead{border-bottom:1px solid var(--line);background:#fbfaf6}.nav{display:flex;align-items:center;justify-content:space-between;min-height:4.3rem;gap:1rem}.brand{display:inline-flex;align-items:center;gap:.7rem;font:800 1.52rem var(--heading);letter-spacing:-.06em}.mark{padding:.39rem;display:grid;grid-template-columns:repeat(2,.55rem);gap:.13rem;background:var(--purple);border-radius:.5rem;transform:rotate(-5deg)}.mark i{width:.55rem;height:.55rem;background:#d6ef87;border-radius:.2rem}.mark i:nth-child(2){background:#f9ad80}.mark i:nth-child(3){background:#bbacf5}.mark i:nth-child(4){background:#94d8bf}.nav small{font-weight:650;color:var(--muted)}
+main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--heading);line-height:1.12;letter-spacing:-.04em}h1{font-size:clamp(2.25rem,7vw,3.8rem)}h2{font-size:clamp(1.5rem,4vw,2rem)}h3{font-size:1.12rem}.hero{border-radius:1.4rem;padding:clamp(1.35rem,4.5vw,2.65rem);background-color:var(--purple);background-image:radial-gradient(#ffffff19 .8px,transparent 1px);background-size:14px 14px;color:#fffbf4;display:flex;align-items:center;justify-content:space-between;gap:1.1rem}.hero p{margin-top:.75rem;color:#e8e0f3}.refresh{border:0;border-radius:2rem;min-height:44px;padding:.64rem 1.05rem;font-weight:750;background:var(--green);color:#222c1c;cursor:pointer;white-space:nowrap}.refresh:focus-visible,.skip:focus-visible{outline:3px solid #e2904c;outline-offset:3px}.refresh:disabled{cursor:wait;opacity:.82}.refresh[hidden],[hidden]{display:none!important}.skip{position:absolute;left:1rem;top:-7rem;background:white;color:var(--ink);padding:.5rem;z-index:5}.skip:focus{top:.5rem}
+.statusline{display:flex;justify-content:space-between;gap:.5rem 1rem;align-items:baseline;flex-wrap:wrap;margin:.85rem .25rem 0;font-size:.91rem}.statusline span:first-child{font-weight:660}.statusline p{color:var(--muted)}#connection[data-level="warn"]{color:#8c3a22}.notice,.empty{border:1px solid var(--line);border-radius:1rem;background:var(--paper);padding:1.15rem 1.3rem}.notice{margin-top:1rem;background:#fff4dc;color:#603f24}.empty{margin-top:1.2rem}.empty p{margin-top:.5rem;color:var(--muted);max-width:65ch}section.reportgroup{margin-top:2rem}.explain{margin:.4rem 0 .9rem;max-width:74ch;color:var(--muted)}.metrics,.subjects,.recent,.devices{display:grid;gap:.8rem}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.subjects{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:.85rem}.recent,.devices{grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr))}.card{border:1px solid var(--line);border-radius:.95rem;padding:1rem;background:var(--paper);min-width:0;overflow-wrap:anywhere}.metric{border:1px solid #ddd7e6;background:#f0ebf7;border-radius:.9rem;padding:1rem 1.12rem}.metric strong{display:block;font:790 clamp(1.7rem,5vw,2.5rem)/1.1 var(--heading);letter-spacing:-.045em}.metric span{display:block;margin:.25rem 0;color:#51475c;font-weight:650}.metric small{color:var(--muted)}.subject{border-top:.34rem solid var(--hue)}.subject p{margin-top:.55rem;color:var(--muted);font-size:.94rem}progress{appearance:none;width:100%;height:.45rem;border:none;border-radius:1rem;background:#ece9e3;color:#5c5273}progress::-webkit-progress-bar{border-radius:1rem;background:#ece9e3}progress::-webkit-progress-value{border-radius:1rem;background:#5c5273}progress::-moz-progress-bar{border-radius:1rem;background:#5c5273}.subject progress{display:block;margin-top:.8rem}.recent .card{background:#fbf8ee}.card .detail{margin-top:.5rem;color:var(--muted)}.device .count{margin:.65rem 0;font-weight:640}.device dl{display:grid;grid-template-columns:auto 1fr;column-gap:.8rem;row-gap:.3rem;font-size:.92rem;margin:.8rem 0 0}.device dt{color:var(--muted)}.device dd{margin:0}.review-list{margin:.6rem 0 0;padding-left:1.2rem}
+@media(max-width:720px){.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:540px){.frame{width:calc(100% - 1.5rem)}main{padding-top:1rem}.hero{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.05rem .75rem;padding:.7rem .9rem}.metric strong{grid-row:span 2}.metric span{margin:0}.metric small{grid-column:2}.device dl{grid-template-columns:1fr}.device dd+dt{margin-top:.2rem}.statusline{display:block}.statusline p{margin-top:.25rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to progress</a>
+<header class="sitehead"><div class="frame nav"><div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Study Arcade</div><small>Read-only view</small></div></header>
+<main class="frame" id="main" tabindex="-1">
+  <div class="hero"><div><h1>Family progress</h1><p>Practice, study blocks and recent activity across connected workbooks.</p></div><button id="refresh" class="refresh" type="button" hidden>Refresh now</button></div>
+  <div class="statusline"><span id="connection" role="status" aria-live="polite">Opening family view…</span><p id="last-check"></p></div>
+  <p id="warning" class="notice" hidden></p>
+  <noscript><p class="notice">Enable JavaScript to open the family view.</p></noscript>
+  <div id="empty" class="empty" hidden><h2 id="empty-title"></h2><p id="empty-body"></p></div>
+  <div id="report" hidden>
+    <section class="reportgroup" aria-labelledby="overview-title"><h2 id="overview-title">Across devices</h2><p class="explain">Each question and study block counts once if it appears on either device. Totals combine the latest report available from each workbook.</p><div id="metrics" class="metrics"></div><div id="subjects" class="subjects"></div></section>
+    <section class="reportgroup" aria-labelledby="recent-title"><h2 id="recent-title">Latest workbook</h2><p class="explain" id="recent-source"></p><div id="recent" class="recent"></div></section>
+    <section class="reportgroup" aria-labelledby="devices-title"><h2 id="devices-title">Device reports</h2><p class="explain">Notes and labs are counted per browser. Written answers stay in the workbook.</p><div id="devices" class="devices"></div></section>
+  </div>
+</main>
+<script>// Keys come from a private family pairing. The public workshop contains no family credentials.
+window.ArcadeLive = (() => {
+  const endpoint = 'https://script.google.com/macros/s/AKfycbyJarrsMNh2-bV91-JcDexU3zxzO2fUP3qSal_g1EDOIdD7EGuNkuylQEqiAS8HGvuu/exec';
+  const storageKey = role => 'study-arcade.live.' + role + '.v1';
+  const tokenPattern = /^[A-Za-z0-9_-]{43}$/;
+  const encode = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  const decode = text => Uint8Array.from(atob(text.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
+  function config(role, input) {
+    if (!input || input.role !== role || !tokenPattern.test(input.token) || !tokenPattern.test(input.cipher)) throw Error('This family connection is invalid. Reopen the private setup link.');
+    return {role, token:input.token, cipher:input.cipher};
+  }
+  function readConfig(role) {
+    if (role === 'reader' && location.hash.startsWith('#view=')) {
+      const [token,cipher] = location.hash.slice(6).split('.');
+      const found = config(role,{role,token,cipher});
+      try {localStorage.setItem(storageKey(role),JSON.stringify(found));}catch{}
+      return found;
+    }
+    let text;try{text=localStorage.getItem(storageKey(role));}catch{}
+    return text ? config(role,JSON.parse(text)) : null;
+  }
+  async function request(body) {
+    const abort=new AbortController(), timer=setTimeout(()=>abort.abort(),20000);
+    try {
+      const response=await fetch(endpoint,{method:'POST',mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(body),signal:abort.signal});
+      if(!response.ok)throw Error('The progress service is unavailable.');
+      const data=await response.json();
+      if(!data.ok)throw Error(data.error==='unauthorized'?'This family connection was not accepted. Reopen the private setup link.':data.error==='device-limit'?'This family has reached its browser connection limit.':'The progress service could not complete this update.');
+      return data;
+    } finally {clearTimeout(timer);}
+  }
+  async function secret(c){return crypto.subtle.importKey('raw',decode(c.cipher),{name:'AES-GCM'},false,['encrypt','decrypt']);}
+  const associated=(id,rev)=>new TextEncoder().encode('arcade-report-v1/'+id+'/'+rev);
+  async function seal(c,id,rev,snapshot) {
+    const iv=crypto.getRandomValues(new Uint8Array(12)), key=await secret(c);
+    const bytes=new TextEncoder().encode(JSON.stringify(snapshot));
+    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev)},key,bytes);
+    const packet=new Uint8Array(12+encrypted.byteLength);packet.set(iv);packet.set(new Uint8Array(encrypted),12);
+    return encode(packet);
+  }
+  async function readDevices(c) {
+    const data=await request({op:'read',key:c.token}), key=await secret(c);
+    return Promise.all(data.devices.map(async row=>{
+      const bytes=decode(row.blob);
+      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
+      const snapshot=JSON.parse(new TextDecoder().decode(clear));
+      if(snapshot.v!==1)throw Error('This report needs a newer dashboard.');
+      return {id:row.id,received:row.received,snapshot};
+    }));
+  }
+  return {readConfig,readDevices,config,request,seal,storageKey};
+})();
+</script>
+<script>
+(() => {
+  'use strict';
+  const subjects = [
+    {key:'computing', name:'Computing', size:16, hue:'#b7a4da'},
+    {key:'math', name:'Math', size:12, hue:'#eba67f'},
+    {key:'poetry', name:'Poetry', size:12, hue:'#e2bd57'},
+    {key:'science', name:'Science', size:12, hue:'#8bc3ae'}
+  ];
+  const labs = new Map([
+    ['cs-client','Design brief'], ['cs-flex','Flexbox'], ['cs-selector','CSS selectors'],
+    ['cs-runner','Sprite runner'], ['math-area','Area model'], ['math-substitution','Substitution'],
+    ['science-particles','Particle model'], ['science-assembly','Molecule assembly'], ['poetryStudio','Poetry studio']
+  ]);
+  const byId = name => document.getElementById(name);
+  const h = (tag, text, cls) => {
+    const el = document.createElement(tag);
+    if (text !== undefined && text !== null) el.textContent = text;
+    if (cls) el.className = cls;
+    return el;
+  };
+  const formatter = new Intl.DateTimeFormat(undefined, {year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
+  const stamp = ms => Number.isFinite(ms) ? formatter.format(ms) : 'Unavailable';
+  const plural = (n, singular, multiple = singular + 's') => n + ' ' + (n === 1 ? singular : multiple);
+  const label = id => 'Device · ' + (id.replace(/[^a-z0-9]/gi,'').slice(-6).toUpperCase() || 'Unknown');
+  const list = x => Array.isArray(x) ? x : [];
+  const validTime = ms => typeof ms === 'number' && Number.isFinite(ms) && ms > 0 && !Number.isNaN(new Date(ms).getTime());
+  const ids = x => new Set(list(x).filter(id => typeof id === 'string' && id.length > 0));
+  const numbers = (x, size) => new Set(list(x).filter(n => Number.isInteger(n) && n >= 0 && n < size));
+  const add = (target, values) => { for (const value of values) target.add(value); };
+  const boundedCount = (value, max) => Number.isInteger(value) && value >= 0 && value <= max ? value : null;
+  function blank() {
+    return {
+      subjects:Object.fromEntries(subjects.map(s => [s.key, {tried:new Set(),solved:new Set(),due:new Set()}])),
+      blocks:{all:new Set(),started:new Set(),done:new Set()}
+    };
+  }
+  function normalise(record) {
+    const s = record?.snapshot;
+    if (typeof record?.id !== 'string' || !record.id || !validTime(record.received) || s?.v !== 1 || !s.subjects || typeof s.subjects !== 'object' || Array.isArray(s.subjects)) return null;
+    const out = blank();
+    out.id = record.id;
+    out.received = record.received;
+    const activity = typeof s.at === 'string' ? Date.parse(s.at) : NaN;
+    out.activity = validTime(activity) ? activity : null;
+    for (const subject of subjects) {
+      const data = s.subjects?.[subject.key];
+      const counts = out.subjects[subject.key];
+      for (const k of ['tried','solved','due']) counts[k] = numbers(data?.[k], subject.size);
+      add(counts.tried, counts.solved);
+    }
+    for (const k of ['all','started','done']) out.blocks[k] = ids(s.blocks?.[k]);
+    add(out.blocks.all, out.blocks.started);
+    add(out.blocks.all, out.blocks.done);
+    out.notes = boundedCount(s.notes, Number.MAX_SAFE_INTEGER) ?? 0;
+    out.labs = [...ids(s.labs)].filter(lab => labs.has(lab));
+    out.exam = s.exam && typeof s.exam.done === 'boolean' ? {
+      done:s.exam.done, answered:boundedCount(s.exam.answered,6), score:boundedCount(s.exam.score,6)
+    } : null;
+    return out;
+  }
+  function level(message, warning = false) {
+    const el = byId('connection');
+    if (el.textContent !== message) el.textContent = message;
+    el.dataset.level = warning ? 'warn' : 'ok';
+  }
+  function warning(message) {
+    byId('warning').textContent = message;
+    byId('warning').hidden = !message;
+  }
+  function empty(title, text) {
+    byId('report').hidden = true;
+    byId('empty').hidden = false;
+    byId('empty-title').textContent = title;
+    byId('empty-body').textContent = text;
+  }
+  function combine(devices) {
+    const aggregate = blank();
+    for (const device of devices) {
+      for (const {key} of subjects) {
+        add(aggregate.subjects[key].tried, device.subjects[key].tried);
+        add(aggregate.subjects[key].solved, device.subjects[key].solved);
+      }
+      for (const k of ['all','started','done']) add(aggregate.blocks[k], device.blocks[k]);
+    }
+    return aggregate;
+  }
+  function questionTotal({subjects:groups}, key) {
+    return subjects.reduce((total, subject) => total + groups[subject.key][key].size,0);
+  }
+  function metric(value, title, detail) {
+    const el = h('div', null, 'metric');
+    el.append(h('strong',value),h('span',title),h('small',detail));
+    return el;
+  }
+  function showOverview(totals) {
+    const blocks = totals.blocks;
+    let inProgress = 0;
+    for (const id of blocks.started) if (!blocks.done.has(id)) inProgress++;
+    byId('metrics').replaceChildren(
+      metric(questionTotal(totals,'tried'),'Questions tried','52 questions in four subjects'),
+      metric(questionTotal(totals,'solved'),'Questions solved','Solved on at least one device'),
+      metric(blocks.done.size,'Study blocks checked',blocks.all.size ? 'Of ' + blocks.all.size + ' reported · ' + inProgress + ' started, still open' : 'No plan blocks reported')
+    );
+    const cards = subjects.map(s => {
+      const counts = totals.subjects[s.key];
+      const article = h('article',null,'card subject');
+      article.style.setProperty('--hue',s.hue);
+      const progress = h('progress'); progress.max = s.size; progress.value = counts.solved.size;
+      progress.setAttribute('aria-label',s.name + ': ' + counts.solved.size + ' of ' + s.size + ' questions solved');
+      article.append(h('h3',s.name),progress,h('p',counts.tried.size + ' tried · ' + counts.solved.size + ' of ' + s.size + ' solved'));
+      return article;
+    });
+    byId('subjects').replaceChildren(...cards);
+  }
+  function showRecent(latest) {
+    byId('recent-source').textContent = label(latest.id) + (latest.activity ? ' · Last study activity ' + stamp(latest.activity) : ' · Report received ' + stamp(latest.received)) + '. Review and rehearsal reflect this workbook only.';
+    const review = h('article',null,'card');
+    review.append(h('h3','Review due'));
+    const due = subjects.filter(s => latest.subjects[s.key].due.size);
+    if (due.length) {
+      const ul = h('ul',null,'review-list');
+      for (const s of due) ul.append(h('li',s.name + ' · ' + plural(latest.subjects[s.key].due.size,'question')));
+      review.append(ul);
+    } else review.append(h('p','No questions were due when this workbook reported.','detail'));
+    const math = h('article',null,'card');
+    math.append(h('h3','Math rehearsal'));
+    let examText = 'No rehearsal reported by this workbook.';
+    const exam = latest.exam;
+    if (exam?.done) examText = exam.score === null ? 'Round completed.' : 'Round completed · ' + exam.score + ' of 6 correct.';
+    else if (exam) examText = exam.answered === null ? 'Round in progress.' : 'Round in progress · ' + exam.answered + ' of 6 answered.';
+    math.append(h('p',examText,'detail'));
+    byId('recent').replaceChildren(review,math);
+  }
+  function deviceCard(device) {
+    const card = h('article',null,'card device');
+    const terms = h('dl');
+    const row = (term, value) => terms.append(h('dt',term),h('dd',value));
+    row('Last study activity',stamp(device.activity));
+    row('Report received',stamp(device.received));
+    row('Notebook',plural(device.notes,'written entry','written entries'));
+    row('Labs used',device.labs.length ? device.labs.map(x => labs.get(x)).join(' · ') : 'None reported');
+    card.append(h('h3',label(device.id)),h('p',questionTotal(device,'tried') + ' tried · ' + questionTotal(device,'solved') + ' solved · ' + plural(device.blocks.done.size,'checked block'),'count'),terms);
+    return card;
+  }
+  const freshness = (a,b) => (b.activity ?? 0) - (a.activity ?? 0) || b.received - a.received || a.id.localeCompare(b.id);
+  let reports = [], lastSuccess = null, activeIdentity = null, inFlight = false, authBlocked = false;
+  function showReports() {
+    if (!reports.length) {
+      empty('Waiting for the first update','Open the private learner link in a study browser and use the workshop. New reports appear here automatically while this page is visible.');
+      return;
+    }
+    byId('empty').hidden = true;
+    byId('report').hidden = false;
+    showOverview(combine(reports));
+    showRecent(reports[0]);
+    byId('devices').replaceChildren(...reports.map(deviceCard));
+  }
+  function clearReports() {
+    reports = [];
+    lastSuccess = null;
+    byId('last-check').textContent = '';
+    for (const k of ['metrics','subjects','recent','devices']) byId(k).replaceChildren();
+    byId('recent-source').textContent = '';
+    byId('report').hidden = true;
+    warning('');
+  }
+  function unauthorized(e) {
+    return [401,403].includes(Number(e?.status ?? e?.response?.status ?? e?.code)) ||
+      /unauthori[sz]ed|forbidden|permission.denied|invalid.token|invalid.credential|access.denied|family connection was not accepted|\b401\b|\b403\b/i.test(String(e?.message ?? e));
+  }
+  function needsLink(invalid) {
+    activeIdentity = null;
+    authBlocked = invalid;
+    clearReports();
+    byId('refresh').hidden = !invalid;
+    level(invalid ? 'Connection needs attention' : 'Awaiting family link',invalid);
+    empty(invalid ? 'Open the parent link again' : 'Connect this browser',
+      'Open the private parent viewing link from your family setup in this browser. Use the separate learner link on each study device. Keep both links with your family.');
+  }
+  async function refresh() {
+    if (inFlight || document.hidden) return;
+    const btn = byId('refresh');
+    let config;
+    try {
+      config = window.ArcadeLive.readConfig('reader');
+    } catch (_) {
+      needsLink(true); return;
+    }
+    if (!config) { needsLink(false); return; }
+    const identity = JSON.stringify(config);
+    if (activeIdentity !== identity) {
+      clearReports(); activeIdentity = identity;
+      empty('Checking for updates','Loading summaries from the connected workbooks.');
+    }
+    authBlocked = false;
+    inFlight = true;
+    btn.hidden = false; btn.disabled = true;
+    if (!lastSuccess) level('Checking for updates…');
+    try {
+      const raw = await window.ArcadeLive.readDevices(config);
+      if (!Array.isArray(raw)) throw new Error('Invalid report');
+      const latestPerDevice = new Map();
+      let skipped = 0;
+      for (const row of raw) {
+        const item = normalise(row);
+        if (!item) {skipped++; continue;}
+        if (!latestPerDevice.has(item.id) || item.received > latestPerDevice.get(item.id).received) latestPerDevice.set(item.id,item);
+      }
+      if (raw.length && !latestPerDevice.size) throw new Error('No readable device reports');
+      reports = [...latestPerDevice.values()].sort(freshness);
+      lastSuccess = Date.now();
+      byId('last-check').textContent = 'Last checked ' + stamp(lastSuccess);
+      const old = reports.length && reports.every(d => lastSuccess - d.received > 86400000);
+      const notes = [];
+      if (skipped) notes.push('Some device reports could not be read.');
+      if (old) notes.push('The newest device upload is over a day old. These figures reflect the last reports received.');
+      warning(notes.join(' '));
+      level(reports.length ? 'Connected · refreshes every 15 seconds' : 'Connected · waiting for an update');
+      showReports();
+    } catch (e) {
+      if (unauthorized(e)) {
+        needsLink(true);
+        level('Parent link rejected',true);
+        warning('Access could not be verified. Open the current parent link from your private family setup, or retry.');
+      } else {
+        level('Refresh unavailable',true);
+        const message = lastSuccess ? 'Showing the last successful check. Figures may be out of date.' : 'A current report could not be loaded.';
+        warning(message + ' Check the connection and select Refresh now to retry.');
+        if (!lastSuccess) empty('Could not load progress','This page will check again while it is open.');
+      }
+    } finally {
+      inFlight = false; btn.disabled = false;
+    }
+  }
+  byId('refresh').addEventListener('click',refresh);
+  window.addEventListener('hashchange',() => { if (location.hash.startsWith('#view=')) location.reload(); });
+  window.addEventListener('focus',refresh);
+  document.addEventListener('visibilitychange',() => { if (!document.hidden) refresh(); });
+  window.setInterval(() => { if (!document.hidden && !authBlocked) refresh(); },15000);
+  refresh();
+})();
+</script>
+</body>
+</html>

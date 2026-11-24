@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#322852">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; connect-src https://script.google.com https://script.googleusercontent.com; base-uri 'none'; form-action 'none'">
 <title>Study Arcade · Workshop</title><style>/* Copyright 2022 The Bricolage Grotesque Project Authors (https://github.com/ateliertriay/bricolage)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -577,12 +577,65 @@ main{padding-block:32px 40px;min-height:74vh}.room{display:none}.room.active{dis
 <section id="rehearsal" class="room"><a href="#math" class="back">← Math room</a><p class="eyebrow">Math · Try it on your own</p><h1>Mixed rehearsal</h1><p class="intro">Take six untimed questions on expansion, factoring, checking equivalence, and vocabulary. See the explanations when you finish.</p><div class="card" id="exam"></div></section>
 <section id="plan" class="room"><a href="#home" class="back">← Workshop</a><p class="eyebrow">Your schedule</p><h1>My plan</h1><div id="planner"></div><article class="card"><details id="familyDetails"><summary>Open a private family plan</summary><p>Choose the family-plan JSON file from your private folder. This browser reads the schedule on this device. On another device, open the same plan there.</p><label>Family-plan file<input type="file" id="familyFile" accept=".json,application/json"></label><div id="planPreview" hidden><p id="pendingPlan"></p><button type="button" id="usePlan">Use this plan</button> <button type="button" id="cancelPlan">Cancel</button></div><p role="status" id="planMessage"></p></details></article></section>
 <section id="sheet" class="room"><a href="#plan" class="back">← My plan</a><p class="eyebrow">Bring to school</p><h1>School-return sheet</h1><p class="intro">Gather work you can show, questions to ask, and what to pack.</p><div id="sheetBody"></div></section>
-<section id="progress" class="room"><a href="#home" class="back">← Workshop</a><p class="eyebrow">Practice record</p><h1>My progress</h1><div id="mastery"></div><div class="grid2"><article class="card"><h2>Switch devices</h2><p id="storeStatus"></p><button class="primary" id="export" type="button">Export progress ↓</button><p>Save your export in your private Box folder. On the next device, open this site and choose that file below.</p><label>Import progress<input type="file" id="progressFile" accept=".json,application/json,text/plain"></label><p>Progress files from the earlier break workbook work here too. Choose the family-plan file separately to see the schedule.</p>
+<section id="progress" class="room"><a href="#home" class="back">← Workshop</a><p class="eyebrow">Practice record</p><h1>My progress</h1><div id="mastery"></div><div class="grid2"><article class="card"><h2>Family dashboard</h2><p id="familyStatus" role="status">Automatic family updates are off on this browser.</p><p>Connect once with your private device link or paired family plan. Quiz progress, study-block counts, and the rehearsal result update while the workbook is open online. Your written answers stay here.</p><button type="button" id="disconnectFamily" hidden>Pause family updates here</button><h2>Switch devices</h2><p id="storeStatus"></p><button class="primary" id="export" type="button">Export progress ↓</button><p>Save your export in your private Box folder. On the next device, open this site and choose that file below.</p><label>Import progress<input type="file" id="progressFile" accept=".json,application/json,text/plain"></label><p>Progress files from the earlier break workbook work here too. Choose the family-plan file separately to see the schedule.</p>
 <details><summary>Use a text backup</summary><button id="showText" type="button">Show current backup</button><label>Progress JSON<textarea id="backupText" spellcheck="false"></textarea></label><button type="button" id="reviewText">Review pasted backup</button></details>
 <div id="progressPreview" hidden><p id="pendingProgress"></p><button type="button" id="useProgress">Use this backup</button> <button type="button" id="cancelProgress">Cancel</button></div><p id="progressMessage" role="status"></p></article>
 <article class="card"><h2>Take the workshop offline</h2><p>Download the complete workshop once. Open that HTML file in a browser and import your plan and latest progress. School assignment links need an internet connection.</p><a id="offline" class="secondary" download="Study_Arcade.html" href="./index.html">Download offline edition ↓</a><p><a href="#sheet">Open school-return sheet →</a></p></article></div></section>
 </main><footer class="frame"><span class="footbrand">Study Arcade</span><span>Build · Explore · Practice</span><a href="#progress">Save &amp; switch devices →</a></footer><div id="paper"></div>
 <script>const BANK={"computing": [{"q": "A page title belongs on the browser tab. A paragraph belongs on the page. Which container should hold the paragraph?", "options": ["head", "body", "title", "link"], "answer": 1, "hint": "The part of an HTML document displayed in the page has a name that means its main contents.", "why": "The body contains visible page content, including paragraphs, images and headings. The head contains information about the page."}, {"q": "A museum page needs a main heading followed by a paragraph. Which pair expresses those jobs?", "options": ["h1 then p", "p then h1", "head then link", "div then title"], "answer": 0, "hint": "One tag gives the page its top-level heading. The other marks a paragraph.", "why": "h1 identifies the main heading. A p element groups the following sentences as a paragraph."}, {"q": "A club wants a bulleted list of three meeting supplies. Which structure fits?", "options": ["Three p elements inside an img", "An ol containing three headings", "A ul containing three li elements", "A link with three href attributes"], "answer": 2, "hint": "First choose an unordered list. Then choose the element for each list item.", "why": "ul starts an unordered list, and each supply belongs in its own li. The browser gives these items bullets by default."}, {"q": "The picture file on your site is named maple.png. Which attribute tells an img element where to find it?", "options": ["href", "class", "alt", "src"], "answer": 3, "hint": "Think of the image's source.", "why": "src supplies the image file location. alt describes the image for a reader who cannot see it."}, {"q": "A reader should be able to click 'Practice log' and go to log.html. Which line creates that link?", "options": ["<a href=\"log.html\">Practice log<\/a>", "<p src=\"log.html\">Practice log<\/p>", "<a class=\"log.html\">Practice log<\/a>", "<img href=\"log.html\">"], "answer": 0, "hint": "A clickable link needs an anchor and a destination.", "why": "The a element is an anchor. Its href attribute names the destination, and the text between the tags becomes the link label."}, {"q": "Which note explains an HTML layout to a classmate without appearing as a sentence on the page?", "options": ["# Start the gallery here", "// Start the gallery here", "<!-- Start the gallery here -->", "<p>Start the gallery here<\/p>"], "answer": 2, "hint": "An HTML comment has an opening marker starting with a left angle bracket and an exclamation mark.", "why": "The browser treats text between <!-- and --> as a comment. A p element draws visible text."}, {"q": "A page has five p elements. Two use class=\"score\". Which selector reaches just those two paragraphs on this page?", "options": ["p", ".score", "#score", "score"], "answer": 1, "hint": "A class selector starts with a dot.", "why": ".score selects elements with the score class. The p selector would match all five paragraphs."}, {"q": "You already have the rule .notice { color: navy; }. Which opening tag makes the rule apply to a paragraph?", "options": ["<p notice>", "<p id=\"notice\">", "<notice p>", "<p class=\"notice\">"], "answer": 3, "hint": "In the HTML, put the class name in a class attribute. Leave out the CSS dot.", "why": "class=\"notice\" attaches the class in HTML. The CSS selector .notice finds it."}, {"q": "You want navy letters on a yellow card. Which rule makes that happen?", "options": [".card { color: navy; background-color: yellow; }", ".card { color: yellow; background-color: navy; }", ".card { font: navy; src: yellow; }", ".card { class: navy; href: yellow; }"], "answer": 0, "hint": "color changes the letters. A different property paints behind them.", "why": "color controls the text color, and background-color fills the area behind the text."}, {"q": "Three pages should share the same look. Where should each page link to styles.css?", "options": ["In the alt text of its first image", "Inside the last paragraph", "In its head, using a link element", "In a separate heading shown on the page"], "answer": 2, "hint": "Stylesheet information belongs with other information about the page.", "why": "A link element in each head can load the same external stylesheet. Editing one CSS file updates the rules used by all three pages."}, {"q": "You want every club announcement to have the same border. Which change will be easiest to maintain next month?", "options": ["Draw the border into every photograph", "Put one .announcement rule in the shared stylesheet", "Copy a style attribute into each paragraph by hand", "Rename each HTML file whenever the border changes"], "answer": 1, "hint": "Imagine needing to change the border on twenty announcements.", "why": "A single class rule can style many announcements. Changing that rule updates every element using it."}, {"q": "You are choosing content for a public book-review page. Which detail fits the purpose and keeps personal information private?", "options": ["Your route home after school", "Your phone number", "The exact time your family leaves home every day", "Your favorite genre and a review in your own words"], "answer": 3, "hint": "What would help someone choose a book without telling them how to find you?", "why": "Book opinions fit the page. A daily routine, route or phone number shares private information with an unknown audience."}, {"q": "A friend took a group photo. You want to use it for a public club page. What is a sound first step?", "options": ["Ask the photographer for permission and ask the people pictured before posting", "Post it because the club is a school group", "Post it smaller to avoid asking", "Assume that being in the picture means everyone agreed"], "answer": 0, "hint": "Think about both the creator of the photo and the people shown.", "why": "Permission to use the photo and permission from the people it shows address different concerns. You can choose another image if someone declines."}, {"q": "A photo appears in search results for your website. How can you decide whether to include it?", "options": ["Every search result is free to republish", "Removing its creator's name makes it available", "Check permission or licensing terms, or create your own suitable image", "Use it if your page has very few visitors"], "answer": 2, "hint": "Finding an image and having permission to publish it are different steps.", "why": "The creator may set rules for reuse, such as giving credit. Your own suitable artwork is another option."}, {"q": "Someone deletes a public post a day after publishing it. Why can the post still be part of a digital footprint?", "options": ["Every website keeps the exact same backup forever", "Someone may already have copied or shared it", "The post becomes visible only to its author", "A deleted post becomes a stylesheet"], "answer": 1, "hint": "Think about what a reader could do before the original disappeared.", "why": "Screenshots, downloads and reposts can outlast the original copy. It helps to think about the audience before publishing."}, {"q": "A club page has a main headline, a photo and a paragraph. Only the paragraph needs a new text color on every club page. Which plan fits?", "options": ["Set the whole body's background color", "Add an HTML comment to every photo", "Rename the headline's image file", "Update the p color rule in the stylesheet all club pages use"], "answer": 3, "hint": "Match the selector to the element, the property to the change, and the file to all pages.", "why": "A shared p rule targets the paragraphs across the linked pages, and color changes the letters."}], "math": [{"q": "Four rows each hold x long tiles and 3 squares. Which expression counts every tile area?", "options": ["4x + 3", "4x + 12", "x + 12", "7x"], "answer": 1, "hint": "Every row contains three squares. Count the squares in all four rows.", "why": "4(x + 3) = 4x + 12 because the 4 multiplies both terms."}, {"q": "A student expands 3(2x − 5) as 6x − 5. Which part needs to change?", "options": ["Replace 6x with 5x.", "Change the minus sign to plus.", "Multiply −5 by 3 to get −15.", "Delete the outside 3 and keep 2x."], "answer": 2, "hint": "Distribute the multiplier to the second term with its sign.", "why": "The expanded form is 6x − 15. Substituting x = 4 gives 9 in both the original and corrected expressions."}, {"q": "Eight x tiles and twelve squares must form the greatest possible number of identical rows. What belongs in each row?", "options": ["2 x tiles and 3 squares", "4 x tiles and 6 squares", "8 x tiles and 12 squares", "3 x tiles and 2 squares"], "answer": 0, "hint": "List the factors that 8 and 12 share. Divide both quantities by the greatest one.", "why": "The greatest common factor of 8 and 12 is 4. Four rows of (2x + 3) give 8x + 12."}, {"q": "Which expression factors 18x − 12 using the greatest common factor?", "options": ["3(6x − 4)", "6(3x − 12)", "6(3x + 2)", "6(3x − 2)"], "answer": 3, "hint": "Six divides both terms. Keep the negative sign when dividing the constant.", "why": "18x ÷ 6 = 3x and −12 ÷ 6 = −2. The factor 3 works too, but leaves a common factor of 2 inside."}, {"q": "Five teams each need 2x sheets for signs and 4 sheets for instructions. What is the total number of sheets?", "options": ["10x + 4", "7x + 20", "10x + 20", "10x + 9"], "answer": 2, "hint": "Imagine five copies of the same list of supplies.", "why": "5(2x + 4) = 10x + 20. For x = 1, both expressions count 30 sheets."}, {"q": "Use factoring to explain a garden with area 15x + 25. Which side lengths show the greatest whole-number common width?", "options": ["5 and (3x + 5)", "3 and (5x + 8)", "5 and (3x + 25)", "15 and (x + 25)"], "answer": 0, "hint": "Find the largest whole number that divides 15 and 25.", "why": "5 is the greatest common factor. Multiplying 5 by each term in (3x + 5) restores the original area."}, {"q": "A classmate claims 2(x + 6) and 2x + 6 are equivalent. What happens when x = 2?", "options": ["Both are 10.", "The first is 16 and the second is 10.", "Both are 16.", "The first is 10 and the second is 16."], "answer": 1, "hint": "Evaluate inside parentheses first, and then calculate the other expression independently.", "why": "2(2 + 6) = 16, while 2 × 2 + 6 = 10. One different result disproves equivalence."}, {"q": "In 7x − 4, which value is the constant term?", "options": ["7", "x", "−4", "4x"], "answer": 2, "hint": "Read the expression as the sum of 7x and a signed number.", "why": "The term −4 has the same value for every possible x. The 7 is the coefficient of x."}, {"q": "Which statement correctly uses the word coefficient?", "options": ["In 9y + 2, the coefficient of y is 9.", "In 9y + 2, the coefficient of y is 2.", "In 9y + 2, the coefficient of y is y.", "In 9y + 2, the coefficient of y is 11."], "answer": 0, "hint": "Find the number that multiplies the variable.", "why": "9y means 9 times y, so the coefficient is 9. The separate 2 is a constant."}, {"q": "One reply to “factor 12x + 18 using the greatest common factor” is 3(4x + 6). How could you improve it?", "options": ["Add the 4 and 6 together.", "Write 6(2x + 3), since a factor of 2 remains inside.", "Change the plus sign to a minus sign.", "Multiply 12 and 18."], "answer": 1, "hint": "Do 4 and 6 still share a whole-number factor?", "why": "3(4x + 6) is equivalent. Extracting another factor of 2 gives 6(2x + 3), which uses the greatest common factor."}, {"q": "A display frame has length 3x + 2 and width 2. What is its area when x = 5?", "options": ["19 square units", "30 square units", "32 square units", "34 square units"], "answer": 3, "hint": "Substitute 5 into the length before multiplying by the width.", "why": "3 × 5 + 2 = 17. Two rows of 17 make 34 square units. The expanded expression 6x + 4 gives the same value."}, {"q": "Someone distributes −2 over (x − 3) and writes −2x − 6. Which calculation fixes the error?", "options": ["−2 × −3 = +6, so the result is −2x + 6.", "−2 × x = 2x, so the result is 2x − 6.", "−2 − 3 = −5, so the result is −2x − 5.", "−2 + 3 = 1, so the result is x."], "answer": 0, "hint": "Track the sign of the second term when you multiply it by −2.", "why": "Both factors of the constant product are negative. Its value is positive 6."}], "science": [{"q": "A particle model shows three separate H₂O molecules. How many H atoms and O atoms does it contain?", "options": ["2 H and 3 O", "3 H and 6 O", "6 H and 3 O", "6 H and 6 O"], "answer": 2, "hint": "A single molecule has two H atoms and one O atom. Count three copies.", "why": "The coefficient counts whole molecules, so multiply each element’s count by 3."}, {"q": "How does changing 2 O₂ to 3 O₂ affect the model?", "options": ["Each molecule gains an atom.", "The model gains one complete two-atom molecule.", "Oxygen becomes a different element.", "Each molecule loses an atom."], "answer": 1, "hint": "Only the number in front changed. Look at the subscript in each formula.", "why": "The coefficient increases the count of O₂ molecules from two to three. Each still has two oxygen atoms."}, {"q": "A closed particle model starts with 2 carbon atoms and 4 oxygen atoms. Which ending keeps every atom and uses them all in carbon dioxide?", "options": ["1 CO₂", "2 CO", "4 CO₂", "2 CO₂"], "answer": 3, "hint": "One CO₂ uses one C and two O atoms.", "why": "Two CO₂ molecules contain two C atoms and four O atoms, exactly matching the start."}, {"q": "In a closed system a model starts with six red atoms but ends with four. What should you investigate first?", "options": ["Whether the diagram left atoms out of one side", "Whether color can change the number of atoms", "Whether all the remaining atoms became heavier", "Whether a larger label can repair the drawing"], "answer": 0, "hint": "In a chemical reaction atoms may change partners. Count each kind before and after.", "why": "The closed model must account for the same atoms on both sides. Look for particles that were omitted or miscounted."}, {"q": "You want a model to show that new substances formed in a closed sample. Which observation about its particles would support that idea?", "options": ["The same molecules are drawn larger.", "The same molecules are drawn farther apart.", "The same kinds and counts of atoms are connected in new groups.", "The diagram uses brighter colors."], "answer": 2, "hint": "Ask whether the atoms have new partners or the picture only looks different.", "why": "When atoms are joined into different molecules, the model shows a change in substances. Scale and spacing alone cannot establish that."}, {"q": "A classmate writes H₂O₂ to represent two water molecules. Which revision keeps the water formula correct?", "options": ["H₄O", "2 H₂O", "H₂ + O₂", "H₂O₄"], "answer": 1, "hint": "Keep every atom in a single molecule in place, then count the whole molecules.", "why": "2 H₂O means two water molecules. H₂O₂ has two O atoms inside each molecule and represents a different substance."}, {"q": "An old class model predicted one outcome, but the next observation disagreed. What would make your revised model more useful?", "options": ["Erase the prediction and leave the page blank.", "Copy the outcome without explaining it.", "Keep the same model and ignore the observation.", "Identify the mismatch, revise a relationship, and use the revised model to predict a fresh case."], "answer": 3, "hint": "A useful model connects evidence, an explanation, and a prediction that someone can check.", "why": "Naming the mismatch lets you revise a specific part of the model. A fresh prediction gives you a way to test whether the revision improved it."}, {"q": "Which word describes every O atom counted together in a particle drawing, regardless of its partners?", "options": ["Mixture", "Coefficient", "Element", "Molecule"], "answer": 2, "hint": "Each O symbol labels a single kind of atom.", "why": "Oxygen is an element. A particular oxygen atom can occur in water, oxygen gas or another substance."}, {"q": "What does the small 2 in CO₂ tell you?", "options": ["There are two carbon dioxide molecules.", "There are two oxygen atoms in one carbon dioxide molecule.", "There are two carbon atoms in one carbon dioxide molecule.", "The molecule gains two electrons."], "answer": 1, "hint": "A subscript belongs to the symbol immediately before it.", "why": "CO₂ has one carbon atom and two oxygen atoms in each molecule."}, {"q": "A closed box begins with two H₂ molecules and one O₂ molecule. An ending drawing shows one H₂O molecule and nothing else. Which atoms are missing from the ending inventory?", "options": ["Two H and one O", "Four H and two O", "One H and two O", "Two O only"], "answer": 0, "hint": "Subtract the atoms in the one drawn water molecule from those in the starting box.", "why": "The starting box has four H and two O. One H₂O accounts for two H and one O, leaving two H and one O unaccounted for."}, {"q": "A closed model begins with two C atoms and four O atoms. An ending with three C atoms and three O atoms still totals six. Why should the model be revised?", "options": ["The model should always end with more molecules.", "All products must contain the same number of atoms.", "The carbon atoms should be larger.", "The count of each element must match across the reaction."], "answer": 3, "hint": "Compare carbon with carbon and oxygen with oxygen.", "why": "The total number of atoms matches, but the number of each kind changes. A chemical reaction rearranges atoms without changing one element into another."}, {"q": "Each bracket surrounds a molecule. Which sketch represents 2 H₂O?", "options": ["[H O] [H O]", "[H H O] [H H O]", "[H H O O]", "[H H] [O O]"], "answer": 1, "hint": "Make two copies of a group that contains two H symbols and one O symbol.", "why": "The coefficient gives the number of groups. The subscripts give the atoms inside a single group."}], "poetry": [{"q": "In the practice stanza, which pair of end words tells you that lines 1 and 3 share a rhyme?", "options": ["light / sight", "start / sight", "pencil / page"], "answer": 0, "hint": "Read the last word of each line aloud. Listen to the vowel and the sounds that follow it.", "why": "Light and sight share the same ending sound. Start and heart form the other pair, so the pattern is ABAB."}, {"q": "What does the description “my pencil shivers” suggest about the person holding it?", "options": ["The pencil has been left outdoors.", "The writer feels uncertain about starting.", "The writer has already filled the page."], "answer": 1, "hint": "A pencil cannot feel nervous. Look at what the speaker is about to try.", "why": "The pencil carries the writer’s nervous movement. That gives us a feeling to compare with the confidence in the final line."}, {"q": "Which explanation makes the strongest case that the crooked star matters?", "options": ["Stars usually have five points.", "The star is mentioned near the end.", "The first imperfect drawing helps the writer begin."], "answer": 2, "hint": "Compare the blank page at the beginning with the speaker’s feeling after drawing.", "why": "The drawing can symbolize a first attempt. Its effect on the speaker connects a specific image to a message about getting started."}, {"q": "Try a fresh line: “The gate sighed as I started for school.” Which choice identifies the device and its effect?", "options": ["Personification makes the departure feel reluctant.", "Rhyme makes every word sound the same.", "A simile compares school to a gate using “like”."], "answer": 0, "hint": "Ask which action normally belongs to a person and consider the mood that action creates.", "why": "Giving the gate a sigh lets the setting echo a feeling. The explanation uses both a detail and its effect."}, {"q": "A different stanza ends with “stone / rain / alone / train.” What rhyme scheme do you hear?", "options": ["AABB", "ABAB", "ABBA"], "answer": 1, "hint": "Assign A to stone, then reuse A only for a matching sound. Do the same for rain.", "why": "Stone rhymes with alone and rain rhymes with train. The two pairs alternate."}, {"q": "You wrote “This line uses a metaphor.” Which revision adds analysis?", "options": ["This line has several words.", "The author uses many different devices.", "Calling a worry a stone suggests that the speaker carries its weight."], "answer": 2, "hint": "Look for a sentence that explains how the comparison changes the reader’s understanding.", "why": "The revised sentence connects a precise comparison to the speaker’s experience. That reasoning helps support a claim."}, {"q": "“I cupped the sound and held it in.” How does the metaphor work?", "options": ["The speaker measures the noise with a tool.", "It treats a fading sound like something the speaker can keep.", "It tells the exact size of the platform."], "answer": 1, "hint": "Think about what hands can usually hold and why someone might want to hold a sound.", "why": "A sound cannot sit in a palm. The gesture makes the wish to keep hearing it feel physical."}, {"q": "Which words give a reader the strongest clue about sound?", "options": ["“bright as tin”", "“crooked star”", "“the train hums”"], "answer": 2, "hint": "Try reading with your eyes closed and imagine what you could hear.", "why": "“Hums” names a sound. Brightness and shape are visual clues."}, {"q": "Two lines read “The hall was a hive / before the curtain rose.” Which detail best explains the metaphor?", "options": ["People moved and talked busily in the hall.", "A beehive was hanging above the stage.", "The curtain had six sides."], "answer": 0, "hint": "What shared quality could connect a crowd waiting for a show to a hive?", "why": "The metaphor brings the sound and activity of a hive into the hall, suggesting energy before the show."}, {"q": "A speaker calls an old glove “a small home for my hand.” Which background detail would best support a reading about comfort?", "options": ["A shelf label gives the price.", "The speaker puts the glove on when they miss their family.", "The glove has five fingers."], "answer": 1, "hint": "Which detail helps show an emotional connection between this speaker and the object?", "why": "Putting on the glove when homesick links an ordinary object with a feeling of belonging."}, {"q": "A poem repeats “wait” in three short lines, then begins the last line with “run.” What is worth investigating?", "options": ["Whether the poem must be describing a race", "How many pages the poem needs", "How the change from waiting to action shapes the ending"], "answer": 2, "hint": "Read the repeated verb aloud three times, then listen to what happens when it changes.", "why": "The repeated word sets a pace and an expectation. The new verb can make the final line feel sudden."}, {"q": "Which caption gives a reader an interpretive reason for a poster design?", "options": ["“I left the top half blank so the tiny star feels like a first step.”", "“I filled a sheet of paper.”", "“Some words are near the bottom.”"], "answer": 0, "hint": "Look for a choice the artist made and the meaning the viewer might take from it.", "why": "The caption connects the space around the star to its meaning. A viewer can look at the page and test that reading."}]};
+// Keys come from a private family pairing. The public workshop contains no family credentials.
+window.ArcadeLive = (() => {
+  const endpoint = 'https://script.google.com/macros/s/AKfycbyJarrsMNh2-bV91-JcDexU3zxzO2fUP3qSal_g1EDOIdD7EGuNkuylQEqiAS8HGvuu/exec';
+  const storageKey = role => 'study-arcade.live.' + role + '.v1';
+  const tokenPattern = /^[A-Za-z0-9_-]{43}$/;
+  const encode = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  const decode = text => Uint8Array.from(atob(text.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
+  function config(role, input) {
+    if (!input || input.role !== role || !tokenPattern.test(input.token) || !tokenPattern.test(input.cipher)) throw Error('This family connection is invalid. Reopen the private setup link.');
+    return {role, token:input.token, cipher:input.cipher};
+  }
+  function readConfig(role) {
+    if (role === 'reader' && location.hash.startsWith('#view=')) {
+      const [token,cipher] = location.hash.slice(6).split('.');
+      const found = config(role,{role,token,cipher});
+      try {localStorage.setItem(storageKey(role),JSON.stringify(found));}catch{}
+      return found;
+    }
+    let text;try{text=localStorage.getItem(storageKey(role));}catch{}
+    return text ? config(role,JSON.parse(text)) : null;
+  }
+  async function request(body) {
+    const abort=new AbortController(), timer=setTimeout(()=>abort.abort(),20000);
+    try {
+      const response=await fetch(endpoint,{method:'POST',mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(body),signal:abort.signal});
+      if(!response.ok)throw Error('The progress service is unavailable.');
+      const data=await response.json();
+      if(!data.ok)throw Error(data.error==='unauthorized'?'This family connection was not accepted. Reopen the private setup link.':data.error==='device-limit'?'This family has reached its browser connection limit.':'The progress service could not complete this update.');
+      return data;
+    } finally {clearTimeout(timer);}
+  }
+  async function secret(c){return crypto.subtle.importKey('raw',decode(c.cipher),{name:'AES-GCM'},false,['encrypt','decrypt']);}
+  const associated=(id,rev)=>new TextEncoder().encode('arcade-report-v1/'+id+'/'+rev);
+  async function seal(c,id,rev,snapshot) {
+    const iv=crypto.getRandomValues(new Uint8Array(12)), key=await secret(c);
+    const bytes=new TextEncoder().encode(JSON.stringify(snapshot));
+    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev)},key,bytes);
+    const packet=new Uint8Array(12+encrypted.byteLength);packet.set(iv);packet.set(new Uint8Array(encrypted),12);
+    return encode(packet);
+  }
+  async function readDevices(c) {
+    const data=await request({op:'read',key:c.token}), key=await secret(c);
+    return Promise.all(data.devices.map(async row=>{
+      const bytes=decode(row.blob);
+      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
+      const snapshot=JSON.parse(new TextDecoder().decode(clear));
+      if(snapshot.v!==1)throw Error('This report needs a newer dashboard.');
+      return {id:row.id,received:row.received,snapshot};
+    }));
+  }
+  return {readConfig,readDevices,config,request,seal,storageKey};
+})();
+
 'use strict';
 const id = key => document.getElementById(key);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -602,7 +655,7 @@ const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+
 function nextDate(){const d=new Date();d.setDate(d.getDate()+1);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
 const plain=o=>!!o&&typeof o==='object'&&!Array.isArray(o);
 const progressKey='study-arcade.progress.v2',planKey='study-arcade.family.v1';
-function empty(){return {app:'study-arcade',version:2,updated:null,day:'',lastRoom:'computing',checks:{},notes:{},labs:{},quizzes:{},exam:null};}
+function empty(){return {app:'study-arcade',version:2,updated:null,lastActivityAt:null,day:'',lastRoom:'computing',checks:{},notes:{},labs:{},quizzes:{},exam:null};}
 let state=empty(), family=null, storageOK=true, otherTab=false, stagedPlan=null, stagedProgress=null, current='', warmIndex=0, pendingTopic=null;
 function safeJson(raw){
  if(typeof raw!=='string'||raw.length>2400000) throw Error('Choose a complete JSON file under 2.4 MB.');
@@ -630,6 +683,8 @@ function readProgress(raw){
  if(!old&&v.exam!==null&&v.exam!==undefined){
   const e=v.exam;if(!plain(e)||!Number.isInteger(e.set)||e.set<0||e.set>1||!Array.isArray(e.answers)||e.answers.length!==6||!e.answers.every(a=>a===null||Number.isInteger(a)&&a>=0&&a<4)||typeof e.finished!=='boolean'||e.finished&&e.answers.includes(null))throw Error('Unreadable rehearsal record.');merged.exam=e;
  }
+ if(v.lastActivityAt===undefined&&merged.updated)merged.lastActivityAt=merged.updated;
+ else if(typeof v.lastActivityAt==='string'&&Number.isFinite(Date.parse(v.lastActivityAt)))merged.lastActivityAt=v.lastActivityAt;
  return merged;
 }
 const strings=a=>Array.isArray(a)&&a.every(s=>typeof s==='string'&&s.length<=8000);
@@ -649,8 +704,8 @@ function load(){
  try{const raw=localStorage.getItem(progressKey);if(raw)state=readProgress(raw);}catch{storageOK=false;}
  try{const raw=localStorage.getItem(planKey);if(raw)family=parsePlan(raw);}catch{/* A new family file can be selected in My plan. */}
 }
-function save(){
- state.updated=new Date().toISOString();if(storageOK&&!otherTab){try{localStorage.setItem(progressKey,JSON.stringify(state));}catch{storageOK=false;}}status();
+function save(activity=true){
+ state.updated=new Date().toISOString();if(activity)state.lastActivityAt=state.updated;if(storageOK&&!otherTab){try{localStorage.setItem(progressKey,JSON.stringify(state));}catch{storageOK=false;}}status();parentSync.queue();
 }
 function status(){
  const s=id('storeStatus');if(!s)return;
@@ -671,7 +726,7 @@ function currentDay(){if(!family)return null;const a=family.days;return a.find(d
 function selectedDay(){return family.days.find(d=>d.date===state.day||d.legacy===state.day)||currentDay();}
 function home(){
  id('roomCards').innerHTML=Object.keys(labels).map(k=>'<a class="room-card" href="#'+k+'"><div class="tile-art" style="background:'+colors[k]+'">'+art(k)+'</div><div class="copy"><h3>'+labels[k]+' <span aria-hidden="true">↗</span></h3><p>'+blurbs[k]+'</p></div></a>').join('');
- const date=currentDay();id('continue').href=date?'#plan':'#'+state.lastRoom;id('continue').onclick=()=>{if(date){state.day=date.date;save();}};
+ const date=currentDay();id('continue').href=date?'#plan':'#'+state.lastRoom;id('continue').onclick=()=>{if(date){state.day=date.date;save(false);}};
  id('planTease').innerHTML=family?'<p><b>'+esc(family.title)+'</b> · '+esc(date.title)+'</p><a href="#plan">Open my plan →</a>':'<p><b>Have a family plan?</b> Open it to see your own assignments and dates.</p><a href="#plan">Open a plan →</a>';
  reviewPanel();
 }
@@ -706,7 +761,7 @@ function quizAction(btn,box){
   default:s.index=(s.index+(btn.dataset.step==='prev'?-1:1)+bank.length)%bank.length;
   }
  }
- save();quizRender(k,true);reviewPanel();
+ save(btn.hasAttribute('data-answer'));quizRender(k,true);reviewPanel();
 }
 const lessonTargets={brief:'Choose a design brief',layout:'Build the layout',selector:'Predict which lines will change',sprite:'Move a sprite with a condition',tiles:'Rectangle lab',diagnose:'Catch the missing term',atoms:'Build the products yourself',writing:'Write, then revise',evidence:'Choose your evidence'};
 function openLesson(topic,room){
@@ -769,7 +824,7 @@ function route(scroll=true){
  const hash=location.hash.slice(1);const k=Object.hasOwn(pageNames,hash)?hash:'home';current=k;
  document.querySelectorAll('section.room').forEach(el=>{el.classList.toggle('active',el.id===k);});
  document.querySelectorAll('.nav nav a').forEach(el=>{const dest=el.hash.slice(1),active=dest===k||dest==='home'&&Object.hasOwn(labels,k)||k==='rehearsal'&&dest==='home'||k==='sheet'&&dest==='plan';if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
- if(Object.hasOwn(labels,k)&&state.lastRoom!==k){state.lastRoom=k;save();}
+ if(Object.hasOwn(labels,k)&&state.lastRoom!==k){state.lastRoom=k;save(false);}
  if(k==='home')home();if(k==='plan')planner();if(k==='sheet')sheet();if(k==='progress')mastery();if(k==='rehearsal')rehearsal();
  document.title=pageNames[k]+' · Study Arcade';if(scroll){window.scrollTo(0,0);id('workspace').focus({preventScroll:true});if(pendingTopic&&pendingTopic.room===k){const item=pendingTopic;pendingTopic=null;requestAnimationFrame(()=>openLesson(item.topic,k));}}
 }
@@ -787,25 +842,135 @@ function bootArcade(){
  id('showText').onclick=()=>{id('backupText').value=JSON.stringify(state,null,2);id('backupText').focus();id('backupText').select();};
  id('reviewText').onclick=()=>reviewProgress(id('backupText').value);
  readInput(id('familyFile'),reviewPlan,'planMessage');readInput(id('progressFile'),reviewProgress,'progressMessage');
- id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save();restoreAll();id('progressMessage').textContent='Progress imported.';};
+ id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save(false);restoreAll();id('progressMessage').textContent='Progress imported.';};
  id('cancelProgress').onclick=()=>{stagedProgress=null;id('progressPreview').hidden=true;id('progressMessage').textContent='Current work kept.';};
- id('usePlan').onclick=()=>{if(!stagedPlan)return;family=stagedPlan;stagedPlan=null;id('planPreview').hidden=true;let persisted=false;try{localStorage.setItem(planKey,JSON.stringify(family));persisted=true;}catch{}id('planMessage').textContent=persisted?'Plan saved in this browser.':'Plan opened for this session. Import it again if you close this browser.';planner();};
+ id('usePlan').onclick=()=>{if(!stagedPlan)return;family=stagedPlan;stagedPlan=null;parentSync.importPlan(family);id('planPreview').hidden=true;let persisted=false;try{localStorage.setItem(planKey,JSON.stringify(family));persisted=true;}catch{}id('planMessage').textContent=persisted?'Plan saved in this browser.':'Plan opened for this session. Import it again if you close this browser.';planner();};
  id('cancelPlan').onclick=()=>{stagedPlan=null;id('planPreview').hidden=true;id('planMessage').textContent='Current plan kept.';};
  id('offline').href=location.href.split('#')[0].split('?')[0].replace(/\/$/,'/index.html');
  document.addEventListener('input',ev=>{const e=ev.target;if(e.matches('[data-note]')){state.notes[e.dataset.note]=e.value.slice(0,4000);save();}});
  document.addEventListener('change',ev=>{const e=ev.target;if(e.matches('[data-check]')){state.checks[e.dataset.check]=e.checked;document.querySelectorAll('[data-check]').forEach(o=>{if(o!==e&&o.dataset.check===e.dataset.check)o.checked=e.checked;});save();if(current==='plan'&&selectedDay()?.catchup)planner();}
- if(e.id==='dateChoice'){state.day=e.value;save();planner();id('dateChoice').focus({preventScroll:true});}
+ if(e.id==='dateChoice'){state.day=e.value;save(false);planner();id('dateChoice').focus({preventScroll:true});}
  if(e.hasAttribute('data-exam')){state.exam.answers[Number(e.dataset.exam)]=Number(e.value);save();}});
  document.addEventListener('click',ev=>{const a=ev.target.closest('a');if(a?.classList.contains('skip')){ev.preventDefault();id('workspace').focus();return;}
  if(a?.dataset.topic&&Object.hasOwn(lessonTargets,a.dataset.topic)){ev.preventDefault();pendingTopic={topic:a.dataset.topic,room:a.hash.slice(1)};if(location.hash===a.hash)route();else location.hash=a.hash;}
  const b=ev.target.closest('button');if(!b)return;const qb=b.closest('[data-quiz]');if(qb&&(b.hasAttribute('data-answer')||b.hasAttribute('data-step')))quizAction(b,qb);
- if(b.hasAttribute('data-revisit')){const first=dueList()[0];if(!first)return;const [k,i]=first,q=quizState(k);q.index=i;q.answers[i].reviewing=true;save();location.hash=quizRoom[k];quizRender(k);requestAnimationFrame(()=>{const h=document.querySelector('[data-quiz="'+k+'"] h3');h.scrollIntoView({block:'center'});h.focus({preventScroll:true});});}
- if(b.id==='toToday'){state.day=currentDay().date;save();planner();}
+ if(b.hasAttribute('data-revisit')){const first=dueList()[0];if(!first)return;const [k,i]=first,q=quizState(k);q.index=i;q.answers[i].reviewing=true;save(false);location.hash=quizRoom[k];quizRender(k);requestAnimationFrame(()=>{const h=document.querySelector('[data-quiz="'+k+'"] h3');h.scrollIntoView({block:'center'});h.focus({preventScroll:true});});}
+ if(b.id==='toToday'){state.day=currentDay().date;save(false);planner();}
  if(b.id==='printSheet'){printPage();window.print();}
  if(b.id==='finishExam'){if(state.exam.answers.includes(null)){id('examMsg').textContent='Choose an answer for all six questions first.';}else{state.exam.finished=true;save();rehearsal();id('exam').scrollIntoView();}}
  if(b.id==='againExam'){state.exam={set:1-state.exam.set,answers:Array(6).fill(null),finished:false};save();rehearsal();id('exam').scrollIntoView();}});
- window.addEventListener('beforeprint',printPage);window.addEventListener('hashchange',()=>route());restoreAll();
+ window.addEventListener('beforeprint',printPage);window.addEventListener('hashchange',()=>route());parentSync.boot();restoreAll();
 }
+
+// Only skill and task identifiers leave the learner's device, inside an encrypted snapshot.
+function familySnapshot() {
+  const subjects={};
+  for(const key of Object.keys(quizRoom)){
+    const entries=Object.entries(state.quizzes[key]?.answers||{});
+    subjects[key]={
+      tried:entries.map(([i])=>Number(i)),
+      solved:entries.filter(([,a])=>a.solved||a.mastered).map(([i])=>Number(i)),
+      due:entries.filter(([,a])=>a.due&&a.due<=today()).map(([i])=>Number(i))
+    };
+  }
+  const tasks=distinctTasks();
+  const permittedLabs=['cs-client','cs-flex','cs-selector','cs-runner','math-area','science-particles','poetryStudio','math-substitution','science-assembly'];
+  let exam=null;
+  if(state.exam){
+    const e=state.exam;
+    exam={done:e.finished,answered:e.answers.filter(a=>a!==null).length,
+      score:e.finished?examForms[e.set].filter((q,i)=>q[2]===e.answers[i]).length:null};
+  }
+  const taskIDs=list=>list.map(t=>t.id).slice(0,64);
+  return {v:1,at:state.lastActivityAt,subjects,
+    blocks:{all:taskIDs(tasks),done:taskIDs(tasks.filter(t=>state.checks['block-'+t.id])),
+      started:taskIDs(tasks.filter(t=>!state.checks['block-'+t.id]&&evidence(t)))},
+    notes:Object.values(state.notes).filter(v=>v.trim()).length,
+    labs:permittedLabs.filter(k=>Object.hasOwn(state.labs,k)),exam};
+}
+const parentSync=(()=>{
+  const lib=window.ArcadeLive, prefix='study-arcade.live.';
+  let pair=null, pending=null, device=null, stamp=0, receipt=0, delivered='', running=false,timer=null,retry=2500;
+  let feedback='Automatic family updates are off on this browser.';
+  function ui(text) {
+    feedback=text;const e=id('familyStatus');if(e)e.textContent=text;
+    const off=id('disconnectFamily');if(off)off.hidden=!pair;
+  }
+  function stored(k){try{return localStorage.getItem(prefix+k)||'';}catch{return '';}}
+  function persist(k,v){try{localStorage.setItem(prefix+k,v);return true;}catch{return false;}}
+  function identity(){
+    if(device)return;
+    device=stored('device');if(!/^[a-f0-9]{32}$/.test(device)){
+      device=Array.from(crypto.getRandomValues(new Uint8Array(16)),n=>n.toString(16).padStart(2,'0')).join('');
+      persist('device',device);
+    }
+    stamp=Number(stored('stamp'))||0;
+  }
+  function queue(delay=1200) {
+    if(!pair||otherTab)return;clearTimeout(timer);timer=setTimeout(send,delay);
+  }
+  function makePayload(){
+    const snapshot=familySnapshot();
+    // Changes such as visiting a room do not count as new work on the dashboard.
+    const signature=JSON.stringify(snapshot);
+    return {snapshot,signature};
+  }
+  async function send(){
+    if(!pair||running||otherTab)return;
+    if(!navigator.onLine){ui('Offline. Your family update will retry when this workbook is open online.');return;}
+    const {snapshot,signature}=makePayload();
+    if(signature===delivered){ui(receipt?'Last confirmed family update: '+new Date(receipt).toLocaleString()+' · Device '+(device||stored('device')).slice(-6).toUpperCase()+'.':'Family dashboard connected.');return;}
+    running=true;const c=pair;
+    try{
+      identity();
+      if(!pending||pending.signature!==signature){
+        const rev=Math.max(Date.now(),stamp+1,Number(stored('stamp'))+1);stamp=rev;persist('stamp',String(rev));
+        const blob=await lib.seal(c,device,rev,snapshot);pending={signature,rev,blob};
+      }
+      if(pair!==c)return;
+      const batch=pending;
+      const ack=await lib.request({op:'write',key:c.token,id:device,rev:batch.rev,blob:batch.blob});
+      if(pair!==c)return;
+      if(ack.rev!==batch.rev){stamp=Math.max(stamp,ack.rev||0);persist('stamp',String(stamp));pending=null;throw Error('A newer update was received. Retrying.');}
+      delivered=signature;receipt=Date.now();persist('receipt',String(receipt));persist('delivered',signature);pending=null;retry=2500;
+      ui('Last confirmed family update: '+new Date(receipt).toLocaleString()+' · Device '+device.slice(-6).toUpperCase()+'.');
+    }catch{
+      if(pair===c){ui('Waiting to sync. The workbook will retry automatically while open.');queue(retry);retry=Math.min(retry*2,60000);}
+      return;
+    }finally{running=false;}
+    if(pair&&makePayload().signature!==delivered)queue(200);
+  }
+  function install(input){
+    try{
+      const c=lib.config('writer',input);
+      if(!crypto.subtle)throw Error('Open the HTTPS workshop in a browser that supports encrypted connections.');
+      if(pair&&c.token===pair.token&&c.cipher===pair.cipher){queue(0);return;}
+      const saved=persist('writer.v1',JSON.stringify(c));
+      pair=c;pending=null;delivered='';receipt=0;persist('delivered','');persist('receipt','0');
+      ui(saved?'Connecting this browser to the family dashboard…':'Connecting for this session. This browser blocks saved settings.');queue(0);
+    }catch(e){ui(e.message);}
+  }
+  function boot(){
+    try{pair=lib.readConfig('writer');}catch{}
+    if(pair){delivered=stored('delivered');receipt=Number(stored('receipt'))||0;ui('Family dashboard connected.');queue(100);}
+    else if(family?.dashboardPairing&&!stored('paused'))install(family.dashboardPairing);
+    function pairFromLink(){
+      const params=location.hash.match(/^#connect=([\w-]{43})\.([\w-]{43})$/);
+      if(!params)return;
+      history.replaceState(null,'','#progress');install({role:'writer',token:params[1],cipher:params[2]});persist('paused','');route(false);
+    }
+    pairFromLink();window.addEventListener('hashchange',pairFromLink);
+    id('disconnectFamily').onclick=()=>{
+      clearTimeout(timer);pair=null;pending=null;delivered='';try{localStorage.removeItem(lib.storageKey('writer'));}catch{}
+      persist('paused','1');ui('Automatic updates paused on this browser. Reopen the private device link or reimport the paired family plan to reconnect.');
+    };
+    window.addEventListener('online',()=>queue(0));window.addEventListener('focus',()=>queue(450));
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')queue(200);else if(pair)send();});
+    setInterval(()=>{if(document.visibilityState==='visible')queue(50);},45000);
+    ui(feedback);
+  }
+  return {boot,queue,importPlan(plan){if(plan?.dashboardPairing){persist('paused','');install(plan.dashboardPairing);}}};
+})();
 
 (function () {
   'use strict';

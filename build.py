@@ -19,10 +19,11 @@ for name in ("computing","stem","english"):
     sections.append(load(name + ".html"))
     banks.update(json.loads(load(name + ".json")))
     scripts.append(load(name + ".js"))
+live = load("live-common.js").replace("@@LIVE_ENDPOINT@@", load("live-endpoint.txt").strip())
 page = load("shell.html")
 for key, value in {"CSS":"\n".join(fonts)+"\n"+load("style.css"), "ROOMS":"\n".join(sections),
                    "BANK":json.dumps(banks,ensure_ascii=False).replace("</","<\\/"),
-                   "APP":load("app.js"),"LABS":"\n".join(scripts)}.items():
+                   "LIVE_COMMON":live, "PARENT_SYNC":load("parent-report.js"), "APP":load("app.js"),"LABS":"\n".join(scripts)}.items():
     page = page.replace("@@"+key+"@@",value)
 assert not re.search(r"@@[A-Z]+@@",page)
 (root / "docs").mkdir(exist_ok=True)
@@ -30,6 +31,9 @@ assert not re.search(r"@@[A-Z]+@@",page)
 (root / "docs/.nojekyll").touch()
 print("Built", len(page.encode()), "bytes;", {k:len(v) for k,v in banks.items()})
 
+parent = root / "docs/parent"
+parent.mkdir(exist_ok=True)
+(parent / "index.html").write_text(load("parent-view.html").replace("@@LIVE_COMMON@@",live))
 # The Grade 2 edition runs from both a Pages subdirectory and a downloaded file.
 grade = src / "grade2"
 illustrations = [

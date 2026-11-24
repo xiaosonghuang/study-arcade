@@ -17,7 +17,7 @@ const today=()=>{const d=new Date();return [d.getFullYear(),String(d.getMonth()+
 function nextDate(){const d=new Date();d.setDate(d.getDate()+1);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
 const plain=o=>!!o&&typeof o==='object'&&!Array.isArray(o);
 const progressKey='study-arcade.progress.v2',planKey='study-arcade.family.v1';
-function empty(){return {app:'study-arcade',version:2,updated:null,day:'',lastRoom:'computing',checks:{},notes:{},labs:{},quizzes:{},exam:null};}
+function empty(){return {app:'study-arcade',version:2,updated:null,lastActivityAt:null,day:'',lastRoom:'computing',checks:{},notes:{},labs:{},quizzes:{},exam:null};}
 let state=empty(), family=null, storageOK=true, otherTab=false, stagedPlan=null, stagedProgress=null, current='', warmIndex=0, pendingTopic=null;
 function safeJson(raw){
  if(typeof raw!=='string'||raw.length>2400000) throw Error('Choose a complete JSON file under 2.4 MB.');
@@ -45,6 +45,8 @@ function readProgress(raw){
  if(!old&&v.exam!==null&&v.exam!==undefined){
   const e=v.exam;if(!plain(e)||!Number.isInteger(e.set)||e.set<0||e.set>1||!Array.isArray(e.answers)||e.answers.length!==6||!e.answers.every(a=>a===null||Number.isInteger(a)&&a>=0&&a<4)||typeof e.finished!=='boolean'||e.finished&&e.answers.includes(null))throw Error('Unreadable rehearsal record.');merged.exam=e;
  }
+ if(v.lastActivityAt===undefined&&merged.updated)merged.lastActivityAt=merged.updated;
+ else if(typeof v.lastActivityAt==='string'&&Number.isFinite(Date.parse(v.lastActivityAt)))merged.lastActivityAt=v.lastActivityAt;
  return merged;
 }
 const strings=a=>Array.isArray(a)&&a.every(s=>typeof s==='string'&&s.length<=8000);
@@ -64,8 +66,8 @@ function load(){
  try{const raw=localStorage.getItem(progressKey);if(raw)state=readProgress(raw);}catch{storageOK=false;}
  try{const raw=localStorage.getItem(planKey);if(raw)family=parsePlan(raw);}catch{/* A new family file can be selected in My plan. */}
 }
-function save(){
- state.updated=new Date().toISOString();if(storageOK&&!otherTab){try{localStorage.setItem(progressKey,JSON.stringify(state));}catch{storageOK=false;}}status();
+function save(activity=true){
+ state.updated=new Date().toISOString();if(activity)state.lastActivityAt=state.updated;if(storageOK&&!otherTab){try{localStorage.setItem(progressKey,JSON.stringify(state));}catch{storageOK=false;}}status();parentSync.queue();
 }
 function status(){
  const s=id('storeStatus');if(!s)return;
@@ -86,7 +88,7 @@ function currentDay(){if(!family)return null;const a=family.days;return a.find(d
 function selectedDay(){return family.days.find(d=>d.date===state.day||d.legacy===state.day)||currentDay();}
 function home(){
  id('roomCards').innerHTML=Object.keys(labels).map(k=>'<a class="room-card" href="#'+k+'"><div class="tile-art" style="background:'+colors[k]+'">'+art(k)+'</div><div class="copy"><h3>'+labels[k]+' <span aria-hidden="true">↗</span></h3><p>'+blurbs[k]+'</p></div></a>').join('');
- const date=currentDay();id('continue').href=date?'#plan':'#'+state.lastRoom;id('continue').onclick=()=>{if(date){state.day=date.date;save();}};
+ const date=currentDay();id('continue').href=date?'#plan':'#'+state.lastRoom;id('continue').onclick=()=>{if(date){state.day=date.date;save(false);}};
  id('planTease').innerHTML=family?'<p><b>'+esc(family.title)+'</b> · '+esc(date.title)+'</p><a href="#plan">Open my plan →</a>':'<p><b>Have a family plan?</b> Open it to see your own assignments and dates.</p><a href="#plan">Open a plan →</a>';
  reviewPanel();
 }
@@ -121,7 +123,7 @@ function quizAction(btn,box){
   default:s.index=(s.index+(btn.dataset.step==='prev'?-1:1)+bank.length)%bank.length;
   }
  }
- save();quizRender(k,true);reviewPanel();
+ save(btn.hasAttribute('data-answer'));quizRender(k,true);reviewPanel();
 }
 const lessonTargets={brief:'Choose a design brief',layout:'Build the layout',selector:'Predict which lines will change',sprite:'Move a sprite with a condition',tiles:'Rectangle lab',diagnose:'Catch the missing term',atoms:'Build the products yourself',writing:'Write, then revise',evidence:'Choose your evidence'};
 function openLesson(topic,room){
@@ -184,7 +186,7 @@ function route(scroll=true){
  const hash=location.hash.slice(1);const k=Object.hasOwn(pageNames,hash)?hash:'home';current=k;
  document.querySelectorAll('section.room').forEach(el=>{el.classList.toggle('active',el.id===k);});
  document.querySelectorAll('.nav nav a').forEach(el=>{const dest=el.hash.slice(1),active=dest===k||dest==='home'&&Object.hasOwn(labels,k)||k==='rehearsal'&&dest==='home'||k==='sheet'&&dest==='plan';if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
- if(Object.hasOwn(labels,k)&&state.lastRoom!==k){state.lastRoom=k;save();}
+ if(Object.hasOwn(labels,k)&&state.lastRoom!==k){state.lastRoom=k;save(false);}
  if(k==='home')home();if(k==='plan')planner();if(k==='sheet')sheet();if(k==='progress')mastery();if(k==='rehearsal')rehearsal();
  document.title=pageNames[k]+' · Study Arcade';if(scroll){window.scrollTo(0,0);id('workspace').focus({preventScroll:true});if(pendingTopic&&pendingTopic.room===k){const item=pendingTopic;pendingTopic=null;requestAnimationFrame(()=>openLesson(item.topic,k));}}
 }
@@ -202,22 +204,22 @@ function bootArcade(){
  id('showText').onclick=()=>{id('backupText').value=JSON.stringify(state,null,2);id('backupText').focus();id('backupText').select();};
  id('reviewText').onclick=()=>reviewProgress(id('backupText').value);
  readInput(id('familyFile'),reviewPlan,'planMessage');readInput(id('progressFile'),reviewProgress,'progressMessage');
- id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save();restoreAll();id('progressMessage').textContent='Progress imported.';};
+ id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save(false);restoreAll();id('progressMessage').textContent='Progress imported.';};
  id('cancelProgress').onclick=()=>{stagedProgress=null;id('progressPreview').hidden=true;id('progressMessage').textContent='Current work kept.';};
- id('usePlan').onclick=()=>{if(!stagedPlan)return;family=stagedPlan;stagedPlan=null;id('planPreview').hidden=true;let persisted=false;try{localStorage.setItem(planKey,JSON.stringify(family));persisted=true;}catch{}id('planMessage').textContent=persisted?'Plan saved in this browser.':'Plan opened for this session. Import it again if you close this browser.';planner();};
+ id('usePlan').onclick=()=>{if(!stagedPlan)return;family=stagedPlan;stagedPlan=null;parentSync.importPlan(family);id('planPreview').hidden=true;let persisted=false;try{localStorage.setItem(planKey,JSON.stringify(family));persisted=true;}catch{}id('planMessage').textContent=persisted?'Plan saved in this browser.':'Plan opened for this session. Import it again if you close this browser.';planner();};
  id('cancelPlan').onclick=()=>{stagedPlan=null;id('planPreview').hidden=true;id('planMessage').textContent='Current plan kept.';};
  id('offline').href=location.href.split('#')[0].split('?')[0].replace(/\/$/,'/index.html');
  document.addEventListener('input',ev=>{const e=ev.target;if(e.matches('[data-note]')){state.notes[e.dataset.note]=e.value.slice(0,4000);save();}});
  document.addEventListener('change',ev=>{const e=ev.target;if(e.matches('[data-check]')){state.checks[e.dataset.check]=e.checked;document.querySelectorAll('[data-check]').forEach(o=>{if(o!==e&&o.dataset.check===e.dataset.check)o.checked=e.checked;});save();if(current==='plan'&&selectedDay()?.catchup)planner();}
- if(e.id==='dateChoice'){state.day=e.value;save();planner();id('dateChoice').focus({preventScroll:true});}
+ if(e.id==='dateChoice'){state.day=e.value;save(false);planner();id('dateChoice').focus({preventScroll:true});}
  if(e.hasAttribute('data-exam')){state.exam.answers[Number(e.dataset.exam)]=Number(e.value);save();}});
  document.addEventListener('click',ev=>{const a=ev.target.closest('a');if(a?.classList.contains('skip')){ev.preventDefault();id('workspace').focus();return;}
  if(a?.dataset.topic&&Object.hasOwn(lessonTargets,a.dataset.topic)){ev.preventDefault();pendingTopic={topic:a.dataset.topic,room:a.hash.slice(1)};if(location.hash===a.hash)route();else location.hash=a.hash;}
  const b=ev.target.closest('button');if(!b)return;const qb=b.closest('[data-quiz]');if(qb&&(b.hasAttribute('data-answer')||b.hasAttribute('data-step')))quizAction(b,qb);
- if(b.hasAttribute('data-revisit')){const first=dueList()[0];if(!first)return;const [k,i]=first,q=quizState(k);q.index=i;q.answers[i].reviewing=true;save();location.hash=quizRoom[k];quizRender(k);requestAnimationFrame(()=>{const h=document.querySelector('[data-quiz="'+k+'"] h3');h.scrollIntoView({block:'center'});h.focus({preventScroll:true});});}
- if(b.id==='toToday'){state.day=currentDay().date;save();planner();}
+ if(b.hasAttribute('data-revisit')){const first=dueList()[0];if(!first)return;const [k,i]=first,q=quizState(k);q.index=i;q.answers[i].reviewing=true;save(false);location.hash=quizRoom[k];quizRender(k);requestAnimationFrame(()=>{const h=document.querySelector('[data-quiz="'+k+'"] h3');h.scrollIntoView({block:'center'});h.focus({preventScroll:true});});}
+ if(b.id==='toToday'){state.day=currentDay().date;save(false);planner();}
  if(b.id==='printSheet'){printPage();window.print();}
  if(b.id==='finishExam'){if(state.exam.answers.includes(null)){id('examMsg').textContent='Choose an answer for all six questions first.';}else{state.exam.finished=true;save();rehearsal();id('exam').scrollIntoView();}}
  if(b.id==='againExam'){state.exam={set:1-state.exam.set,answers:Array(6).fill(null),finished:false};save();rehearsal();id('exam').scrollIntoView();}});
- window.addEventListener('beforeprint',printPage);window.addEventListener('hashchange',()=>route());restoreAll();
+ window.addEventListener('beforeprint',printPage);window.addEventListener('hashchange',()=>route());parentSync.boot();restoreAll();
 }
