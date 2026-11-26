@@ -30,19 +30,19 @@ window.ArcadeLive = (() => {
     } finally {clearTimeout(timer);}
   }
   async function secret(c){return crypto.subtle.importKey('raw',decode(c.cipher),{name:'AES-GCM'},false,['encrypt','decrypt']);}
-  const associated=(id,rev)=>new TextEncoder().encode('arcade-report-v1/'+id+'/'+rev);
-  async function seal(c,id,rev,snapshot) {
+  const associated=(id,rev,kind)=>new TextEncoder().encode('arcade-'+kind+'-v1/'+id+'/'+rev);
+  async function seal(c,id,rev,snapshot,kind='report') {
     const iv=crypto.getRandomValues(new Uint8Array(12)), key=await secret(c);
     const bytes=new TextEncoder().encode(JSON.stringify(snapshot));
-    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev)},key,bytes);
+    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev,kind)},key,bytes);
     const packet=new Uint8Array(12+encrypted.byteLength);packet.set(iv);packet.set(new Uint8Array(encrypted),12);
     return encode(packet);
   }
-  async function readDevices(c) {
-    const data=await request({op:'read',key:c.token}), key=await secret(c);
+  async function readDevices(c,kind='report') {
+    const data=await request({op:kind==='skills'?'learn':'read',key:c.token}), key=await secret(c);
     return Promise.all(data.devices.map(async row=>{
       const bytes=decode(row.blob);
-      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
+      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev,kind)},key,bytes.slice(12));
       const snapshot=JSON.parse(new TextDecoder().decode(clear));
       if(snapshot.v!==1&&!(snapshot.v===2&&snapshot.book==='grade2'))throw Error('This report needs a newer dashboard.');
       return {id:row.id,received:row.received,snapshot};

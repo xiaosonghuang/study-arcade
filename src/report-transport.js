@@ -4,6 +4,7 @@ function createReportSync({
   conflict,
   plan,
   openProgress,
+  skills,
 }) {
   const lib = window.ArcadeLive;
   let pair = null,
@@ -60,6 +61,24 @@ function createReportSync({
     const signature = JSON.stringify(snapshot);
     return { snapshot, signature };
   }
+  let pulling = false, lastPull = 0;
+  async function pull(force = false) {
+    if (!skills || !pair || pulling || !navigator.onLine || (!force && Date.now()-lastPull<20000)) return;
+    const connection = pair;
+    pulling = true;
+    try {
+      identity();
+      const rows = await lib.readDevices(connection, "skills");
+      if (connection !== pair) return;
+      skills.accept(rows.filter(row => row.id !== device).map(row => row.snapshot));
+      lastPull = Date.now();
+    } catch {
+      // Keep the last confirmed skill summary available offline.
+    } finally {
+      pulling = false;
+      if (connection !== pair && pair) pull(true);
+    }
+  }
   async function send() {
     if (!pair || running || conflict()) return;
     if (!navigator.onLine) {
@@ -94,7 +113,8 @@ function createReportSync({
         stamp = rev;
         persist("stamp", String(rev));
         const blob = await lib.seal(c, device, rev, snapshot);
-        pending = { signature, rev, blob };
+        const projection = skills ? await lib.seal(c, device, rev, skills.project(snapshot), "skills") : undefined;
+        pending = { signature, rev, blob, projection };
       }
       if (pair !== c) return;
       const batch = pending;
@@ -104,6 +124,7 @@ function createReportSync({
         id: device,
         rev: batch.rev,
         blob: batch.blob,
+        skills: batch.projection,
       });
       if (pair !== c) return;
       if (ack.rev !== batch.rev) {
@@ -152,6 +173,9 @@ function createReportSync({
       }
       const saved = persist("writer.v1", JSON.stringify(c));
       pair = c;
+      skills?.clear();
+      lastPull = 0;
+      pull(true);
       pending = null;
       delivered = "";
       receipt = 0;
@@ -170,6 +194,7 @@ function createReportSync({
   function pause() {
     clearTimeout(timer);
     pair = null;
+    skills?.clear();
     pending = null;
     delivered = "";
     try {
@@ -186,6 +211,8 @@ function createReportSync({
       pair = raw ? lib.config("writer", JSON.parse(raw)) : null;
     } catch {}
     if (pair) {
+      skills?.restore();
+      pull(true);
       delivered = stored("delivered");
       receipt = Number(stored("receipt")) || 0;
       ui("Family dashboard connected.");
@@ -207,20 +234,21 @@ function createReportSync({
     document.addEventListener("click", (ev) => {
       if (ev.target.closest("#disconnectFamily")) pause();
     });
-    window.addEventListener("online", () => queue(0));
-    window.addEventListener("focus", () => queue(450));
+    window.addEventListener("online", () => { queue(0); pull(true); });
+    window.addEventListener("focus", () => { queue(450); pull(); });
     document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") queue(200);
+      if (document.visibilityState === "visible") { queue(200); pull(); }
       else if (pair) send();
     });
     setInterval(() => {
-      if (document.visibilityState === "visible") queue(50);
+      if (document.visibilityState === "visible") { queue(50); pull(); }
     }, 45000);
     ui(feedback);
   }
   return {
     boot,
     queue,
+    pull,
     pause,
     refreshUI() {
       ui(feedback);

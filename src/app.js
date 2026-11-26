@@ -3,7 +3,7 @@ const id = key => document.getElementById(key);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const labels = {computing:'Computer science',math:'Math',english:'English',science:'Science'};
 const quizRoom = {computing:'computing',math:'math',poetry:'english',science:'science'};
-const pageNames = {home:'Workshop',...labels,plan:'My plan',progress:'My progress',sheet:'School-return sheet',rehearsal:'Mixed rehearsal'};
+const pageNames = {home:'Workshop',learn:'Learning studio',...labels,plan:'My plan',progress:'My progress',sheet:'School-return sheet',rehearsal:'Mixed rehearsal'};
 const blurbs = {computing:'Build a site and steer a sprite.',math:'Snap tiles into equivalent expressions.',english:'Find the line that makes a poem work.',science:'Build molecules and balance atoms.'};
 const colors = {computing:'#d7d0f6',math:'#f4c6a3',english:'#f3d987',science:'#afdbd1'};
 const artwork = {
@@ -38,7 +38,7 @@ function readProgress(raw){
    if(old&&a.missed)a.due=today();
   }
  }
- const merged={...empty(),notes:v.notes,checks:v.checks,labs:v.labs,quizzes:v.quizzes};
+ const merged={...empty(),learning:readLearning(v.learning),notes:v.notes,checks:v.checks,labs:v.labs,quizzes:v.quizzes};
  if(typeof v.updated==='string'&&Number.isFinite(Date.parse(v.updated)))merged.updated=v.updated;
  if(typeof v.day==='string'&&v.day.length<=12)merged.day=v.day;
  if(Object.hasOwn(labels,v.lastRoom))merged.lastRoom=v.lastRoom;
@@ -88,9 +88,9 @@ function currentDay(){if(!family)return null;const a=family.days;return a.find(d
 function selectedDay(){return family.days.find(d=>d.date===state.day||d.legacy===state.day)||currentDay();}
 function home(){
  id('roomCards').innerHTML=Object.keys(labels).map(k=>'<a class="room-card" href="#'+k+'"><div class="tile-art" style="background:'+colors[k]+'">'+art(k)+'</div><div class="copy"><h3>'+labels[k]+' <span aria-hidden="true">↗</span></h3><p>'+blurbs[k]+'</p></div></a>').join('');
- const date=currentDay();id('continue').href=date?'#plan':'#'+state.lastRoom;id('continue').onclick=()=>{if(date){state.day=date.date;save(false);}};
+ const date=currentDay();id('continue').href=date?'#plan':'#learn';id('continue').onclick=()=>{if(date){state.day=date.date;save(false);}};
  id('planTease').innerHTML=family?'<p><b>'+esc(family.title)+'</b> · '+esc(date.title)+'</p><a href="#plan">Open my plan →</a>':'<p><b>Have a family plan?</b> Open it to see your own assignments and dates.</p><a href="#plan">Open a plan →</a>';
- reviewPanel();
+ reviewPanel();renderGuideHome();
 }
 const warms=[
  ['math','What does 3(x + 2) expand to?','3x + 6. Each of the three rows contains one x tile and two unit tiles.'],
@@ -125,7 +125,7 @@ function quizAction(btn,box){
  }
  save(btn.hasAttribute('data-answer'));quizRender(k,true);reviewPanel();
 }
-const lessonTargets={brief:'Choose a design brief',layout:'Build the layout',selector:'Predict which lines will change',sprite:'Move a sprite with a condition',tiles:'Rectangle lab',diagnose:'Catch the missing term',atoms:'Build the products yourself',writing:'Write, then revise',evidence:'Choose your evidence'};
+const lessonTargets={particles:'Rearrange the particles',model:'What counts as evidence?',brief:'Choose a design brief',layout:'Build the layout',selector:'Predict which lines will change',sprite:'Move a sprite with a condition',tiles:'Rectangle lab',diagnose:'Catch the missing term',atoms:'Build the products yourself',writing:'Write, then revise',evidence:'Choose your evidence'};
 function openLesson(topic,room){
  const heading=Array.from(id(room).querySelectorAll('h2')).find(h=>h.textContent.trim()===lessonTargets[topic]);if(!heading)return;
  heading.tabIndex=-1;heading.scrollIntoView({block:'start'});heading.focus({preventScroll:true});
@@ -187,7 +187,7 @@ function route(scroll=true){
  document.querySelectorAll('section.room').forEach(el=>{el.classList.toggle('active',el.id===k);});
  document.querySelectorAll('.nav nav a').forEach(el=>{const dest=el.hash.slice(1),active=dest===k||dest==='home'&&Object.hasOwn(labels,k)||k==='rehearsal'&&dest==='home'||k==='sheet'&&dest==='plan';if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
  if(Object.hasOwn(labels,k)&&state.lastRoom!==k){state.lastRoom=k;save(false);}
- if(k==='home')home();if(k==='plan')planner();if(k==='sheet')sheet();if(k==='progress')mastery();if(k==='rehearsal')rehearsal();
+ if(k==='learn')renderLearning();if(k==='progress')renderGuideProgress();if(k==='home')home();if(k==='plan')planner();if(k==='sheet')sheet();if(k==='progress')mastery();if(k==='rehearsal')rehearsal();
  document.title=pageNames[k]+' · Study Arcade';if(scroll){window.scrollTo(0,0);id('workspace').focus({preventScroll:true});if(pendingTopic&&pendingTopic.room===k){const item=pendingTopic;pendingTopic=null;requestAnimationFrame(()=>openLesson(item.topic,k));}}
 }
 function restoreAll(){for(const k of Object.keys(quizRoom))quizRender(k);fields();window.dispatchEvent(new Event('restore-labs'));route(false);}
@@ -197,14 +197,14 @@ function readInput(input,callback,errId){
  input.onchange=async()=>{const f=input.files[0];if(!f)return;input.value='';if(errId==='planMessage'){stagedPlan=null;id('planPreview').hidden=true;}else{stagedProgress=null;id('progressPreview').hidden=true;}try{if(f.size>2400000)throw Error('Choose a file smaller than 2.4 MB.');callback(await f.text());}catch(e){id(errId).textContent=e.message;}};
 }
 function bootArcade(){
- load();status();warm();const mathRoom=id('math');if(!mathRoom.querySelector('a[href="#rehearsal"]')){const link=document.createElement('p');link.innerHTML='<a class="secondary" href="#rehearsal">Take the mixed math rehearsal →</a>';mathRoom.append(link);}
+ load();setupLearning();status();warm();const mathRoom=id('math');if(!mathRoom.querySelector('a[href="#rehearsal"]')){const link=document.createElement('p');link.innerHTML='<a class="secondary" href="#rehearsal">Take the mixed math rehearsal →</a>';mathRoom.append(link);}
  id('shuffle').onclick=()=>{warmIndex=(warmIndex+1)%warms.length;warm();};
  id('reveal').onclick=()=>{const a=id('warmAnswer');a.hidden=!a.hidden;id('reveal').textContent=a.hidden?'Reveal answer':'Hide answer';id('reveal').setAttribute('aria-expanded',String(!a.hidden));};
  id('export').onclick=()=>{fileDownload(JSON.stringify(state,null,2),'Study-Arcade-Progress-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json');id('progressMessage').textContent='Progress file prepared. Save it in your private folder.';};
  id('showText').onclick=()=>{id('backupText').value=JSON.stringify(state,null,2);id('backupText').focus();id('backupText').select();};
  id('reviewText').onclick=()=>reviewProgress(id('backupText').value);
  readInput(id('familyFile'),reviewPlan,'planMessage');readInput(id('progressFile'),reviewProgress,'progressMessage');
- id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save(false);restoreAll();id('progressMessage').textContent='Progress imported.';};
+ id('useProgress').onclick=()=>{if(!stagedProgress)return;state=stagedProgress;session=null;stagedProgress=null;otherTab=false;id('saveWarning').hidden=true;id('progressPreview').hidden=true;id('backupText').value='';save(false);restoreAll();id('progressMessage').textContent='Progress imported.';};
  id('cancelProgress').onclick=()=>{stagedProgress=null;id('progressPreview').hidden=true;id('progressMessage').textContent='Current work kept.';};
  id('usePlan').onclick=()=>{if(!stagedPlan)return;family=stagedPlan;stagedPlan=null;parentSync.importPlan(family);id('planPreview').hidden=true;let persisted=false;try{localStorage.setItem(planKey,JSON.stringify(family));persisted=true;}catch{}id('planMessage').textContent=persisted?'Plan saved in this browser.':'Plan opened for this session. Import it again if you close this browser.';planner();};
  id('cancelPlan').onclick=()=>{stagedPlan=null;id('planPreview').hidden=true;id('planMessage').textContent='Current plan kept.';};

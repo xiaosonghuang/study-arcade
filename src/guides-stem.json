@@ -1,0 +1,618 @@
+[
+  {
+    "id": "expand",
+    "room": "math",
+    "title": "Open every row",
+    "skill": "Expand a linear expression using the distributive property.",
+    "coach": "Put a finger on the factor outside the parentheses. Which two terms will it multiply?",
+    "explain": "A stage crew builds three identical rows of lights. Each row holds two strips with x lights on each strip, plus four single lights. You can count one whole row three times, or count all the strips and all the singles separately. Distributing connects those two counts.",
+    "steps": [
+      {
+        "title": "Picture one row",
+        "visual": "One row\n[x] [x]   [1] [1] [1] [1]\nRow total = 2x + 4",
+        "why": "The coefficient 2 counts the x strips. The constant 4 counts the single lights."
+      },
+      {
+        "title": "Make three copies",
+        "visual": "Row A:  2x + 4\nRow B:  2x + 4\nRow C:  2x + 4",
+        "why": "Each row includes its own four single lights. The outer 3 therefore multiplies both 2x and 4."
+      },
+      {
+        "title": "Read the combined count",
+        "visual": "3(2x + 4)\n= (3 × 2x) + (3 × 4)\n= 6x + 12",
+        "why": "If each strip holds five lights, one row holds 14. The two expressions both give 42 lights. The row picture explains why the rule also works for any number of lights on a strip."
+      }
+    ],
+    "guided": {
+      "q": "Five equal rows each contain one x strip and two singles. What is their combined expression?",
+      "options": [
+        "5x + 2",
+        "x + 10",
+        "5x + 10",
+        "7x"
+      ],
+      "answer": 2,
+      "hint": "Count all five copies of the x strip, then all five pairs of singles.",
+      "why": "There are 5 x strips and 5 × 2 = 10 singles. The combined count is 5x + 10."
+    },
+    "items": [
+      {
+        "q": "Each of four crates holds three bundles of y cards and two loose cards. Which expression counts all the cards?",
+        "options": [
+          "12y + 8",
+          "7y + 6",
+          "12y + 2",
+          "3y + 8"
+        ],
+        "answer": 0,
+        "hint": "Make four copies of each part of 3y + 2.",
+        "why": "4(3y + 2) = 12y + 8. Four crates give 12 bundles and eight loose cards.",
+        "id": "expand-crates"
+      },
+      {
+        "q": "A shop takes 3 points off each of six boxes priced at 2p points. Expand 6(2p − 3).",
+        "options": [
+          "12p − 3",
+          "8p − 18",
+          "12p + 18",
+          "12p − 18"
+        ],
+        "answer": 3,
+        "hint": "Treat the −3 as a term with its own sign.",
+        "why": "Six copies of 2p give 12p. Six copies of −3 give −18, so the total is 12p − 18.",
+        "id": "expand-rebate"
+      },
+      {
+        "q": "A mural uses 3(2x + 1) blue tiles and 2(x − 1) green tiles. Which expression counts both sets together?",
+        "options": [
+          "8x + 5",
+          "8x + 1",
+          "7x + 1",
+          "8x − 1"
+        ],
+        "answer": 1,
+        "hint": "Expand each bracket separately. Then collect the x terms and collect the constants.",
+        "why": "The two counts are 6x + 3 and 2x − 2. Adding them gives 8x + 1.",
+        "id": "expand-join"
+      }
+    ],
+    "themes": {
+      "game": "Design three game-reward chests with the same bundles and bonus coins. Count one chest, then all three.",
+      "sports": "Draw four equipment racks. Put two identical ball bags and one loose ball on each rack.",
+      "story": "Invent a market stall with several identical baskets of wrapped loaves and loose rolls.",
+      "mystery": "A receipt shows 5(2x + 3) but the register displays 10x + 3. Circle the missing copies."
+    },
+    "project": {
+      "task": "Draw your own set of equal rows. Label one row, the row count, and both totals after you expand.",
+      "check": "Use different marks for variable pieces and units. Every row must contribute both terms; verify one numerical case."
+    },
+    "recall": {
+      "id": "expand-recall",
+      "q": "A printer makes seven sheets. Each sheet uses (3r − 2) units of ribbon. Expand the total ribbon expression.",
+      "options": [
+        "10r − 2",
+        "21r − 2",
+        "21r − 14",
+        "21r + 14"
+      ],
+      "answer": 2,
+      "hint": "Imagine the same saving of two units on each of the seven sheets.",
+      "why": "7 × 3r gives 21r and 7 × (−2) gives −14. The total is 21r − 14."
+    }
+  },
+  {
+    "id": "factor",
+    "room": "math",
+    "title": "Find the biggest equal team",
+    "skill": "Factor two terms using their greatest common whole-number factor.",
+    "coach": "Try packing the terms into equal rows. What is the largest number of rows that leaves nothing over?",
+    "explain": "A supply of 18 long strips and 24 squares can be arranged into several rectangular groups. Factoring describes what goes in one row and how often it repeats. The greatest common factor gives the largest whole-number row count that works for both supplies.",
+    "steps": [
+      {
+        "title": "List the possible row counts",
+        "visual": "18 strips: 1, 2, 3, 6, 9, 18\n24 squares: 1, 2, 3, 4, 6, 8, 12, 24",
+        "why": "The row count must divide both quantities. Six is the largest number on both lists."
+      },
+      {
+        "title": "Find what one row gets",
+        "visual": "18x ÷ 6 = 3x\n24 ÷ 6 = 4\nOne row: [x] [x] [x] [1] [1] [1] [1]",
+        "why": "Dividing each term by the same factor finds both pieces that belong inside the parentheses."
+      },
+      {
+        "title": "Rebuild the original supply",
+        "visual": "18x + 24 = 6(3x + 4)\nBack-check: 6 × 3x = 18x; 6 × 4 = 24",
+        "why": "Three and four have only one positive common factor, 1. The two products restore every strip and square."
+      }
+    ],
+    "guided": {
+      "q": "You have 14x + 21. Which factorization uses the greatest shared whole-number factor?",
+      "options": [
+        "7(2x + 21)",
+        "2(7x + 10)",
+        "7(2x + 3)",
+        "14(x + 7)"
+      ],
+      "answer": 2,
+      "hint": "Find the largest integer dividing both 14 and 21, then divide each term.",
+      "why": "Seven equal rows each contain 2x + 3. Expansion restores 14x + 21."
+    },
+    "items": [
+      {
+        "q": "Which expression factors 20x + 32 using the greatest common whole-number factor?",
+        "options": [
+          "2(10x + 16)",
+          "4(5x + 8)",
+          "8(2x + 4)",
+          "5(4x + 6)"
+        ],
+        "answer": 1,
+        "hint": "Check whether each proposed outside number divides both 20 and 32 exactly.",
+        "why": "Four divides both 20 and 32. Inside the parentheses, 5 and 8 share only the positive factor 1. Two makes equal rows too, but is smaller than the greatest common factor.",
+        "id": "factor-group"
+      },
+      {
+        "q": "Which expression factors 27a − 18 using the greatest common whole-number factor?",
+        "options": [
+          "3(9a − 6)",
+          "9(3a − 18)",
+          "9(3a + 2)",
+          "9(3a − 2)"
+        ],
+        "answer": 3,
+        "hint": "Divide the signed term −18 by the largest common factor.",
+        "why": "The greatest common factor is 9. Dividing the terms gives 3a and −2.",
+        "id": "factor-difference"
+      },
+      {
+        "q": "A designer writes 30x + 42 = 3(10x + 14). Which revision both keeps the value and extracts the greatest common factor?",
+        "options": [
+          "6(5x + 7)",
+          "6(10x + 7)",
+          "3(5x + 7)",
+          "12(2x + 3)"
+        ],
+        "answer": 0,
+        "hint": "The coefficients 10 and 14 still share another factor. What happens to the outside 3 when you take it out?",
+        "why": "10x + 14 = 2(5x + 7). Combining the outside factors 3 and 2 gives 6(5x + 7).",
+        "id": "factor-audit"
+      }
+    ],
+    "themes": {
+      "game": "Split a shared game inventory into the largest possible number of identical starter kits.",
+      "sports": "Divide practice cones and bands into the largest possible number of identical team packs.",
+      "story": "Give each traveler an identical bundle of maps and food vouchers without leftovers.",
+      "mystery": "Inspect a half-finished factorization. Find the factor still hidden inside the parentheses."
+    },
+    "project": {
+      "task": "Pick an outside factor from 2 to 9 and two positive whole numbers that share only the factor 1. Use one number as the coefficient of x and the other as the constant inside the parentheses. Build an expression for a friend to factor.",
+      "check": "Expand it, hide your original factorization, then recover it by finding the greatest common factor."
+    },
+    "media": {
+      "title": "Khan Academy · Factoring with the distributive property",
+      "url": "https://www.khanacademy.org/math/cc-seventh-grade-math/cc-7th-variables-expressions/cc-7th-factoring/v/factoring-linear-binomials",
+      "prompt": "Watch the example or open Transcript. When you reach 4x + 18, choose its greatest common factor. Multiply to check the grouping before you read on."
+    },
+    "recall": {
+      "id": "factor-recall",
+      "q": "Break 28z + 49 into its greatest common whole-number factor times a sum.",
+      "options": [
+        "7(4z + 7)",
+        "7(4z + 49)",
+        "4(7z + 12)",
+        "14(2z + 3)"
+      ],
+      "answer": 0,
+      "hint": "Which factor of 49 also divides 28? Divide the z term and the constant by it.",
+      "why": "Both 28 and 49 divide by 7. Expanding 7(4z + 7) restores 28z + 49."
+    }
+  },
+  {
+    "id": "equiv",
+    "room": "math",
+    "title": "Catch a look-alike expression",
+    "skill": "Use substitution to find a counterexample and algebra to justify equivalence.",
+    "coach": "Try an input where two rules agree. What second check could reveal that the rules behave differently?",
+    "explain": "Two expressions are equivalent if they give the same result for every permitted value of the variable. A single mismatch settles a false claim. A shared result at a chosen input is only one clue. Distributing or combining like terms can show why a true match holds for every input.",
+    "steps": [
+      {
+        "title": "Choose two rules",
+        "visual": "Rule A: 2(x + 4)\nRule B: 3x + 8",
+        "why": "Both expressions add something to a multiple of x. Their shapes can look convincing even when the rules differ."
+      },
+      {
+        "title": "Try more than one input",
+        "visual": "At x = 0: A = 8, B = 8\nAt x = 2: A = 12, B = 14",
+        "why": "The input 2 is a counterexample. Write 2(2 + 4) and 3 × 2 + 8 before calculating. The parentheses keep the addition inside Rule A."
+      },
+      {
+        "title": "Explain the difference",
+        "visual": "A = 2x + 8\nB = 3x + 8\nAt every x, B − A = x",
+        "why": "Both rules share the +8, which explains the match at zero. Rule B contains one extra x, so matching at zero cannot establish equivalence."
+      }
+    ],
+    "guided": {
+      "q": "A friend claims 3(x + 1) equals 3x + 1 for every x. What does x = 2 show?",
+      "options": [
+        "Both give 7.",
+        "The first gives 9 and the second gives 7.",
+        "The first gives 7 and the second gives 9.",
+        "Both give 9."
+      ],
+      "answer": 1,
+      "hint": "Evaluate the parentheses first in the left expression.",
+      "why": "3(2 + 1) = 9 and 3 × 2 + 1 = 7. This input rules out the claim of equivalence."
+    },
+    "items": [
+      {
+        "q": "Which expression gives the same value as 5(m + 2) for every m?",
+        "options": [
+          "5m + 2",
+          "7m",
+          "7m + 5",
+          "5m + 10"
+        ],
+        "answer": 3,
+        "hint": "Multiply the 5 by each term inside the parentheses.",
+        "why": "Distributing gives 5m + 10 with no special choice of m.",
+        "id": "equiv-twins"
+      },
+      {
+        "q": "At t = 1, 4t and 2t + 2 both give 4. Which evidence disproves equivalence?",
+        "options": [
+          "At t = 2 they give 8 and 6.",
+          "At t = 1 both values are even.",
+          "Each rule contains t.",
+          "Both rules use whole numbers."
+        ],
+        "answer": 0,
+        "hint": "Find an input producing two different outputs.",
+        "why": "With t = 2, 4t gives 8 and 2t + 2 gives 6. One unequal pair is enough.",
+        "id": "equiv-counter"
+      },
+      {
+        "q": "A builder describes a frame as 2(3x + 2) + x. Another writes 7x + 4. Which argument establishes equivalence for every x?",
+        "options": [
+          "Both contain x and 4.",
+          "They agree at x = 1.",
+          "Expanding gives 6x + 4 + x, which combines to 7x + 4.",
+          "Both expressions give whole-number outputs at x = 2 and x = 3."
+        ],
+        "answer": 2,
+        "hint": "Choose the explanation that transforms one expression directly into the other.",
+        "why": "Distribution and combining 6x with x preserve the value for every x.",
+        "id": "equiv-twoforms"
+      }
+    ],
+    "themes": {
+      "game": "Compare two game-scoring formulas. Make them tie at one level, then catch where they split.",
+      "sports": "Compare two ways of counting seats in repeating rows. Prove they count the same seats.",
+      "story": "Write two rules for a fictional ferry fare. Find the first test fare that reveals a difference.",
+      "mystery": "An input of zero hides a faulty multiplier. Choose a second input that exposes it."
+    },
+    "project": {
+      "task": "Invent one pair of equivalent expressions and one pair that agree at a single input and differ at another.",
+      "check": "Justify the equivalent pair by rewriting it. For the second pair, show the exact input and both unequal outputs."
+    },
+    "recall": {
+      "id": "equiv-recall",
+      "q": "A recipe scales as 3(n + 2) servings. A note says 2n + 8 is an equivalent rule because both give 12 at n = 2. Which test exposes the difference?",
+      "options": [
+        "Repeat n = 2 and find that both are even.",
+        "At n = 4 both expressions contain a variable.",
+        "Write that both formulas use positive numbers.",
+        "At n = 3 the recipe gives 15 and the note gives 14."
+      ],
+      "answer": 3,
+      "hint": "Try an allowed input other than 2 and compare the two actual values.",
+      "why": "3(3 + 2) = 15 while 2 × 3 + 8 = 14. The earlier agreement holds at one input."
+    }
+  },
+  {
+    "id": "particles",
+    "room": "science",
+    "title": "Read a particle picture",
+    "skill": "Distinguish a coefficient, a subscript and an individual atom in a molecule sketch.",
+    "coach": "Trace one bracket with your finger. What is inside that single molecule? Now count how many copies you see.",
+    "explain": "In the formulas here, a small number after an element symbol tells how many atoms of that element are in one molecule. That small number is called a subscript. A missing subscript means one. A coefficient in front multiplies everything in the formula. Drawing brackets around one molecule helps keep the two jobs separate.",
+    "steps": [
+      {
+        "title": "Read one molecule",
+        "visual": "CO₂   =   [O C O]\nOne bracket: 1 C atom and 2 O atoms",
+        "why": "Each letter labels an atom here. Brackets mark which atoms belong together. Their order on the page is a counting aid."
+      },
+      {
+        "title": "Copy the whole group",
+        "visual": "3 CO₂   =   [O C O] [O C O] [O C O]\nC: 1 + 1 + 1 = 3\nO: 2 + 2 + 2 = 6",
+        "why": "The coefficient makes three copies of the entire group, including its one carbon atom."
+      },
+      {
+        "title": "Compare two different labels",
+        "visual": "2 CO   =   [C O] [C O]   gives 2 C and 2 O\nCO₂     =   [O C O]       gives 1 C and 2 O",
+        "why": "CO is carbon monoxide. CO₂ is carbon dioxide. Both pictures contain two oxygen atoms. Their carbon counts and their groupings tell the labels apart."
+      }
+    ],
+    "guided": {
+      "q": "Four brackets each contain [H O H]. What is the total inventory?",
+      "options": [
+        "4 H, 4 O",
+        "2 H, 4 O",
+        "8 H, 8 O",
+        "8 H, 4 O"
+      ],
+      "answer": 3,
+      "hint": "Count H and O in one bracket before multiplying by four.",
+      "why": "Each bracket holds two H and one O. Four copies hold eight H and four O."
+    },
+    "items": [
+      {
+        "q": "How many nitrogen atoms and oxygen atoms are in 3 NO₂ molecules?",
+        "options": [
+          "3 N and 6 O",
+          "6 N and 3 O",
+          "3 N and 2 O",
+          "1 N and 6 O"
+        ],
+        "answer": 0,
+        "hint": "One NO₂ has one N atom and two O atoms. Repeat the entire molecule.",
+        "why": "Three copies give 3 × 1 = 3 N and 3 × 2 = 6 O.",
+        "id": "particles-count"
+      },
+      {
+        "q": "In 5 O₂, what information does the small 2 give?",
+        "options": [
+          "Five molecules contain two atoms altogether.",
+          "Each oxygen molecule contains two oxygen atoms.",
+          "There are two molecules with five atoms each.",
+          "Each atom belongs to two different elements."
+        ],
+        "answer": 1,
+        "hint": "Cover the leading 5. Read the formula for just one molecule.",
+        "why": "The subscript describes the two atoms in a single O₂ molecule. The coefficient 5 counts those molecules.",
+        "id": "particles-symbol"
+      },
+      {
+        "q": "A box contains two H₂O molecules and three CO₂ molecules. What inventory should its label show?",
+        "options": [
+          "H 2, C 3, O 5",
+          "H 4, C 6, O 5",
+          "H 4, C 3, O 8",
+          "H 2, C 3, O 8"
+        ],
+        "answer": 2,
+        "hint": "Tally oxygen once for the water groups and once for the carbon dioxide groups, then add.",
+        "why": "Two H₂O supply H 4 and O 2. Three CO₂ supply C 3 and O 6. Combined, that is H 4, C 3 and O 8.",
+        "id": "particles-mixture"
+      }
+    ],
+    "themes": {
+      "game": "Mark game pieces with H, C or O. Put brackets around each molecule before you count the inventory.",
+      "sports": "Arrange token cards into small squads, one squad per molecule. Have a partner call the inventory.",
+      "story": "Write a caption for a museum display showing three different groups of labeled atoms.",
+      "mystery": "Two labels both claim six oxygen atoms. Use their carbon counts and groupings to identify the matching sketch."
+    },
+    "project": {
+      "task": "Draw two different collections containing a total of four oxygen atoms. Label every kind of atom and bracket each molecule.",
+      "check": "For each drawing, give the formula with its coefficient and verify the oxygen count from the brackets."
+    },
+    "recall": {
+      "id": "particles-recall",
+      "q": "Your sketch contains [N N], [N N], and [N O O]. Which inventory matches it?",
+      "options": [
+        "3 N and 2 O",
+        "5 N and 2 O",
+        "4 N and 3 O",
+        "2 N and 5 O"
+      ],
+      "answer": 1,
+      "hint": "Count every N label in each bracket and then every O label.",
+      "why": "The first two groups contain four N atoms. The last group adds one N atom and two O atoms."
+    }
+  },
+  {
+    "id": "conserve",
+    "room": "science",
+    "title": "Balance the atom ledger",
+    "skill": "Account for each element before and after a closed chemical reaction.",
+    "coach": "Check one element from start to finish before moving to the next. Could the total number of circles hide an error?",
+    "explain": "A chemical reaction rearranges atoms into new groups. In a closed system every atom remains in the inventory. Check each element separately. To balance a diagram that shows specified substances, adjust the numbers of whole molecules while keeping each substance’s formula fixed.",
+    "steps": [
+      {
+        "title": "Inventory the starting tray",
+        "visual": "Before: [H H] [H H] [O O]\nLedger: H = 4, O = 2",
+        "why": "The starting molecules contain six atoms altogether. Listing H and O separately keeps track of their identities."
+      },
+      {
+        "title": "Try building the product",
+        "visual": "First product: [H O H]\nUsed: H = 2, O = 1\nLeft in tray: H = 2, O = 1",
+        "why": "One water molecule leaves enough atoms for another whole water molecule."
+      },
+      {
+        "title": "Audit the finished drawing",
+        "visual": "Before: 2 H₂ + O₂   | H 4, O 2\nAfter:  2 H₂O        | H 4, O 2",
+        "why": "The number of molecules changes from three to two because the atoms have new partners. Each elemental count stays the same."
+      }
+    ],
+    "guided": {
+      "q": "A closed model starts with two C atoms and four O atoms. After making one CO₂, what remains?",
+      "options": [
+        "One C and two O",
+        "One C and four O",
+        "Two C and two O",
+        "Zero C and zero O"
+      ],
+      "answer": 0,
+      "hint": "Cross out the one C and two O atoms used by the first molecule.",
+      "why": "The remaining one C and two O can form a second CO₂."
+    },
+    "items": [
+      {
+        "q": "A closed tray starts with three H₂ molecules and one O₂ molecule. After two H₂O molecules form, what is left?",
+        "options": [
+          "One O₂ molecule",
+          "One H₂ molecule",
+          "Two O₂ molecules",
+          "No atoms"
+        ],
+        "answer": 1,
+        "hint": "Start with six H and two O. Cross out the atom counts in two water molecules.",
+        "why": "The two water molecules account for four H and two O. Two H remain as one H₂ molecule.",
+        "id": "conserve-leftover"
+      },
+      {
+        "q": "A proposed closed reaction starts with 2 C and 4 O atoms and ends with 3 C and 3 O atoms. What is the problem?",
+        "options": [
+          "The pictures each contain six atoms.",
+          "Three oxygen atoms are too few to draw.",
+          "The atom groups must have the same shape.",
+          "The carbon and oxygen inventories each changed."
+        ],
+        "answer": 3,
+        "hint": "Check each element rather than adding all the atoms together.",
+        "why": "Six atoms appear on each side, yet one carbon has appeared and one oxygen has disappeared. A chemical reaction must preserve each kind.",
+        "id": "conserve-badledger"
+      },
+      {
+        "q": "A drawing starts with two CO molecules and one O₂ molecule. Which product drawing uses all starting atoms and contains only CO₂?",
+        "options": [
+          "[O C O]",
+          "[O C O] [O O]",
+          "[O C O] [O C O]",
+          "[C O] [C O] [O O]"
+        ],
+        "answer": 2,
+        "hint": "Tally C and O across both types of starting molecule. Then pack atoms into groups of one C and two O.",
+        "why": "Starting counts are C 2 and O 4. Two CO₂ molecules use both carbon atoms and all four oxygen atoms.",
+        "id": "conserve-balance"
+      }
+    ],
+    "themes": {
+      "game": "Build two product cards by spending tokens from a shared atom inventory; tally the supply after each turn.",
+      "sports": "Treat the element counts like a roster. After teammates change groups, verify everyone is still present exactly once.",
+      "story": "Illustrate a before-and-after scene in a sealed jar. Give every atom a label a reader can follow.",
+      "mystery": "A sketch keeps six atoms overall while changing how many are C. Use a two-column tally to expose the error."
+    },
+    "project": {
+      "task": "Draw reactants and products for a closed model, using labeled counters or pencil marks. Leave an extra molecule on the product side if your starting inventory requires it.",
+      "check": "List a before and after number for every element. Circle one bond or grouping that changed and account for any leftovers."
+    },
+    "media": {
+      "title": "American Chemical Society · What is a chemical reaction?",
+      "url": "https://www.acs.org/middleschoolchemistry/simulations/chapter6/lesson1.html",
+      "prompt": "Open the “Combustion of Methane” interactive or read the explanation beneath it. Before the products appear, predict where the one carbon atom and four hydrogen atoms will end up. Tally each element before and after the reaction."
+    },
+    "recall": {
+      "id": "conserve-recall",
+      "q": "A closed sample begins with one N₂ molecule and three H₂ molecules. How many NH₃ molecules could use exactly that inventory?",
+      "options": [
+        "One",
+        "Three",
+        "Two",
+        "Six"
+      ],
+      "answer": 2,
+      "hint": "Count N and H separately and divide each inventory by the corresponding atoms per product.",
+      "why": "Two N atoms and six H atoms make two groups of one N and three H. Both element counts are preserved."
+    }
+  },
+  {
+    "id": "model",
+    "room": "science",
+    "title": "Make a prediction earn its place",
+    "skill": "Use observations to compare particle models, revise a claim and design a follow-up check.",
+    "coach": "Separate what the drawing shows from what you infer. What observation would turn your first explanation into the weaker one?",
+    "explain": "A particle model leaves out details so you can test one idea. A rise in temperature or a cluster spreading out is an observation. A proposed change in the particles is an explanation. Useful models make different predictions you can compare with evidence.",
+    "steps": [
+      {
+        "title": "Write two explanations",
+        "visual": "Observation: a particle image shows the dots in a sealed sample spreading farther apart. At this scale, a dot could be an atom or a molecule.\nModel A: The original molecules spread apart.\nModel B: The original molecules split into separate atoms.",
+        "why": "The first image shows where the dots are. You need more detail to see whether atoms within each dot stayed together. You need a prediction about the groups themselves."
+      },
+      {
+        "title": "Predict what a closer drawing would show",
+        "visual": "Before:   [A B] [A B]\nA predicts: [A B]       [A B]\nB predicts: [A] [B]       [A] [B]",
+        "why": "A and B stand for two different elements in this model. The models agree about the inventory and disagree about which atoms remain connected."
+      },
+      {
+        "title": "Revise with a reason",
+        "visual": "New evidence: a measurement finds that each group still contains a joined A and B.\nSupport: Model A\nNext check: track whether those pairs stay joined in another sample.",
+        "why": "Intact pairs fit the prediction from A. The observation gives a reason to revise B, while leaving room for future evidence about other samples."
+      }
+    ],
+    "guided": {
+      "q": "A diagram shows three identical molecules moving farther apart with all connections still present. Which claim best fits it?",
+      "options": [
+        "Some atoms disappeared.",
+        "The molecules now contain different elements.",
+        "Their spacing changed and the drawn molecular groups stayed the same.",
+        "A reaction definitely formed three new substances."
+      ],
+      "answer": 2,
+      "hint": "Trace the connected atoms within each group. Then compare only the spacing between groups.",
+      "why": "The evidence shows a spacing change. A claim that new substances formed would need evidence of different groups."
+    },
+    "items": [
+      {
+        "q": "Which entry belongs in the observation column of a lab notebook?",
+        "options": [
+          "The atoms must have formed a new compound.",
+          "Tiny bubbles appeared along the wall of the container.",
+          "The reaction will always make bubbles.",
+          "Some unseen molecules split in half."
+        ],
+        "answer": 1,
+        "hint": "Choose what someone could directly record by watching the container.",
+        "why": "Seeing bubbles is a directly observable event. The other entries infer a mechanism or predict an outcome.",
+        "id": "model-observe"
+      },
+      {
+        "q": "Two explanations predict the same total mass in a sealed box. Only one predicts that AB molecules split into A and B atoms. Which observation best separates the explanations?",
+        "options": [
+          "A repeat measurement of the same total mass.",
+          "The color of the label on the box.",
+          "Another count of the closed boxes.",
+          "A reliable before-and-after measurement of which atoms are bonded together."
+        ],
+        "answer": 3,
+        "hint": "Look for a measurement where the predictions disagree.",
+        "why": "Both models predict the same mass. Evidence about bonding can distinguish their different predictions about grouping.",
+        "id": "model-choose"
+      },
+      {
+        "q": "A model predicted that all AB pairs would split. New data reliably show half the pairs intact after the observation time. Which revision yields a testable next step?",
+        "options": [
+          "Record partial splitting and predict how the fraction intact would change over another equal time interval under the same conditions.",
+          "Declare all pairs split and leave the intact pairs out of the drawing.",
+          "Erase the prediction so nobody can compare it with the data.",
+          "Claim that atoms vanish whenever the sample is measured."
+        ],
+        "answer": 0,
+        "hint": "Keep the unexpected observation and make a prediction a repeat measurement could check.",
+        "why": "The revision accounts for the intact pairs. Naming a measurable fraction, time interval and conditions lets someone test the revised model.",
+        "id": "model-revise"
+      }
+    ],
+    "themes": {
+      "game": "Write two possible rules for a mystery game tile. Choose one move that would make those rules give different outcomes.",
+      "sports": "Two teammates explain why a ball slowed down. Have them state competing predictions and choose one measurable detail.",
+      "story": "Write a scene in which two scientists see the same event. Give one a new observation that changes their explanation.",
+      "mystery": "Compare two rival sketches of the same sealed sample and choose the piece of evidence that could distinguish them."
+    },
+    "project": {
+      "task": "Make a two-panel investigation. Show one observation and two explanations, then invent a follow-up observation that favors one explanation.",
+      "check": "Identify what each explanation predicted, what the new evidence showed, and one part of your model you would keep or change."
+    },
+    "recall": {
+      "id": "model-recall",
+      "q": "Two models explain how a drop of dye spreads in water. One predicts the dye will spread through still water, and the other predicts spreading only while the water is stirred. Which test best distinguishes these predictions?",
+      "options": [
+        "Compare the bottle labels on two dyes.",
+        "Stir both samples and record only their final colors.",
+        "Put different dyes into different liquids at different temperatures.",
+        "Place the same dye in otherwise identical still and stirred samples and track the spread over time."
+      ],
+      "answer": 3,
+      "hint": "Keep the dye, liquid and temperature fixed while varying the condition the models disagree about.",
+      "why": "The still sample tests the difference between the predictions. The stirred comparison and repeated observations help interpret the result."
+    }
+  }
+]

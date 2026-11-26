@@ -15,6 +15,7 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
 .statusline{display:flex;justify-content:space-between;gap:.5rem 1rem;align-items:baseline;flex-wrap:wrap;margin:.85rem .25rem 0;font-size:.91rem}.statusline span:first-child{font-weight:660}.statusline p{color:var(--muted)}#connection[data-level="warn"]{color:#8c3a22}.notice,.empty{border:1px solid var(--line);border-radius:1rem;background:var(--paper);padding:1.15rem 1.3rem}.notice{margin-top:1rem;background:#fff4dc;color:#603f24}.empty{margin-top:1.2rem}.empty p{margin-top:.5rem;color:var(--muted);max-width:65ch}section.reportgroup{margin-top:2rem}.explain{margin:.4rem 0 .9rem;max-width:74ch;color:var(--muted)}.metrics,.subjects,.recent,.devices{display:grid;gap:.8rem}.metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.subjects{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:.85rem}.recent,.devices{grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr))}.card{border:1px solid var(--line);border-radius:.95rem;padding:1rem;background:var(--paper);min-width:0;overflow-wrap:anywhere}.metric{border:1px solid #ddd7e6;background:#f0ebf7;border-radius:.9rem;padding:1rem 1.12rem}.metric strong{display:block;font:790 clamp(1.7rem,5vw,2.5rem)/1.1 var(--heading);letter-spacing:-.045em}.metric span{display:block;margin:.25rem 0;color:#51475c;font-weight:650}.metric small{color:var(--muted)}.subject{border-top:.34rem solid var(--hue)}.subject p{margin-top:.55rem;color:var(--muted);font-size:.94rem}progress{appearance:none;width:100%;height:.45rem;border:none;border-radius:1rem;background:#ece9e3;color:#5c5273}progress::-webkit-progress-bar{border-radius:1rem;background:#ece9e3}progress::-webkit-progress-value{border-radius:1rem;background:#5c5273}progress::-moz-progress-bar{border-radius:1rem;background:#5c5273}.subject progress{display:block;margin-top:.8rem}.recent .card{background:#fbf8ee}.card .detail{margin-top:.5rem;color:var(--muted)}.device .count{margin:.65rem 0;font-weight:640}.device dl{display:grid;grid-template-columns:auto 1fr;column-gap:.8rem;row-gap:.3rem;font-size:.92rem;margin:.8rem 0 0}.device dt{color:var(--muted)}.device dd{margin:0}.review-list{margin:.6rem 0 0;padding-left:1.2rem}
 @media(max-width:720px){.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.frame{width:calc(100% - 1.5rem)}main{padding-top:1rem}.hero{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.05rem .75rem;padding:.7rem .9rem}.metric strong{grid-row:span 2}.metric span{margin:0}.metric small{grid-column:2}.device dl{grid-template-columns:1fr}.device dd+dt{margin-top:.2rem}.statusline{display:block}.statusline p{margin-top:.25rem}}
+.coaching{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:.8rem;margin-top:1rem}.coaching .card{border-left:4px solid #9a89bb}.coaching .card:last-child{border-left-color:#a1b879}.coaching p{margin-top:.5rem}.coach-label{font-size:.82rem;color:var(--muted);font-weight:700}.skills-details{margin-top:1rem;border-bottom:1px solid var(--line)}.skills-details summary{padding:.75rem 0;font-weight:700;cursor:pointer}.skills-details summary:focus-visible{outline:3px solid #7b5aa8;outline-offset:2px}.skills-list{list-style:none;margin:0;padding:0}.skills-list li{padding:.75rem 0;border-top:1px solid var(--line)}.skills-list small{display:block;color:var(--muted)}.guide-empty{margin:.75rem 0;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 #grade-report .recent{margin-top:.85rem}#grade-report .recent .card{background:#f3f7ed}
 </style>
@@ -23,14 +24,21 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
 <a class="skip" href="#main">Skip to progress</a>
 <header class="sitehead"><div class="frame nav"><div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Study Arcade</div><small>Read-only view</small></div></header>
 <main class="frame" id="main" tabindex="-1">
-  <div class="hero"><div><h1>Family progress</h1><p>Practice, study blocks and recent activity across connected workbooks.</p></div><button id="refresh" class="refresh" type="button" hidden>Refresh now</button></div>
+  <div class="hero"><div><h1>Family progress</h1><p>See what your learner can do independently, what helped, and one question to try together.</p></div><button id="refresh" class="refresh" type="button" hidden>Refresh now</button></div>
   <div class="statusline"><span id="connection" role="status" aria-live="polite">Opening family view…</span><p id="last-check"></p></div>
   <p id="warning" class="notice" hidden></p>
   <noscript><p class="notice">Enable JavaScript to open the family view.</p></noscript>
   <div id="empty" class="empty" hidden><h2 id="empty-title"></h2><p id="empty-body"></p></div>
   <section class="reportgroup" id="grade-report" aria-label="Grade 2 fieldbook" hidden></section>
   <div id="report" hidden>
-    <section class="reportgroup" aria-labelledby="overview-title"><h2 id="overview-title">Study Arcade across devices</h2><p class="explain">Each question and study block counts once if it appears on either device. Totals combine the latest report available from each workbook.</p><div id="metrics" class="metrics"></div><div id="subjects" class="subjects"></div></section>
+    <section class="reportgroup" aria-labelledby="guide-title">
+      <h2 id="guide-title">Grade 7 skill guides</h2>
+      <p id="guide-intro" class="explain"></p>
+      <div id="guide-metrics" class="metrics"></div>
+      <div id="coaching" class="coaching"></div>
+      <details id="skills-details" class="skills-details" hidden><summary>Skill-by-skill evidence</summary><ul id="skills-list" class="skills-list"></ul></details>
+    </section>
+    <section class="reportgroup" aria-labelledby="overview-title"><h2 id="overview-title">Original practice and study blocks</h2><p class="explain">The original 52-question bank covers four subjects. Each question and each checked study block counts once across devices.</p><div id="metrics" class="metrics"></div><div id="subjects" class="subjects"></div></section>
     <section class="reportgroup" aria-labelledby="recent-title"><h2 id="recent-title">Latest workbook</h2><p class="explain" id="recent-source"></p><div id="recent" class="recent"></div></section>
     <section class="reportgroup" aria-labelledby="devices-title"><h2 id="devices-title">Device reports</h2><p class="explain">Notes and labs are counted per browser. Written answers stay in the workbook.</p><div id="devices" class="devices"></div></section>
   </div>
@@ -67,25 +75,67 @@ window.ArcadeLive = (() => {
     } finally {clearTimeout(timer);}
   }
   async function secret(c){return crypto.subtle.importKey('raw',decode(c.cipher),{name:'AES-GCM'},false,['encrypt','decrypt']);}
-  const associated=(id,rev)=>new TextEncoder().encode('arcade-report-v1/'+id+'/'+rev);
-  async function seal(c,id,rev,snapshot) {
+  const associated=(id,rev,kind)=>new TextEncoder().encode('arcade-'+kind+'-v1/'+id+'/'+rev);
+  async function seal(c,id,rev,snapshot,kind='report') {
     const iv=crypto.getRandomValues(new Uint8Array(12)), key=await secret(c);
     const bytes=new TextEncoder().encode(JSON.stringify(snapshot));
-    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev)},key,bytes);
+    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev,kind)},key,bytes);
     const packet=new Uint8Array(12+encrypted.byteLength);packet.set(iv);packet.set(new Uint8Array(encrypted),12);
     return encode(packet);
   }
-  async function readDevices(c) {
-    const data=await request({op:'read',key:c.token}), key=await secret(c);
+  async function readDevices(c,kind='report') {
+    const data=await request({op:kind==='skills'?'learn':'read',key:c.token}), key=await secret(c);
     return Promise.all(data.devices.map(async row=>{
       const bytes=decode(row.blob);
-      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
+      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev,kind)},key,bytes.slice(12));
       const snapshot=JSON.parse(new TextDecoder().decode(clear));
       if(snapshot.v!==1&&!(snapshot.v===2&&snapshot.book==='grade2'))throw Error('This report needs a newer dashboard.');
       return {id:row.id,received:row.received,snapshot};
     }));
   }
   return {readConfig,readDevices,config,request,seal,storageKey};
+})();
+</script>
+<script>// Compact rows hold the last hint, last assisted solution, first independent solution
+// and last interaction as calendar days. Stable slots 0/1 are practice, 2 is stretch, 3 is recall.
+const GuideSkills = (() => {
+  const catalog = [{"id":"html","room":"computing","title":"Give a clue its own style","skill":"Choose an HTML element for its job and predict which elements a CSS rule will style.","coach":"Read the words first. Which words introduce the page? Which words give the reader a clue? Pick tags for those jobs, then decide which clues should look alike."},{"id":"flex","room":"computing","title":"Fit a shelf onto a small screen","skill":"Use direction, spacing and wrapping on a parent to arrange its children at two widths.","coach":"Sketch where the cards should land before touching a control. Change one setting, compare the preview with the sketch, then say which setting caused the difference."},{"id":"keys","room":"computing","title":"Stop a sprite at the edge","skill":"Trace an input and a boundary condition, predict the next coordinates and test each edge.","coach":"Use your finger as the sprite. Before each move, say the current square, the input and whether the next square exists. Then test it on the board."},{"id":"expand","room":"math","title":"Open every row","skill":"Expand a linear expression using the distributive property.","coach":"Put a finger on the factor outside the parentheses. Which two terms will it multiply?"},{"id":"factor","room":"math","title":"Find the biggest equal team","skill":"Factor two terms using their greatest common whole-number factor.","coach":"Try packing the terms into equal rows. What is the largest number of rows that leaves nothing over?"},{"id":"equiv","room":"math","title":"Catch a look-alike expression","skill":"Use substitution to find a counterexample and algebra to justify equivalence.","coach":"Try an input where two rules agree. What second check could reveal that the rules behave differently?"},{"id":"particles","room":"science","title":"Read a particle picture","skill":"Distinguish a coefficient, a subscript and an individual atom in a molecule sketch.","coach":"Trace one bracket with your finger. What is inside that single molecule? Now count how many copies you see."},{"id":"conserve","room":"science","title":"Balance the atom ledger","skill":"Account for each element before and after a closed chemical reaction.","coach":"Check one element from start to finish before moving to the next. Could the total number of circles hide an error?"},{"id":"model","room":"science","title":"Make a prediction earn its place","skill":"Use observations to compare particle models, revise a claim and design a follow-up check.","coach":"Separate what the drawing shows from what you infer. What observation would turn your first explanation into the weaker one?"},{"id":"rhyme","room":"english","title":"Hear the rhyme and feel the beat","skill":"Label end rhymes and explain how a change in rhythm affects a line.","coach":"Say or silently mouth the end words. Then tap the stronger beats as you read a whole line. Where does your voice pause?"},{"id":"image","room":"english","title":"Build an image from a word","skill":"Identify a sensory detail and explain its effect.","coach":"Pretend you are recording a scene in the dark. Which word would tell a listener what the room sounds, feels or smells like?"},{"id":"claim","room":"english","title":"Defend a reading","skill":"Connect an interpretation to two details and explain the connection.","coach":"Imagine two readers disagree about a speaker. Which detail would you put your finger on first? Which other detail could change the discussion?"}];
+  const valid = new Set(catalog.map(u => u.id));
+  const day = (d = new Date()) => d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate();
+  function dateNumber(n) {
+    if (!Number.isInteger(n) || n < 20000101 || n > 21991231) return 0;
+    const date = new Date(Math.floor(n/10000),Math.floor(n/100)%100-1,n%100);
+    return day(date) === n ? n : 0;
+  }
+  function merge(...ledgers) {
+    const result = {};
+    for (const ledger of ledgers) {
+      for (const [skill,rows] of Object.entries(ledger || {})) {
+        if (!valid.has(skill) || !rows || typeof rows !== 'object') continue;
+        for (const [index,row] of Object.entries(rows)) {
+          if (!/^[0-3]$/.test(index) || !Array.isArray(row) || row.length !== 4) continue;
+          const [hint,aided,solo,attempt] = row.map(dateNumber);
+          if (!attempt) continue;
+          const unit = result[skill] ||= {};
+          const prev = unit[index] || [0,0,0,0];
+          unit[index] = [Math.max(prev[0],hint),Math.max(prev[1],aided),
+            solo && prev[2] ? Math.min(prev[2],solo) : solo || prev[2],Math.max(prev[3],attempt)];
+        }
+      }
+    }
+    return result;
+  }
+  function status(ledger,id,date=day()) {
+    const rows=ledger?.[id] || {};
+    const wins=[rows[0]?.[2],rows[1]?.[2]].filter(Boolean);
+    const both=wins.length===2 ? Math.max(...wins) : 0;
+    const remembered=Boolean(both && rows[3]?.[2]>both);
+    const heard=Object.values(rows);
+    return {solo:wins.length,supported:heard.filter(row=>row[1]).length,
+      stretch:Boolean(rows[2]?.[2]),remembered,recallDue:Boolean(both && both<date && !remembered),
+      needsHelp:heard.some(row=>row[0] && (!row[2] || row[0]>row[2]) && row[0]>row[1])};
+  }
+  return {catalog,merge,status,day};
 })();
 </script>
 <script>
@@ -119,6 +169,35 @@ window.ArcadeLive = (() => {
   const numbers = (x, size) => new Set(list(x).filter(n => Number.isInteger(n) && n >= 0 && n < size));
   const add = (target, values) => { for (const value of values) target.add(value); };
   const boundedCount = (value, max) => Number.isInteger(value) && value >= 0 && value <= max ? value : null;
+  const isObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+  const dateFormat = new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',year:'numeric'});
+  function asDay(value) {
+    let raw = String(value ?? '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) raw = raw.replace(/-/g,'');
+    if (!/^\d{8}$/.test(raw)) return null;
+    const year = Number(raw.slice(0,4)), month = Number(raw.slice(4,6)), day = Number(raw.slice(6));
+    const date = new Date(year,month-1,day);
+    return year >= 2000 && date.getFullYear() === year && date.getMonth() + 1 === month && date.getDate() === day ? Number(raw) : null;
+  }
+  function displayDay(day) {
+    const raw = String(day);
+    return dateFormat.format(new Date(+raw.slice(0,4),+raw.slice(4,6)-1,+raw.slice(6)));
+  }
+  function checkinDay(at) {
+    const day = asDay(at);
+    if (day) return day;
+    const ms = typeof at === 'number' ? at : typeof at === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(at) ? Date.parse(at) : NaN;
+    if (!validTime(ms)) return null;
+    const date = new Date(ms);
+    return asDay(date.getFullYear() * 10000 + (date.getMonth()+1) * 100 + date.getDate());
+  }
+  function schoolPlan(raw) {
+    const date = asDay(raw?.date);
+    if (!date || !Array.isArray(raw.tasks)) return null;
+    const tasks = raw.tasks.slice(0,64).filter(t => typeof t?.id === 'string' && t.id.length && typeof t.title === 'string' && t.title.trim())
+      .map(t => ({id:t.id,title:t.title.trim().slice(0,200)}));
+    return {date,tasks};
+  }
   function blank() {
     return {
       subjects:Object.fromEntries(subjects.map(s => [s.key, {tried:new Set(),solved:new Set(),due:new Set()}])),
@@ -131,6 +210,11 @@ window.ArcadeLive = (() => {
     const out = blank();
     out.id = record.id;
     out.received = record.received;
+    out.guide = isObject(s.guide) ? s.guide : null;
+    out.school = schoolPlan(s.school);
+    out.schoolNext = schoolPlan(s.schoolNext);
+    const checkedOn = checkinDay(s.checkin?.at);
+    out.checkin = checkedOn && typeof s.checkin?.tricky === 'string' ? {at:checkedOn,tricky:s.checkin.tricky} : null;
     const activity = typeof s.at === 'string' ? Date.parse(s.at) : NaN;
     out.activity = validTime(activity) ? activity : null;
     for (const subject of subjects) {
@@ -202,6 +286,97 @@ window.ArcadeLive = (() => {
       return article;
     });
     byId('subjects').replaceChildren(...cards);
+  }
+  function nextSchoolTask(devices, today) {
+    // A reused block id on an older day's plan is a different task occurrence.
+    const dates = new Map();
+    for (const device of devices) for (const plan of [device.school,device.schoolNext].filter(Boolean)) {
+      let same = dates.get(plan.date);
+      if (!same) {
+        same = {date:plan.date,latest:device,tasks:plan.tasks,done:new Set()};
+        dates.set(plan.date,same);
+      } else if (device.received > same.latest.received) {
+        same.latest = device;
+        same.tasks = plan.tasks;
+      }
+      add(same.done,device.blocks.done);
+    }
+    const groups = [...dates.values()].sort((a,b) => a.date-b.date);
+    const current = groups.filter(group => group.date >= today);
+    const pending = current.map(group => ({group,task:group.tasks.find(t => !group.done.has(t.id))})).find(x => x.task);
+    const card = h('article',null,'card');
+    card.append(h('h3','Next school task'));
+    if (pending) {
+      const {group,task} = pending;
+      card.append(h('p',(group.date === today ? 'Dated for today' : 'Upcoming plan') + ' · ' + displayDay(group.date),'coach-label'));
+      card.append(h('p',task.title),h('p','Ask where the work belongs and what the first step will look like.','detail'));
+    } else if (current.length) {
+      const date = current[0].date;
+      const named = current.some(group => group.tasks.length > 0);
+      card.append(h('p', named ? 'Every listed task on the reported plans dated ' + displayDay(date) + ' or later is checked.' : 'The plan dated ' + displayDay(date) + ' has no tasks listed.','detail'));
+    } else if (groups.length) {
+      card.append(h('p','The last dated school plan was ' + displayDay(groups[groups.length-1].date) + '. Open the learner’s planner for the current assignment.','detail'));
+    } else {
+      card.append(h('p','These reports include no dated school plan. Ask your learner which assignment has the next deadline.','detail'));
+    }
+    return card;
+  }
+  function nextCoach(rows,devices,today,hasGuide) {
+    const card = h('article',null,'card');
+    card.append(h('h3','Try this together'));
+    const picked = devices.find(d => d.checkin?.at === today && rows.some(r => r.id === d.checkin.tricky));
+    const flagged = picked ? rows.find(r => r.id === picked.checkin.tricky) : null;
+    const help = rows.find(r => r.progress.needsHelp && !r.progress.remembered);
+    const recall = rows.find(r => r.progress.recallDue && !r.progress.remembered);
+    const supported = rows.find(r => r.progress.supported > 0 && r.progress.solo < 2 && !r.progress.remembered);
+    const partial = rows.find(r => r.progress.solo === 1 && !r.progress.remembered);
+    const skill = flagged || help || recall || supported || partial;
+    if (skill) {
+      const reason = flagged ? 'Your learner flagged this as tricky on ' + displayDay(today) + '.'
+        : help ? 'The latest combined practice shows an unresolved difficulty.'
+        : recall ? 'Your learner solved the practice and a later-day recall is ready.'
+        : supported ? 'A hint helped with an item. Invite a fresh attempt before offering another clue.'
+        : 'Your learner has solved one of the two independent practice items.';
+      card.append(h('p',skill.title,'coach-label'),h('p',reason,'detail'),h('p',skill.coach));
+    } else if (rows.some(r => r.progress.solo || r.progress.supported || r.progress.stretch || r.progress.remembered)) {
+      card.append(h('p','Ask your learner to choose one skill from the list below and show how they would explain it to a friend.','detail'));
+    } else {
+      card.append(h('p',hasGuide ? 'Ask which skill your learner would like to try. Invite one prediction before showing the worked example.' : 'These reports contain no guide evidence yet. Invite your learner to choose a skill and try its worked example.','detail'));
+    }
+    return card;
+  }
+  function showGuides(devices) {
+    const guides = GuideSkills;
+    const today = guides.day();
+    const hasGuide = devices.some(d => d.guide !== null);
+    const ledger = guides.merge(...devices.map(d => d.guide).filter(Boolean));
+    const rows = guides.catalog.map(skill => ({...skill,progress:guides.status(ledger,skill.id,today)}));
+    const active = rows.filter(({progress:p}) => p.solo || p.supported || p.stretch || p.remembered || p.needsHelp || p.recallDue);
+    const soloCount = rows.reduce((n,r) => n+r.progress.solo,0);
+    const supportedCount = rows.reduce((n,r) => n+r.progress.supported,0);
+    const independentSkills = rows.filter(r => r.progress.solo === 2).length;
+    const recalledSkills = rows.filter(r => r.progress.remembered).length;
+    byId('guide-intro').textContent = !hasGuide ? 'These workbooks reported activity from the original workbook. Guided practice will appear when an updated workbook reports.'
+      : !active.length ? 'An updated workbook is connected. No guided answers or recall results have been reported yet.'
+      : 'Each guide has two independent practice items. A correct answer after a hint is recorded separately. Cross-device copies count once in each measure.';
+    byId('guide-metrics').replaceChildren(...(hasGuide ? [
+      metric(independentSkills,'Skills with both items solved unaided',plural(soloCount,'distinct core item') + ' solved unaided across all skills'),
+      metric(supportedCount,'Items solved with help','Distinct correct items after using support'),
+      metric(recalledSkills,'Skills recalled later','Fresh recall question solved on a later day')
+    ] : []));
+    byId('coaching').replaceChildren(nextCoach(rows,devices,today,hasGuide),nextSchoolTask(devices,today));
+    const summary = active.map(({title,progress:p}) => {
+      const item = h('li');
+      const labels = [p.solo + '/2 independent',plural(p.supported,'hint-supported item')];
+      if (p.stretch) labels.push('Advanced item solved independently');
+      if (p.remembered) labels.push('Recalled on a later day');
+      else if (p.recallDue) labels.push('Later-day recall ready');
+      if (p.needsHelp) labels.push('May need another example');
+      item.append(h('strong',title),h('small',labels.join(' · ')));
+      return item;
+    });
+    byId('skills-list').replaceChildren(...summary);
+    byId('skills-details').hidden = !summary.length;
   }
   function showRecent(latest) {
     byId('recent-source').textContent = label(latest.id) + (latest.activity ? ' · Last study activity ' + stamp(latest.activity) : ' · Report received ' + stamp(latest.received)) + '. Review and rehearsal reflect this workbook only.';
@@ -488,6 +663,7 @@ function gradeOverview(records) {
     }
     byId('empty').hidden = true;
     byId('report').hidden = false;
+    showGuides(reports);
     showOverview(combine(reports));
     showRecent(reports[0]);
     byId('devices').replaceChildren(...reports.map(deviceCard));
@@ -496,7 +672,9 @@ function gradeOverview(records) {
     reports = [];gradeReports=[];byId("grade-report").replaceChildren();byId("grade-report").hidden=true;
     lastSuccess = null;
     byId('last-check').textContent = '';
-    for (const k of ['metrics','subjects','recent','devices']) byId(k).replaceChildren();
+    for (const k of ['metrics','subjects','recent','devices','guide-metrics','coaching','skills-list']) byId(k).replaceChildren();
+    byId('guide-intro').textContent = '';
+    byId('skills-details').hidden = true;
     byId('recent-source').textContent = '';
     byId('report').hidden = true;
     warning('');

@@ -1,0 +1,295 @@
+[
+  {
+    "id": "rhyme",
+    "room": "english",
+    "title": "Hear the rhyme and feel the beat",
+    "skill": "Label end rhymes and explain how a change in rhythm affects a line.",
+    "coach": "Say or silently mouth the end words. Then tap the stronger beats as you read a whole line. Where does your voice pause?",
+    "explain": "A rhyme scheme records which line endings echo. Give the first end sound A, each new end sound the next letter, and each returning sound its earlier letter. Rhythm is the movement you hear as stronger and softer syllables and pauses follow one another. A poet can change either pattern.",
+    "steps": [
+      {
+        "title": "Lift out the end words",
+        "visual": "A beetle taps the window frame.\nA moth slips past the porch light’s glow.\nI whisper each small guest a name.\nThen watch the shadows come and go.",
+        "why": "Read the stanza once for its scene. Then read just the four end words and listen for the vowel sound and the sounds that follow it."
+      },
+      {
+        "title": "Mark each sound as it arrives",
+        "visual": "frame   A\nglow    B\nname    A\ngo      B",
+        "why": "Frame introduces the first sound. Glow introduces the second. Name brings back the end of frame, and go brings back the end of glow."
+      },
+      {
+        "title": "Keep the ending and change the pace",
+        "visual": "Version 1   we SLIP through the GATE.\nVersion 2   STOP. WAIT. we SLIP through the GATE.\nCapitals mark stronger beats in one possible reading.",
+        "why": "Tap each capitalized word and pause at each period. Both versions end on gate, so using either in the same spot keeps the end rhyme. Two short, separated commands interrupt the movement in the second version. How would each sound in a scene where someone is hiding?"
+      }
+    ],
+    "guided": {
+      "q": "A stanza ends with shell, rain, bell, train. You have labeled the first two A and B. Which letters belong on the last two?",
+      "options": [
+        "C and D",
+        "A and B",
+        "B and A"
+      ],
+      "answer": 1,
+      "hint": "Hold shell in your ear while you say bell. Then say rain and train.",
+      "why": "Bell returns to the sound in shell (A). Train returns to the sound in rain (B). The full scheme is ABAB."
+    },
+    "items": [
+      {
+        "id": "rhyme-window",
+        "q": "The end words are key, sea, wall, fall. Which scheme would let another reader reconstruct the pairs?",
+        "options": [
+          "ABAB",
+          "ABBA",
+          "AABB"
+        ],
+        "answer": 2,
+        "hint": "Say the words as two pairs. Where does the first new end sound arrive?",
+        "why": "Key and sea sound alike even though their spelling differs. Wall introduces B on line 3, and fall repeats it."
+      },
+      {
+        "id": "rhyme-envelope",
+        "q": "A stanza ends with moon, gate, late, tune. The poet changes “We reach the gate” to “Stop. Wait. We reach the gate.” What changes when you pause at the periods?",
+        "options": [
+          "The ABBA rhyme stays. The pauses break up the movement toward the gate.",
+          "The scheme changes to ABAB because stop and wait add two end words.",
+          "The rhythm stays the same because both versions end with gate."
+        ],
+        "answer": 0,
+        "hint": "First mark the four line endings. Then speak the changed line or tap the pauses. Notice where a reader can stop inside the line.",
+        "why": "Gate still rhymes with late and moon with tune. The added commands and pauses change the rhythm inside the line while its end sound stays the same."
+      },
+      {
+        "id": "rhyme-interrupted",
+        "q": "A poet changes the last of four end words from stone, spark, alone, dark to stone, spark, alone, hush. Which reading uses the change as evidence?",
+        "options": [
+          "The ending becomes louder because the final word is shorter.",
+          "The ear expects another B after ABA. The new C can make the sudden hush feel like a break in the pattern.",
+          "The new stanza has no rhyme because its final two words do not rhyme."
+        ],
+        "answer": 1,
+        "hint": "Imagine hearing three lines, then predicting the fourth. What happens to the sound you expected?",
+        "why": "The first three lines still form ABA. The original dark completes ABAB. Hush introduces C, so the changed ending can call attention to the interruption."
+      }
+    ],
+    "themes": {
+      "game": "Write the four end words of an arcade victory chant. Challenge a player to find its pattern by ear.",
+      "sports": "Write a four-line crowd chant. Rhyme lines 2 and 4. Mark where the crowd should clap or pause to build suspense.",
+      "story": "Give a character a four-line spell. Repeat an end sound just as the spell begins to work.",
+      "mystery": "Invent a four-line riddle. Change its last word to break an expected rhyme and draw attention to a clue."
+    },
+    "project": {
+      "task": "Write a four-line stanza and label its end rhymes. Choose one line and keep its final word while changing the beat or adding a pause. Tap through both versions and choose the one you want.",
+      "check": "Underline the end words and mark stressed syllables or pauses on your revised line. Explain how one sound choice changes the way a reader experiences the scene."
+    },
+    "media": {
+      "title": "What makes a poem … a poem? · TED-Ed",
+      "url": "https://ed.ted.com/lessons/what-makes-a-poem-a-poem-melissa-kovacs",
+      "prompt": "Listen for one repeated sound or tap the beat of a line. For a written option, open Dig Deeper and read about how sound patterns helped people remember early poems."
+    },
+    "recall": {
+      "id": "rhyme-recall-lantern",
+      "q": "A poet writes “The lantern casts a wandering light. / We cross the yard and fade from sight.” She changes the second line to “Run. Duck. Stay out of sight.” Which reading fits the revision?",
+      "options": [
+        "The new periods change the end rhyme from AA to AB.",
+        "Both lines rhyme, so the changed line must have the same rhythm.",
+        "Light and sight still rhyme. Short commands and pauses give the revised line a stop-and-start rhythm."
+      ],
+      "answer": 2,
+      "hint": "Read the two endings together. Now try tapping the second line both ways and noticing where the periods interrupt you.",
+      "why": "Light and sight keep the same ending sound. Run and Duck each get a beat and a pause of their own, which can make the escape feel urgent."
+    }
+  },
+  {
+    "id": "image",
+    "room": "english",
+    "title": "Build an image from a word",
+    "skill": "Identify a sensory detail and explain its effect.",
+    "coach": "Pretend you are recording a scene in the dark. Which word would tell a listener what the room sounds, feels or smells like?",
+    "explain": "Imagery gives a reader something to experience through sight, hearing, touch, taste or smell. Start with a precise word, identify the sense it most directly calls on, then explain what you infer from that experience.",
+    "steps": [
+      {
+        "title": "Step inside the scene",
+        "visual": "Beneath the closed bakery door,\nwarm cinnamon drifts into the cold.",
+        "why": "You have not seen the inside of the bakery. The speaker gives you enough sensory evidence to imagine it."
+      },
+      {
+        "title": "Pair a word with a sense",
+        "visual": "“cinnamon drifts”  →  smell\n“warm” / “cold”    →  touch and temperature",
+        "why": "Drifts makes the cinnamon seem to travel through the air. Warm and cold give your body a way to feel the difference between the two spaces."
+      },
+      {
+        "title": "Explain the effect",
+        "visual": "Detail                 Inference\nscent crosses door  →  inside reaches outside\nwarm beside cold   →  bakery may feel inviting",
+        "why": "An inference is a reading you can support. A different reader might notice hunger or distance. Each explanation needs a word or phrase from the lines."
+      }
+    ],
+    "guided": {
+      "q": "In “Behind the curtain, a single key clicks,” which word most directly lets you hear an unseen action?",
+      "options": [
+        "clicks",
+        "behind",
+        "single"
+      ],
+      "answer": 0,
+      "hint": "Imagine a sound technician choosing which word to recreate with a microphone.",
+      "why": "Clicks names a short, distinct sound. Hearing it behind the curtain lets the reader notice an action without seeing who made it."
+    },
+    "items": [
+      {
+        "id": "image-touch",
+        "q": "“A scratchy scarf caught at my chin.” Which annotation uses a word as evidence for a sense?",
+        "options": [
+          "“Scarf” tells us the speaker must be outdoors.",
+          "“Scratchy” lets the reader feel the fabric rubbing skin.",
+          "“Chin” tells us the scarf is bright."
+        ],
+        "answer": 1,
+        "hint": "Pick a word that would help someone describe the fabric without seeing its color.",
+        "why": "Scratchy describes texture. That physical discomfort can help a reader enter the speaker’s experience."
+      },
+      {
+        "id": "image-smell",
+        "q": "“Wet pavement breathed up the smell of dust.” Which reading best follows the sensory evidence?",
+        "options": [
+          "The speaker sees dust blowing off dry pavement.",
+          "A loud truck has just driven through.",
+          "The speaker notices the street through its scent after getting wet."
+        ],
+        "answer": 2,
+        "hint": "Which of the five senses does the line name? What condition is the pavement in?",
+        "why": "The words wet and smell connect damp pavement with an earthy scent. Breathed up makes that scent seem to rise."
+      },
+      {
+        "id": "image-late-arrival",
+        "q": "“The hall hummed beyond the heavy door. / At my table, a spoon scraped one slow circle.” Which interpretation accounts for both sound images?",
+        "options": [
+          "The distant hum suggests company, while the lone, slow scrape can make the table feel isolated.",
+          "The speaker joins a noisy conversation in the hall.",
+          "The sound proves the speaker dislikes the meal."
+        ],
+        "answer": 0,
+        "hint": "Compare how many sources you imagine in a hum with the sound of one slowly moving spoon.",
+        "why": "The two sounds suggest different kinds of activity on either side of the door. Feeling apart from the hum is a reasonable inference, while dislike of the food is harder to support."
+      }
+    ],
+    "themes": {
+      "game": "Describe entering an underground level using one echo and one texture. Let a player infer what the space is like.",
+      "sports": "Describe the moment before a serve with one sound that a spectator across the court could hear.",
+      "story": "Describe a familiar kitchen through smell and touch. Choose a detail that hints who has been there.",
+      "mystery": "Leave a sensory clue for a detective in a dark room. Write what the detective can observe and what remains a guess."
+    },
+    "project": {
+      "task": "Write two lines about a place using two different senses. Underline one exact phrase and add a sentence explaining what it makes a reader picture or feel.",
+      "check": "Can you point to the sense each line calls on? Read your explanation after the lines and check that the language supports your inference."
+    },
+    "recall": {
+      "id": "image-recall-grit",
+      "q": "“Wind shuffled leaves behind me. / A grain of sand rasped under my collar.” Which words give you the strongest evidence of a sensation against the speaker’s skin?",
+      "options": [
+        "“rasped under my collar”",
+        "“leaves behind me”",
+        "“wind shuffled”"
+      ],
+      "answer": 0,
+      "hint": "Locate the phrase that puts an object in contact with the body.",
+      "why": "The grain under the collar can rub against skin. Rasped makes its rough movement easy to imagine."
+    }
+  },
+  {
+    "id": "claim",
+    "room": "english",
+    "title": "Defend a reading",
+    "skill": "Connect an interpretation to two details and explain the connection.",
+    "coach": "Imagine two readers disagree about a speaker. Which detail would you put your finger on first? Which other detail could change the discussion?",
+    "explain": "An interpretation makes a claim about meaning. Evidence points to the exact words behind that claim. Reasoning explains how the words justify it. Test your first idea against the whole scene before you revise.",
+    "steps": [
+      {
+        "title": "Read the whole moment",
+        "visual": "At the pool’s edge I count to ten.\nMy toes curl tight around the tile.\nA splash erases all my sums.\nI rise and count the drops instead.",
+        "why": "The speaker counts twice. What changes between the first count and the last one?"
+      },
+      {
+        "title": "Put two readings to the test",
+        "visual": "Reading A · The speaker enjoys counting.\nReading B · The speaker grows less tense after the jump.\nEarly detail · “curl tight”\nLate detail  · “count the drops instead”",
+        "why": "Counting happens at both ends. The curled toes also signal tension, while the last count has a new, playful object. Reading B explains more of the scene."
+      },
+      {
+        "title": "Turn your evidence into reasoning",
+        "visual": "Claim    · The speaker relaxes after the plunge.\nEvidence · “curl tight” / “count the drops”\nReason   · Counting changes from a delay into a game.",
+        "why": "The final sentence traces a change across two moments. It tells a reader what the quotations help us understand."
+      }
+    ],
+    "guided": {
+      "q": "A reader says the pool speaker is hesitant before jumping. Which evidence and explanation give that claim the most support?",
+      "options": [
+        "“I rise” because it mentions a movement.",
+        "“the tile” because swimming pools have tiles.",
+        "“count to ten” and “curl tight” suggest a delay and a body bracing for the jump."
+      ],
+      "answer": 2,
+      "hint": "Ask which choice explains something the speaker does before the splash.",
+      "why": "The counting delays the action and the curled toes suggest physical tension. Both details support hesitation."
+    },
+    "items": [
+      {
+        "id": "claim-signal",
+        "q": "“I folded your note along its oldest crease / and tucked it underneath my sleeve.” Which claim has the strongest support?",
+        "options": [
+          "The speaker wants to keep a well-handled note close.",
+          "The note is an invitation to a race.",
+          "The speaker has just read this note for the first time."
+        ],
+        "answer": 0,
+        "hint": "What does an old crease suggest? Where does the note end up?",
+        "why": "An old crease suggests repeated handling. Tucking the note beneath a sleeve places it close to the speaker."
+      },
+      {
+        "id": "claim-reason",
+        "q": "“The empty swing ticked like a clock.” You think waiting feels long. Which sentence explains how the comparison supports that reading?",
+        "options": [
+          "Both a swing and a clock are objects.",
+          "Each swing seems to mark another passing moment.",
+          "The person who made the swing also built clocks."
+        ],
+        "answer": 1,
+        "hint": "What would you notice with each repeated tick while waiting?",
+        "why": "The ticking comparison turns repeated movement into an audible measure of time. That connects a detail to the feeling of waiting."
+      },
+      {
+        "id": "claim-competing",
+        "q": "“She rolled the map until its creases met. / At every fork, she opened it again.” A reader says she has finished using the map. Which revision best accounts for both lines?",
+        "options": [
+          "She rolls the map carefully, so she must know the entire route.",
+          "She is lost at every turn, although the poem never mentions a wrong turn.",
+          "She puts the map away between decisions and returns to it when she has to choose."
+        ],
+        "answer": 2,
+        "hint": "What happens each time a fork appears? Can your revised claim explain both the closing and the reopening?",
+        "why": "Closing the map and repeatedly reopening it suggest a pattern of travel and checking. The revision explains both actions while leaving her certainty about the route open."
+      }
+    ],
+    "themes": {
+      "game": "Imagine a character who keeps visiting the same empty checkpoint. Write two details that could explain why, then defend your reading.",
+      "sports": "Write two lines about a player returning a borrowed jersey. Let a gesture and a word give a reader evidence about how the player feels.",
+      "story": "Read a character’s first and last gesture in a scene. Draft one claim that explains what changed between them.",
+      "mystery": "Give two detectives different readings of the same footprint. Decide which reading explains more of the available evidence."
+    },
+    "project": {
+      "task": "Write a short paragraph about a poem. Make one claim, choose two quoted details, and explain what each contributes. Reread a competing interpretation before editing one sentence.",
+      "check": "Underline your claim, circle each quotation, and draw a line to its explanation. Can you say what you revised after considering the other reading?"
+    },
+    "recall": {
+      "id": "claim-recall-spare-chair",
+      "q": "“I set one cup beside my own. / By dusk its handle still faced you.” Which explanation links both details to a defensible claim?",
+      "options": [
+        "It is dusk, so the visitor has certainly left town.",
+        "The extra cup and its unchanged position suggest the speaker is still waiting for someone.",
+        "The handle faces the visitor, proving the cup is broken."
+      ],
+      "answer": 1,
+      "hint": "What does the extra place setting suggest at first? What has stayed the same by evening?",
+      "why": "A second cup offers another person a place. The unchanged handle by dusk suggests the invitation has remained open."
+    }
+  }
+]

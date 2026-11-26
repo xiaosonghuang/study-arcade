@@ -1414,19 +1414,19 @@ window.ArcadeLive = (() => {
     } finally {clearTimeout(timer);}
   }
   async function secret(c){return crypto.subtle.importKey('raw',decode(c.cipher),{name:'AES-GCM'},false,['encrypt','decrypt']);}
-  const associated=(id,rev)=>new TextEncoder().encode('arcade-report-v1/'+id+'/'+rev);
-  async function seal(c,id,rev,snapshot) {
+  const associated=(id,rev,kind)=>new TextEncoder().encode('arcade-'+kind+'-v1/'+id+'/'+rev);
+  async function seal(c,id,rev,snapshot,kind='report') {
     const iv=crypto.getRandomValues(new Uint8Array(12)), key=await secret(c);
     const bytes=new TextEncoder().encode(JSON.stringify(snapshot));
-    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev)},key,bytes);
+    const encrypted=await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:associated(id,rev,kind)},key,bytes);
     const packet=new Uint8Array(12+encrypted.byteLength);packet.set(iv);packet.set(new Uint8Array(encrypted),12);
     return encode(packet);
   }
-  async function readDevices(c) {
-    const data=await request({op:'read',key:c.token}), key=await secret(c);
+  async function readDevices(c,kind='report') {
+    const data=await request({op:kind==='skills'?'learn':'read',key:c.token}), key=await secret(c);
     return Promise.all(data.devices.map(async row=>{
       const bytes=decode(row.blob);
-      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
+      const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev,kind)},key,bytes.slice(12));
       const snapshot=JSON.parse(new TextDecoder().decode(clear));
       if(snapshot.v!==1&&!(snapshot.v===2&&snapshot.book==='grade2'))throw Error('This report needs a newer dashboard.');
       return {id:row.id,received:row.received,snapshot};
@@ -1441,6 +1441,7 @@ function createReportSync({
   conflict,
   plan,
   openProgress,
+  skills,
 }) {
   const lib = window.ArcadeLive;
   let pair = null,
@@ -1497,6 +1498,24 @@ function createReportSync({
     const signature = JSON.stringify(snapshot);
     return { snapshot, signature };
   }
+  let pulling = false, lastPull = 0;
+  async function pull(force = false) {
+    if (!skills || !pair || pulling || !navigator.onLine || (!force && Date.now()-lastPull<20000)) return;
+    const connection = pair;
+    pulling = true;
+    try {
+      identity();
+      const rows = await lib.readDevices(connection, "skills");
+      if (connection !== pair) return;
+      skills.accept(rows.filter(row => row.id !== device).map(row => row.snapshot));
+      lastPull = Date.now();
+    } catch {
+      // Keep the last confirmed skill summary available offline.
+    } finally {
+      pulling = false;
+      if (connection !== pair && pair) pull(true);
+    }
+  }
   async function send() {
     if (!pair || running || conflict()) return;
     if (!navigator.onLine) {
@@ -1531,7 +1550,8 @@ function createReportSync({
         stamp = rev;
         persist("stamp", String(rev));
         const blob = await lib.seal(c, device, rev, snapshot);
-        pending = { signature, rev, blob };
+        const projection = skills ? await lib.seal(c, device, rev, skills.project(snapshot), "skills") : undefined;
+        pending = { signature, rev, blob, projection };
       }
       if (pair !== c) return;
       const batch = pending;
@@ -1541,6 +1561,7 @@ function createReportSync({
         id: device,
         rev: batch.rev,
         blob: batch.blob,
+        skills: batch.projection,
       });
       if (pair !== c) return;
       if (ack.rev !== batch.rev) {
@@ -1589,6 +1610,9 @@ function createReportSync({
       }
       const saved = persist("writer.v1", JSON.stringify(c));
       pair = c;
+      skills?.clear();
+      lastPull = 0;
+      pull(true);
       pending = null;
       delivered = "";
       receipt = 0;
@@ -1607,6 +1631,7 @@ function createReportSync({
   function pause() {
     clearTimeout(timer);
     pair = null;
+    skills?.clear();
     pending = null;
     delivered = "";
     try {
@@ -1623,6 +1648,8 @@ function createReportSync({
       pair = raw ? lib.config("writer", JSON.parse(raw)) : null;
     } catch {}
     if (pair) {
+      skills?.restore();
+      pull(true);
       delivered = stored("delivered");
       receipt = Number(stored("receipt")) || 0;
       ui("Family dashboard connected.");
@@ -1644,20 +1671,21 @@ function createReportSync({
     document.addEventListener("click", (ev) => {
       if (ev.target.closest("#disconnectFamily")) pause();
     });
-    window.addEventListener("online", () => queue(0));
-    window.addEventListener("focus", () => queue(450));
+    window.addEventListener("online", () => { queue(0); pull(true); });
+    window.addEventListener("focus", () => { queue(450); pull(); });
     document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") queue(200);
+      if (document.visibilityState === "visible") { queue(200); pull(); }
       else if (pair) send();
     });
     setInterval(() => {
-      if (document.visibilityState === "visible") queue(50);
+      if (document.visibilityState === "visible") { queue(50); pull(); }
     }, 45000);
     ui(feedback);
   }
   return {
     boot,
     queue,
+    pull,
     pause,
     refreshUI() {
       ui(feedback);
