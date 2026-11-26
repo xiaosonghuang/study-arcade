@@ -17,7 +17,17 @@ function parseFamily(raw) {
     !/^data:image\/jpeg;base64,\/9j\/[A-Za-z0-9+/=\r\n]+$/.test(raw.sketch)
   )
     throw Error("Choose the Grade 2 family pack.");
-  return { kind: raw.kind, version: 1, firstName: name, sketch: raw.sketch };
+  const pack = {
+    kind: raw.kind,
+    version: 1,
+    firstName: name,
+    sketch: raw.sketch,
+  };
+  if (typeof raw.learningNote === "string")
+    pack.learningNote = raw.learningNote.slice(0, 650);
+  if (raw.dashboardPairing)
+    pack.dashboardPairing = ArcadeLive.config("writer", raw.dashboardPairing);
+  return pack;
 }
 function emptyRound() {
   return { choices: Array(6).fill(null), submitted: false };
@@ -118,39 +128,6 @@ function dayPanel() {
     actions = `<div class="grid daily">${dailyTile("Make my project", "20 minutes · " + d.task, "✿", null, "", d.step)}${dailyTile("Play with numbers", "8–10 minutes · " + (d.math === "checks" ? "Try a mixed readiness round." : LESSONS[d.math][0]), "▦", d.math, "warm")}${dailyTile("Read & write", "8–10 minutes · " + LESSONS[d.english][0] + (d.english === "books" ? " · Read a favorite passage." : ""), "Aa", d.english, "lilac")}</div>`;
   return `<section class="agenda"><div class="sectionHead"><h2>${week ? "My project-week plan" : "What shall I do today?"}</h2><span>November 23–30</span></div>${daybar}<article class="panel"><p class="eyebrow">${esc(d.date)}</p><h3>${esc(d.title)}</h3>${actions}${d.step !== null ? chk("I finished my plan for this day", "daysDone", state.day, state.daysDone.includes(state.day)) : ""}</article></section>`;
 }
-function home() {
-  const post = afterProject(),
-    rest = !post && DAYS[state.day].step === null;
-  const title = familyPack
-    ? `${esc(familyPack.firstName)}’s fieldbook`
-    : "My meadow fieldbook";
-  const hero = post
-    ? [
-        "Your next adventure",
-        "Choose a math or English challenge, then try a six-question readiness round.",
-        "Choose my practice",
-        "practice",
-      ]
-    : rest
-      ? [
-          "Thanksgiving break",
-          "Enjoy your day with your family. Your story will be here when you return.",
-          "Visit my meadow",
-          "studio",
-        ]
-      : [
-          "Demeter and Persephone",
-          "Make a Greek myth come alive with a poster or diorama and a story in your own words.",
-          "Continue my project",
-          "studio",
-        ];
-  const due = Object.values(state.review).filter(
-    (v) => !v.cleared && v.due <= localDay(),
-  ).length;
-  return `<section class="hero"><div class="heroText"><p class="eyebrow">${hero[0]}</p><h1>${title}</h1><p>${hero[1]}</p>${goButton(hero[2], hero[3], true)}</div><img src="${ART[0]}" alt="Persephone in a meadow of flowers"></section>
- ${post ? `<div class="sectionHead"><h2>Today’s practice</h2></div><div class="grid">${lessonTile("preview", "warm")}${lessonTile("words", "lilac")}${tile("Readiness checks", "Try six untimed questions.", "✦", "checks")}</div>` : dayPanel()}
- <div class="sectionHead"><h2>Choose a challenge</h2></div><div class="grid">${tile("Math & English", "Practice a skill in a short game.", "✎", "practice", "warm")}${tile("Readiness checks", "Two rounds with questions from both subjects.", "✦", "checks", "lilac")}${tile("Try again tomorrow", due ? `${due} skill${due === 1 ? "" : "s"} ready to revisit today.` : "Find a fresh question for a tricky skill.", "↻", "review", "blue")}</div>${meadow()}${post ? `<details><summary>See the Thanksgiving plan</summary>${dayPanel()}</details>` : ""}`;
-}
 function readiness() {
   const index = state.roundIndex,
     form = ROUNDS[index],
@@ -220,7 +197,9 @@ function family() {
       "For grown-ups",
       "Begin with a project step, then spend a few minutes on math and English. Hands-on work is part of the 35–45 minutes.",
     ) +
-    `<section class="panel green"><h2>Open a family pack</h2><p>Add a first name and meadow sketch from your private file. This browser reads the file on this device.</p><div class="btnrow">${button("Open family pack", "openPack", "", "primary")}${familyPack ? button("Remove personalization", "removePack") : ""}</div><p role="status" id="familyMessage">${esc(familyMessage || (familyPack ? "Family pack active for " + familyPack.firstName + "." : "Original fieldbook artwork is active."))}</p></section>
+    `<section class="panel green"><h2>Open a family pack</h2><p>Add a first name and meadow sketch from your private file. The updated private pack also connects this browser to your read-only family dashboard.</p><div class="btnrow">${button("Open family pack", "openPack", "", "primary")}${familyPack ? button("Remove personalization", "removePack") : ""}</div><p role="status" id="familyMessage">${esc(familyMessage || (familyPack ? "Family pack active for " + familyPack.firstName + "." : "Original fieldbook artwork is active."))}</p></section>
+ ${familyPack?.learningNote ? '<section class="panel"><h2>From the family learning notes</h2><p>' + esc(familyPack.learningNote) + "</p></section>" : ""}
+ <section class="panel"><h2>Family dashboard</h2><p>Only project checkboxes and practice results are included in the encrypted summary. Drawings, personal choices and written work stay here.</p><p id="familyStatus" role="status"></p><button id="disconnectFamily" hidden>Pause family updates</button><p>Open the private parent viewing link in your family folder to see progress.</p></section>
  <section class="panel"><h2>Move progress between devices</h2><p>Save the progress file to your family folder and load it on the next device. Earlier Thanksgiving fieldbook backups work here too. Load the family pack separately.</p><div class="btnrow">${button("Save my progress", "export")}${button("Load my progress", "import")}${button("Copy or paste backup text", "backupText")}</div>${location.protocol !== "file:" ? '<a class="download" href="./index.html" download="Grade 2 Fieldbook.html">Download offline fieldbook</a>' : "<p>You’re using the offline edition.</p>"}</section>
  <section class="panel"><h2>Coming up in class</h2><p><b>Tuesday, December 1</b> · Bring the poster or diorama and its written paragraph. The five classroom checklist items are in Check &amp; share.</p><p><b>December 1–3</b> · Math Module 4 Lessons 20, 21, and 22, plus English Skills practice pages 1, 2, and 3. The ten spelling words appear in Play with words.</p><p>The six-question rounds are home practice for these skills. The latest class update gave no date for another test.</p>${button("Print my project sheet", "print")}</section>
  <details class="panel"><summary>Learning sources</summary><p>Original practice follows the class project criteria and Grade 2 Module 4. The original story illustrations retell the Greek myth of Demeter and Persephone.</p><ul class="sourceList"><li><a target="_blank" rel="noreferrer" href="https://greatminds.org/hubfs/knowledge/resources/math/EM_Basic_Curriculum_Files/Teacher_Editions/G2_TeacherEditions/EM_G2_M4_TeacherEdition.pdf">Great Minds · Grade 2 Module 4</a></li><li><a target="_blank" rel="noreferrer" href="https://www.whitehousehistory.org/questions/how-did-dolley-madison-save-george-washingtons-portrait">White House Historical Association · Washington’s portrait</a></li><li><a target="_blank" rel="noreferrer" href="https://www.history.navy.mil/our-collections/art/exhibits/communities/uss-constitution.html">U.S. Navy · USS Constitution</a></li><li><a target="_blank" rel="noreferrer" href="https://www.nps.gov/fomc/learn/historyculture/the-star-spangled-banner.htm">National Park Service · Fort McHenry</a></li></ul></details>`
@@ -235,6 +214,7 @@ async function loadFamilyFile(file) {
     probe.src = pack.sketch;
     await probe.decode();
     familyPack = pack;
+    gradeSync.importPlan(pack);
     familyMessage = "Family pack active for " + pack.firstName + ".";
     try {
       localStorage.setItem(FAMILY_KEY, JSON.stringify(pack));
@@ -255,6 +235,7 @@ function extraAction(action, v, target) {
       $("#familyInput").click();
       return true;
     case "removePack":
+      gradeSync.pause();
       familyPack = null;
       familyMessage = "Original fieldbook artwork is active.";
       try {

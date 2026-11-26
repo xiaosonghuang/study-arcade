@@ -45,6 +45,7 @@ function dateKey() {
 }
 function initial() {
   return {
+    trail: freshTrail(),
     rounds: [emptyRound(), emptyRound()],
     roundIndex: 0,
     review: {},
@@ -77,7 +78,7 @@ function initial() {
     tasks: [],
   };
 }
-const validRoutes = new Set(ROUTES);
+const validRoutes = new Set([...ROUTES, "trail", "checkin", "basket"]);
 const cleanList = (v, max) =>
   Array.isArray(v)
     ? [...new Set(v.filter((n) => Number.isInteger(n) && n >= 0 && n < max))]
@@ -150,6 +151,7 @@ function restore(raw) {
   for (let i = 0; i < OBJECTS.length; i++)
     s.properties[i] = cleanList(obj.properties?.[i], PROPS.length);
   restoreActivities(s, obj);
+  s.trail = cleanTrail(obj.trail);
   return s;
 }
 let state = initial(),
@@ -187,6 +189,7 @@ function save() {
   } catch {
     canSave = false;
   }
+  gradeSync.queue();
   status.textContent = canSave
     ? "Saved on this device"
     : "Session only · Use Save my progress";
@@ -231,6 +234,9 @@ function changeList(list, i, on) {
   if (!on && index >= 0) list.splice(index, 1);
 }
 function navCat(route) {
+  if (route === "trail") return "practice";
+  if (route === "checkin") return "home";
+  if (route === "basket") return "checks";
   if (route === "review") return "checks";
   if (
     [

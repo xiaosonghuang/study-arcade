@@ -1,0 +1,242 @@
+.richHero {
+  border-radius: 1.6rem 1.6rem 0.6rem 0.6rem;
+}
+.trailDoors,
+.checkInvite,
+.trailExit,
+.reviewLine {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.trailDoors {
+  padding: 0.8rem 1rem;
+  background: #e5eddc;
+  border-radius: 0.6rem 0.6rem 1.35rem 1.35rem;
+}
+.trailDoors button:first-child {
+  background: #fdfbf1;
+}
+.checkInvite {
+  justify-content: space-between;
+  margin: 1.2rem 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid #d7b86e;
+  border-radius: 1rem;
+  background: #fff1c9;
+}
+.checkInvite h2,
+.checkInvite p,
+.trailExit p,
+.session .sectionHead {
+  margin: 0;
+}
+.checkInvite p {
+  max-width: 48ch;
+}
+.checkInvite h2 {
+  font-size: 1.5rem;
+}
+.sessionList {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+  margin: 0.5rem 0 0;
+}
+.sessionList li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.sessionList li:last-child {
+  border: 0;
+}
+.sessionList b {
+  min-width: 3.8rem;
+  color: var(--moss);
+  font-variant-numeric: tabular-nums;
+}
+.sessionList button {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.trailShelf {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.trailTile {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  gap: 1rem;
+  padding: 1.12rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: #fffdf8;
+}
+.trailTile strong {
+  font-family: "Bricolage Grotesque", var(--sans);
+  font-size: 1.2rem;
+  display: block;
+}
+.trailTile small {
+  display: block;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 450;
+  margin-top: 0.23rem;
+}
+.trailTile .inkFlag {
+  color: #2b634c;
+  font-weight: 700;
+}
+.trailIcon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2.65rem;
+  height: 2.65rem;
+  border-radius: 0.8rem;
+  background: #e4edce;
+  color: #294b3e;
+  font:
+    bold 1.5rem Georgia,
+    serif;
+}
+.color1 .trailIcon {
+  background: #f9dfb5;
+}
+.color2 .trailIcon {
+  background: #ebe2f4;
+}
+.color3 .trailIcon {
+  background: #d8eaf2;
+}
+.trailChoices button,
+.learningCard button {
+  margin: 0.2rem 0.45rem 0.2rem 0;
+}
+.trailChoices .choice:disabled {
+  opacity: 0.83;
+}
+.learningCard {
+  border-top: 0.4rem solid #749667;
+}
+.learningCard h2 {
+  max-width: 48ch;
+  font-size: clamp(1.32rem, 3.9vw, 2rem);
+  line-height: 1.36;
+}
+.walk {
+  padding-left: 1.7rem;
+}
+.walk li {
+  padding: 0.35rem 0.3rem;
+}
+.walk li::marker {
+  font-weight: 800;
+  color: #49674a;
+}
+.quick {
+  border: 0;
+  padding: 0.6rem 0;
+  margin: 0.6rem 0 0;
+}
+.quick legend {
+  font-weight: 700;
+  max-width: 100%;
+}
+.trailExit,
+.reviewLine {
+  justify-content: space-between;
+}
+.reviewLine {
+  border-bottom: 1px solid var(--line);
+  padding: 0.6rem 0;
+}
+.compare,
+.frames {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.8rem 0;
+}
+.compare div,
+.frames figure {
+  flex: 1 1 10rem;
+  border-radius: 0.85rem;
+  background: #edf1e4;
+  border: 1px solid var(--line);
+  padding: 0.8rem 1rem;
+  margin: 0;
+}
+.compare div + div,
+.frames figure + figure {
+  background: #fff1cf;
+}
+.compare b,
+.frames figcaption {
+  display: block;
+  color: #3d574a;
+  font-size: 0.91rem;
+}
+.frames figure {
+  flex: 0 1 auto;
+}
+.tenFrame {
+  display: grid;
+  grid-template-columns: repeat(5, 1rem);
+  gap: 0.24rem;
+  margin-top: 0.5rem;
+}
+.tenFrame i {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #879e88;
+}
+.tenFrame .lit {
+  background: #558453;
+  border-color: #355d39;
+}
+.mathSteps {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.mathSteps span {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #fbf2d7;
+}
+@media (max-width: 650px) {
+  .trailShelf {
+    grid-template-columns: 1fr;
+  }
+  .checkInvite,
+  .trailExit {
+    align-items: start;
+  }
+  .session .sectionHead {
+    align-items: start;
+    gap: 0.7rem;
+    flex-direction: column;
+  }
+  .trailTile {
+    padding: 0.9rem;
+  }
+  .richHero h1 {
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+  }
+}

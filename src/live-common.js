@@ -44,7 +44,7 @@ window.ArcadeLive = (() => {
       const bytes=decode(row.blob);
       const clear=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(0,12),additionalData:associated(row.id,row.rev)},key,bytes.slice(12));
       const snapshot=JSON.parse(new TextDecoder().decode(clear));
-      if(snapshot.v!==1)throw Error('This report needs a newer dashboard.');
+      if(snapshot.v!==1&&!(snapshot.v===2&&snapshot.book==='grade2'))throw Error('This report needs a newer dashboard.');
       return {id:row.id,received:row.received,snapshot};
     }));
   }

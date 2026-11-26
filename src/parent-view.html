@@ -16,6 +16,7 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
 @media(max-width:720px){.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){.frame{width:calc(100% - 1.5rem)}main{padding-top:1rem}.hero{align-items:flex-start;flex-direction:column}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.05rem .75rem;padding:.7rem .9rem}.metric strong{grid-row:span 2}.metric span{margin:0}.metric small{grid-column:2}.device dl{grid-template-columns:1fr}.device dd+dt{margin-top:.2rem}.statusline{display:block}.statusline p{margin-top:.25rem}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+#grade-report .recent{margin-top:.85rem}#grade-report .recent .card{background:#f3f7ed}
 </style>
 </head>
 <body>
@@ -27,8 +28,9 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
   <p id="warning" class="notice" hidden></p>
   <noscript><p class="notice">Enable JavaScript to open the family view.</p></noscript>
   <div id="empty" class="empty" hidden><h2 id="empty-title"></h2><p id="empty-body"></p></div>
+  <section class="reportgroup" id="grade-report" aria-label="Grade 2 fieldbook" hidden></section>
   <div id="report" hidden>
-    <section class="reportgroup" aria-labelledby="overview-title"><h2 id="overview-title">Across devices</h2><p class="explain">Each question and study block counts once if it appears on either device. Totals combine the latest report available from each workbook.</p><div id="metrics" class="metrics"></div><div id="subjects" class="subjects"></div></section>
+    <section class="reportgroup" aria-labelledby="overview-title"><h2 id="overview-title">Study Arcade across devices</h2><p class="explain">Each question and study block counts once if it appears on either device. Totals combine the latest report available from each workbook.</p><div id="metrics" class="metrics"></div><div id="subjects" class="subjects"></div></section>
     <section class="reportgroup" aria-labelledby="recent-title"><h2 id="recent-title">Latest workbook</h2><p class="explain" id="recent-source"></p><div id="recent" class="recent"></div></section>
     <section class="reportgroup" aria-labelledby="devices-title"><h2 id="devices-title">Device reports</h2><p class="explain">Notes and labs are counted per browser. Written answers stay in the workbook.</p><div id="devices" class="devices"></div></section>
   </div>
@@ -179,9 +181,12 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
     card.append(h('h3',label(device.id)),h('p',questionTotal(device,'tried') + ' tried · ' + questionTotal(device,'solved') + ' solved · ' + plural(device.blocks.done.size,'checked block'),'count'),terms);
     return card;
   }
+  @@GRADE_REPORT@@
   const freshness = (a,b) => (b.activity ?? 0) - (a.activity ?? 0) || b.received - a.received || a.id.localeCompare(b.id);
-  let reports = [], lastSuccess = null, activeIdentity = null, inFlight = false, authBlocked = false;
+  let gradeReports = [], reports = [], lastSuccess = null, activeIdentity = null, inFlight = false, authBlocked = false;
   function showReports() {
+    gradeOverview(gradeReports);
+    if (!reports.length && gradeReports.length){byId("empty").hidden=true;byId("report").hidden=true;return;}
     if (!reports.length) {
       empty('Waiting for the first update','Open the private learner link in a study browser and use the workshop. New reports appear here automatically while this page is visible.');
       return;
@@ -193,7 +198,7 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
     byId('devices').replaceChildren(...reports.map(deviceCard));
   }
   function clearReports() {
-    reports = [];
+    reports = [];gradeReports=[];byId("grade-report").replaceChildren();byId("grade-report").hidden=true;
     lastSuccess = null;
     byId('last-check').textContent = '';
     for (const k of ['metrics','subjects','recent','devices']) byId(k).replaceChildren();
@@ -239,20 +244,21 @@ main{padding-block:1.6rem 3rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--he
       const latestPerDevice = new Map();
       let skipped = 0;
       for (const row of raw) {
-        const item = normalise(row);
+        const item = gradeRecord(row) || normalise(row);
         if (!item) {skipped++; continue;}
         if (!latestPerDevice.has(item.id) || item.received > latestPerDevice.get(item.id).received) latestPerDevice.set(item.id,item);
       }
       if (raw.length && !latestPerDevice.size) throw new Error('No readable device reports');
-      reports = [...latestPerDevice.values()].sort(freshness);
+      gradeReports=[...latestPerDevice.values()].filter(d=>d.grade2);
+      reports = [...latestPerDevice.values()].filter(d=>!d.grade2).sort(freshness);
       lastSuccess = Date.now();
       byId('last-check').textContent = 'Last checked ' + stamp(lastSuccess);
-      const old = reports.length && reports.every(d => lastSuccess - d.received > 86400000);
+      const old = latestPerDevice.size && [...latestPerDevice.values()].every(d => lastSuccess - d.received > 86400000);
       const notes = [];
       if (skipped) notes.push('Some device reports could not be read.');
       if (old) notes.push('The newest device upload is over a day old. These figures reflect the last reports received.');
       warning(notes.join(' '));
-      level(reports.length ? 'Connected · refreshes every 15 seconds' : 'Connected · waiting for an update');
+      level(latestPerDevice.size ? 'Connected · refreshes every 15 seconds' : 'Connected · waiting for an update');
       showReports();
     } catch (e) {
       if (unauthorized(e)) {

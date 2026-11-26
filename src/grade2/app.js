@@ -1,5 +1,8 @@
 const renderers = {
-  home,
+  home: richHome,
+  trail: lessonRoom,
+  checkin: checkinRoom,
+  basket: reviewBasket,
   studio,
   practice,
   explore,
@@ -26,6 +29,7 @@ function render() {
       : $("#main h1")?.textContent || "Grade 2 fieldbook") +
     " · Thanksgiving Navigator";
   save();
+  if (state.route === "family") gradeSync.refreshUI();
 }
 function address(route) {
   if (location.hash === "#" + route) return;
@@ -146,6 +150,7 @@ function act(action, v, target) {
   let n = Number(v),
     k = state.route,
     i = state.positions[k];
+  if (trailAction(action, v, target)) return;
   if (extraAction(action, v, target)) return;
   switch (action) {
     case "day":
@@ -335,4 +340,5 @@ window.addEventListener("hashchange", () => {
 });
 if (validRoutes.has(location.hash.slice(1)))
   state.route = location.hash.slice(1);
+gradeSync.boot();
 render();

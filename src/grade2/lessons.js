@@ -9,7 +9,7 @@ function practice() {
       "Practice",
       "Choose one short activity. You can come back for a different one tomorrow.",
     ) +
-    `<div class="sectionHead"><h2>Play with numbers</h2></div><div class="grid">${["trade", "facts", "stories", "preview"].map((k) => lessonTile(k, "warm")).join("")}</div><div class="sectionHead"><h2>Read, write & tell</h2></div><div class="grid">${["clue", "books", "words", "memory"].map((k) => lessonTile(k, "lilac")).join("")}</div>`
+    `<div class="sectionHead"><h2>Learning trails</h2></div>${trailShelf()}<div class="sectionHead"><h2>Play with numbers</h2></div><div class="grid">${["trade", "facts", "stories", "preview"].map((k) => lessonTile(k, "warm")).join("")}</div><div class="sectionHead"><h2>Read, write & tell</h2></div><div class="grid">${["clue", "books", "words", "memory"].map((k) => lessonTile(k, "lilac")).join("")}</div>`
   );
 }
 function explore() {
@@ -149,7 +149,7 @@ function memory() {
       "My break memory",
       "Tell a true story about one small moment from your break.",
     ) +
-    `<section class="panel plum"><h3>Start with a moment you remember clearly</h3><p>Who was there? What happened first? What did someone say? How did the moment end?</p>${field("memory", "My personal narrative", "One day during break…", true)}${field("firstSentence", "Pick one sentence from your story", "Copy your sentence here.")}${field("revisedSentence", "Give your sentence another try", "Check capitals and ending punctuation. Add one detail if you like.")}<p class="hint">Read it aloud. Start names with capital letters. Check your ending marks. If you wrote someone’s exact words, try quotation marks.</p></section>`
+    `<section class="panel plum"><h3>Start with a moment you remember clearly</h3><p>Who was there? What happened first? What did someone say? How did the moment end?</p>${field("memory", "My personal narrative", "One day during break…", true)}<div class="compare"><div>${field("firstSentence", "Pick one sentence from your story", "Copy your sentence here.")}</div><div>${field("revisedSentence", "Give your sentence another try", "Check capitals and ending punctuation. Add one detail if you like.")}</div></div><p class="hint">Ask a listener what they can now picture. Keep the details you like.</p><p class="hint">Read it aloud. Start names with capital letters. Check your ending marks. If you wrote someone’s exact words, try quotation marks.</p></section>`
   );
 }
 function science() {

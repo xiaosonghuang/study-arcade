@@ -20,10 +20,11 @@ for name in ("computing","stem","english"):
     banks.update(json.loads(load(name + ".json")))
     scripts.append(load(name + ".js"))
 live = load("live-common.js").replace("@@LIVE_ENDPOINT@@", load("live-endpoint.txt").strip())
+learner_live = live + "\n" + load("report-transport.js")
 page = load("shell.html")
 for key, value in {"CSS":"\n".join(fonts)+"\n"+load("style.css"), "ROOMS":"\n".join(sections),
                    "BANK":json.dumps(banks,ensure_ascii=False).replace("</","<\\/"),
-                   "LIVE_COMMON":live, "PARENT_SYNC":load("parent-report.js"), "APP":load("app.js"),"LABS":"\n".join(scripts)}.items():
+                   "LIVE_COMMON":learner_live, "PARENT_SYNC":load("parent-report.js"), "APP":load("app.js"),"LABS":"\n".join(scripts)}.items():
     page = page.replace("@@"+key+"@@",value)
 assert not re.search(r"@@[A-Z]+@@",page)
 (root / "docs").mkdir(exist_ok=True)
@@ -33,17 +34,18 @@ print("Built", len(page.encode()), "bytes;", {k:len(v) for k,v in banks.items()}
 
 parent = root / "docs/parent"
 parent.mkdir(exist_ok=True)
-(parent / "index.html").write_text(load("parent-view.html").replace("@@LIVE_COMMON@@",live))
+(parent / "index.html").write_text(load("parent-view.html").replace("@@LIVE_COMMON@@",live).replace("@@GRADE_REPORT@@",load("grade2-parent.js")))
 # The Grade 2 edition runs from both a Pages subdirectory and a downloaded file.
 grade = src / "grade2"
 illustrations = [
     "data:image/jpeg;base64," + base64.b64encode((grade / f"scene-{n}.jpg").read_bytes()).decode("ascii")
     for n in range(1, 5)
 ]
-script_order = ["data.js", "quest-data.js", "core.js", "lessons.js", "adventure.js", "app.js"]
+script_order = ["data.js", "quest-data.js", "trail-math.js", "trail-words.js", "trail-interests.js", "trail-state.js", "core.js", "lessons.js", "adventure.js", "trails.js", "trail-actions.js", "trail-report.js", "app.js"]
 fieldbook = (grade / "page.html").read_text()
+fieldbook = fieldbook.replace("@@LIVE_COMMON@@",learner_live)
 fieldbook = fieldbook.replace("@@ART@@", json.dumps(illustrations))
-fieldbook = fieldbook.replace("@@CSS@@", "\n".join(fonts) + "\n" + (grade / "style.css").read_text())
+fieldbook = fieldbook.replace("@@CSS@@", "\n".join(fonts) + "\n" + (grade / "style.css").read_text() + "\n" + (grade / "trails.css").read_text())
 fieldbook = fieldbook.replace("@@CODE@@", "\n".join((grade / part).read_text() for part in script_order))
 assert not re.search(r"@@[A-Z]+@@", fieldbook)
 grade_output = root / "docs" / "grade-2"
