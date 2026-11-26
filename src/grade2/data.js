@@ -1,3 +1,11 @@
+const MEADOW_IDEAS = {
+  "Two sides":
+    "Draw the same plant twice, once while Persephone is away and once after she returns. Place the pictures at opposite ends of the box. Add one detail so someone can tell it is the same meadow.",
+  "A turning card":
+    "Draw a bare plant on one side of a card and a blooming plant on the other. Leave the card loose. Try turning it as you tell the story.",
+  "A moving figure":
+    "Set a meadow at one end and an entrance to the Underworld at the other. Move Persephone between them. Show or swap one plant to tell what happens on Earth.",
+};
 const STEPS = [
   "My sketch",
   "Story cards",

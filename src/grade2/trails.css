@@ -240,3 +240,68 @@
     font-size: clamp(2.4rem, 9vw, 3.6rem);
   }
 }
+
+.handoutPhoto {
+  margin: 1rem 0;
+}
+.handoutPhoto figure {
+  margin: 0.75rem 0;
+}
+.handoutPhoto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+.handoutPhoto figcaption,
+.boxDiagrams figcaption {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+}
+.boxSteps {
+  padding-left: 1.6rem;
+}
+.boxSteps li {
+  padding: 0.35rem 0.2rem;
+}
+.boxSteps h3,
+.boxSteps p {
+  margin: 0.2rem 0;
+}
+.boxSteps li::marker {
+  font-weight: bold;
+  color: var(--moss);
+}
+.boxDiagrams {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+.boxDiagrams figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+.boxDiagrams img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.boxDiagrams figcaption {
+  padding: 0 0.55rem 0.25rem;
+  font-weight: 600;
+}
+@media (max-width: 520px) {
+  .boxDiagrams {
+    grid-template-columns: 1fr;
+  }
+  .boxDiagrams figure {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+  .boxDiagrams img {
+    width: 38%;
+  }
+}

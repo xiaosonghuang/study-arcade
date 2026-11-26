@@ -56,6 +56,7 @@ function initial() {
     day: dayNow(),
     step: 0,
     format: "",
+    meadowIdea: "",
     notes: Object.fromEntries(noteKeys.map((k) => [k, ""])),
     materials: [],
     checks: [],
@@ -78,7 +79,13 @@ function initial() {
     tasks: [],
   };
 }
-const validRoutes = new Set([...ROUTES, "trail", "checkin", "basket"]);
+const validRoutes = new Set([
+  ...ROUTES,
+  "trail",
+  "checkin",
+  "basket",
+  "shoebox",
+]);
 const cleanList = (v, max) =>
   Array.isArray(v)
     ? [...new Set(v.filter((n) => Number.isInteger(n) && n >= 0 && n < max))]
@@ -110,6 +117,9 @@ function restore(raw) {
   s.sceneCard = clampInt(obj.sceneCard, 0, 3);
   s.objects = clampInt(obj.objects, 0, 2);
   s.format = ["Poster", "Diorama"].includes(obj.format) ? obj.format : "";
+  s.meadowIdea = Object.hasOwn(MEADOW_IDEAS, obj.meadowIdea)
+    ? obj.meadowIdea
+    : "";
   for (const k of noteKeys)
     s.notes[k] = cleanText(obj.notes[k], k === "draft" ? 10000 : 3000);
   for (const [k, n] of Object.entries({
@@ -234,6 +244,7 @@ function changeList(list, i, on) {
   if (!on && index >= 0) list.splice(index, 1);
 }
 function navCat(route) {
+  if (route === "shoebox") return "studio";
   if (route === "trail") return "practice";
   if (route === "checkin") return "home";
   if (route === "basket") return "checks";
@@ -290,21 +301,21 @@ function studio() {
   const i = state.step;
   let part;
   if (i === 0)
-    part = `<div class="split"><figure><img src="${familyPack?.sketch || ART[0]}" class="studioPic" alt="${familyPack ? "Your meadow sketch" : "Persephone in a flowering meadow"}"><figcaption class="caption">${familyPack ? "Your original meadow sketch" : "Imagine your own meadow scene"}</figcaption></figure><div><h3>Where is Persephone?</h3><p>Point to a place where she could stand. Where could you show a change from warm to cold?</p>${field("sketch", "What would you add to your sketch?", "I could draw…")}</div></div>`;
+    part = `<div class="split"><figure><img src="${familyPack?.sketch || ART[0]}" class="studioPic" alt="${familyPack ? "Your meadow sketch" : "Persephone in a flowering meadow"}"><figcaption class="caption">${familyPack ? "Your original meadow sketch" : "Imagine your own meadow scene"}</figcaption></figure><div><h3>Where is Persephone?</h3><p>Point to a place where she could stand. Where could you show a change from warm to cold?</p>${field("sketch", "What would you add to your sketch?", "I could draw…")}${goButton("Try my meadow in a shoebox", "shoebox")}</div></div>`;
   if (i === 1) part = story();
   if (i === 2)
-    part = `<h3>What will you make?</h3><p>A <b>poster</b> tells a story on one flat page. A <b>diorama</b> lets you build a little world inside a box.</p><div class="chips">${["Poster", "Diorama"].map((t) => button(t, "format", t, state.format === t ? "on" : "", `aria-pressed="${state.format === t}"`)).join("")}</div>${state.format ? `<p class="inset">${state.format === "Poster" ? "Try dividing your poster into two scenes. Where will your title and paragraph go?" : "Stand your box on one side. What could go in front? What could go at the back?"}</p>` : ""}${field("scene", "How will you show Earth and the Underworld?", "I want one part to show…")}<h3 class="mt">My materials</h3><div class="grid">${MATERIALS.map((m, n) => chk(m, "materials", n, state.materials.includes(n))).join("")}</div>${field("supplies", "Anything else to gather?", "I might also use…")}`;
+    part = `<h3>What will you make?</h3><p>A <b>poster</b> tells a story on one flat page. A <b>diorama</b> lets you build a little world inside a box.</p><div class="chips">${["Poster", "Diorama"].map((t) => button(t, "format", t, state.format === t ? "on" : "", `aria-pressed="${state.format === t}"`)).join("")}</div>${projectHint()}${familyHandout("examples")}${field("scene", "Which part of the myth will your picture show?", "I want one part to show…")}<h3 class="mt">My materials</h3><div class="grid">${MATERIALS.map((m, n) => chk(m, "materials", n, state.materials.includes(n))).join("")}</div>${field("supplies", "Anything else to gather?", "I might also use…")}`;
   if (i === 3)
-    part = `<h3>Bring your plan to the table</h3><p class="inset"><b>${esc(state.format || "My project")}</b> · ${esc(state.notes.scene || "Think of one detail you want someone to notice first.")}</p><p><b>My materials</b> · ${esc(
+    part = `<h3>Bring your plan to the table</h3>${state.format === "Diorama" ? goButton("See the shoebox build steps", "shoebox", true) : ""}<p class="inset"><b>${esc(projectLabel(state))}</b> · ${esc(state.notes.scene || "Think of one detail you want someone to notice first.")}</p><p><b>My materials</b> · ${esc(
       state.materials
         .map((n) => MATERIALS[n])
         .concat(state.notes.supplies || [])
         .join(", ") || "Choose or write materials in My plan.",
     )}</p>${["Make the setting first. Add the meadow or the Underworld.", "Add characters. Show something that changes during the myth.", "Add the title and leave room for your paragraph."].map((t, n) => chk(t, "tasks", n, state.tasks.includes(n))).join("")}${field("build", "What did you add today?", "One detail I made was…")}${goButton("Try a material test", "matter")}`;
   if (i === 4)
-    part = `<h3>Talk it through first</h3><p>Tell someone who was there, where they were, and what changed. Which detail helps explain the seasons in this myth?</p><details><summary>Give me sentence starters</summary><p class="inset">My myth is called … &nbsp; • &nbsp; In the meadow … &nbsp; • &nbsp; When … &nbsp; • &nbsp; In the end … &nbsp; • &nbsp; This myth explains …</p></details>${field("draft", "My paragraph", "Write your own paragraph here, or use this space to plan what you will write on paper.", true)}<p class="hint">Read it aloud. Check your capital letters and ending punctuation.</p>`;
+    part = `<h3>Talk it through first</h3><p>Tell someone who was there, where they were, and what changed. Which detail helps explain the seasons in this myth?</p><p>Point to one plant in your scene. What happens to it while Persephone is away? What changes when she comes back?</p><details><summary>Give me sentence starters</summary><p class="inset">My myth is called … &nbsp; • &nbsp; In the meadow … &nbsp; • &nbsp; When … &nbsp; • &nbsp; In the end … &nbsp; • &nbsp; This myth explains …</p></details>${field("draft", "My paragraph", "Write your own paragraph here, or use this space to plan what you will write on paper.", true)}<p class="hint">Read it aloud. Check your capital letters and ending punctuation.</p>`;
   if (i === 5)
-    part = `<div class="split"><div><h3>My paragraph checklist</h3>${CHECKS.map((t, n) => chk(t, "checks", n, state.checks.includes(n))).join("")}</div><div><h3>My words</h3><p class="inset" style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(state.notes.draft || "If you wrote on paper, look at your paragraph as you check each detail.")}</p>${button("Edit my paragraph", "openStep", 4)}</div></div>${field("rehearse", "What would you like to point out when you share?", "I want to show you…")}<p><b>Pack for Tuesday, December 1.</b> Put the finished poster or diorama and your written paragraph together.</p>${button("Print my project sheet", "print")}`;
+    part = `<div class="split"><div><h3>My paragraph checklist</h3>${familyHandout("directions")}${CHECKS.map((t, n) => chk(t, "checks", n, state.checks.includes(n))).join("")}</div><div><h3>My words</h3><p class="inset" style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(state.notes.draft || "If you wrote on paper, look at your paragraph as you check each detail.")}</p>${button("Edit my paragraph", "openStep", 4)}</div></div>${field("rehearse", "What would you like to point out when you share?", "I want to show you…")}<p><b>Pack for Tuesday, December 1.</b> Put the finished poster or diorama and your written paragraph together.</p>${button("Print my project sheet", "print")}`;
   return (
     head(
       "Demeter and Persephone · Due December 1",

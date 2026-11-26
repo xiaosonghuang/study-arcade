@@ -102,6 +102,17 @@ function interestPicker() {
 function nextProjectStep() {
   const gap = nextPaper(),
     legacy = STEPS.findIndex((_, i) => !state.finished.includes(i));
+  if (
+    gap === 0 &&
+    state.format === "Diorama" &&
+    familyPack?.projectFormat === "Diorama"
+  ) {
+    return state.finished.includes(2) ||
+      state.notes.scene.trim() ||
+      state.materials.length
+      ? 3
+      : 2;
+  }
   if (gap === 0 && !state.trail.paper[0] && legacy >= 0 && legacy < 3)
     return legacy === 0 && familyPack ? 1 : legacy;
   return gap >= 0 ? PAPER_STEPS[gap] : 5;
@@ -240,6 +251,11 @@ function richHome() {
         "</div></section>"
       : "") +
     (holiday ? "" : sessionPlan()) +
+    (familyPack?.projectFormat === "Diorama" || state.format === "Diorama"
+      ? '<div class="panel"><h2>My shoebox project</h2><p>Take your meadow from paper to a little world in a box.</p>' +
+        goButton("Open my shoebox build guide", "shoebox", true) +
+        "</div>"
+      : "") +
     homeProgress() +
     '<div class="sectionHead"><h2>Pick a learning trail</h2></div>' +
     trailShelf() +

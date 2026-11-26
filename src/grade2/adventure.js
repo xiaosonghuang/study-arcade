@@ -5,6 +5,17 @@ try {
   const saved = localStorage.getItem(FAMILY_KEY);
   if (saved) familyPack = parseFamily(JSON.parse(saved));
 } catch {}
+function isFamilyPhoto(value) {
+  return (
+    typeof value === "string" &&
+    value.length <= 1600000 &&
+    /^data:image\/jpeg;base64,\/9j\/[A-Za-z0-9+/=\r\n]+$/.test(value)
+  );
+}
+function applyFamilyFormat() {
+  if (!state.format && familyPack?.projectFormat)
+    state.format = familyPack.projectFormat;
+}
 function parseFamily(raw) {
   const name = typeof raw?.firstName === "string" ? raw.firstName.trim() : "";
   if (
@@ -12,9 +23,7 @@ function parseFamily(raw) {
     raw.version !== 1 ||
     !name ||
     name.length > 45 ||
-    typeof raw.sketch !== "string" ||
-    raw.sketch.length > 1600000 ||
-    !/^data:image\/jpeg;base64,\/9j\/[A-Za-z0-9+/=\r\n]+$/.test(raw.sketch)
+    !isFamilyPhoto(raw.sketch)
   )
     throw Error("Choose the Grade 2 family pack.");
   const pack = {
@@ -23,6 +32,16 @@ function parseFamily(raw) {
     firstName: name,
     sketch: raw.sketch,
   };
+  if (["Poster", "Diorama"].includes(raw.projectFormat))
+    pack.projectFormat = raw.projectFormat;
+  if (raw.handout) {
+    if (!["directions", "examples"].every((k) => isFamilyPhoto(raw.handout[k])))
+      throw Error("Choose the complete family pack.");
+    pack.handout = {
+      directions: raw.handout.directions,
+      examples: raw.handout.examples,
+    };
+  }
   if (typeof raw.learningNote === "string")
     pack.learningNote = raw.learningNote.slice(0, 650);
   if (raw.dashboardPairing)
@@ -197,7 +216,7 @@ function family() {
       "For grown-ups",
       "Begin with a project step, then spend a few minutes on math and English. Hands-on work is part of the 35–45 minutes.",
     ) +
-    `<section class="panel green"><h2>Open a family pack</h2><p>Add a first name and meadow sketch from your private file. The updated private pack also connects this browser to your read-only family dashboard.</p><div class="btnrow">${button("Open family pack", "openPack", "", "primary")}${familyPack ? button("Remove personalization", "removePack") : ""}</div><p role="status" id="familyMessage">${esc(familyMessage || (familyPack ? "Family pack active for " + familyPack.firstName + "." : "Original fieldbook artwork is active."))}</p></section>
+    `<section class="panel green"><h2>Open a family pack</h2><p>Open the private file for your meadow sketch, project choice and photos of the teacher’s handout. The updated private pack also connects this browser to your read-only family dashboard.</p><div class="btnrow">${button("Open family pack", "openPack", "", "primary")}${familyPack ? button("Remove personalization", "removePack") : ""}</div><p role="status" id="familyMessage">${esc(familyMessage || (familyPack ? "Family pack active for " + familyPack.firstName + "." : "Original fieldbook artwork is active."))}</p></section>
  ${familyPack?.learningNote ? '<section class="panel"><h2>From the family learning notes</h2><p>' + esc(familyPack.learningNote) + "</p></section>" : ""}
  <section class="panel"><h2>Family dashboard</h2><p>Only project checkboxes and practice results are included in the encrypted summary. Drawings, personal choices and written work stay here.</p><p id="familyStatus" role="status"></p><button id="disconnectFamily" hidden>Pause family updates</button><p>Open the private parent viewing link in your family folder to see progress.</p></section>
  <section class="panel"><h2>Move progress between devices</h2><p>Save the progress file to your family folder and load it on the next device. Earlier Thanksgiving fieldbook backups work here too. Load the family pack separately.</p><div class="btnrow">${button("Save my progress", "export")}${button("Load my progress", "import")}${button("Copy or paste backup text", "backupText")}</div>${location.protocol !== "file:" ? '<a class="download" href="./index.html" download="Grade 2 Fieldbook.html">Download offline fieldbook</a>' : "<p>You’re using the offline edition.</p>"}</section>
@@ -210,10 +229,15 @@ async function loadFamilyFile(file) {
   try {
     if (file.size > 1700000) throw Error("This file is too large.");
     const pack = parseFamily(JSON.parse(await file.text()));
-    const probe = new Image();
-    probe.src = pack.sketch;
-    await probe.decode();
+    await Promise.all(
+      [pack.sketch, ...Object.values(pack.handout || {})].map(async (src) => {
+        const probe = new Image();
+        probe.src = src;
+        await probe.decode();
+      }),
+    );
     familyPack = pack;
+    applyFamilyFormat();
     gradeSync.importPlan(pack);
     familyMessage = "Family pack active for " + pack.firstName + ".";
     try {

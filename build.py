@@ -54,12 +54,15 @@ illustrations = [
     "data:image/jpeg;base64," + base64.b64encode((grade / f"scene-{n}.jpg").read_bytes()).decode("ascii")
     for n in range(1, 5)
 ]
-script_order = ["data.js", "quest-data.js", "trail-math.js", "trail-words.js", "trail-interests.js", "trail-state.js", "core.js", "lessons.js", "adventure.js", "trails.js", "trail-actions.js", "trail-report.js", "app.js"]
+script_order = ["data.js", "quest-data.js", "trail-math.js", "trail-words.js", "trail-interests.js", "trail-state.js", "core.js", "lessons.js", "adventure.js", "shoebox.js", "trails.js", "trail-actions.js", "trail-report.js", "app.js"]
 fieldbook = (grade / "page.html").read_text()
 fieldbook = fieldbook.replace("@@LIVE_COMMON@@",learner_live)
 fieldbook = fieldbook.replace("@@ART@@", json.dumps(illustrations))
 fieldbook = fieldbook.replace("@@CSS@@", "\n".join(fonts) + "\n" + (grade / "style.css").read_text() + "\n" + (grade / "trails.css").read_text())
 fieldbook = fieldbook.replace("@@CODE@@", "\n".join((grade / part).read_text() for part in script_order))
+box_art = ["data:image/png;base64," + base64.b64encode((grade / f"shoebox-{name}.png").read_bytes()).decode("ascii")
+           for name in ("side", "depth", "tab")]
+fieldbook = fieldbook.replace("@@BOXART@@", json.dumps(box_art))
 assert not re.search(r"@@[A-Z]+@@", fieldbook)
 grade_output = root / "docs" / "grade-2"
 grade_output.mkdir(exist_ok=True)

@@ -4,6 +4,7 @@ const renderers = {
   checkin: checkinRoom,
   basket: reviewBasket,
   studio,
+  shoebox: shoeboxRoom,
   practice,
   explore,
   family,
@@ -61,7 +62,7 @@ function redraw(target) {
 function showPaper() {
   const s = state;
   $("#paper").innerHTML =
-    `<h1>Demeter and Persephone</h1><p>My Greek myth project · Tuesday, December 1, 2026</p><h2>My project plan</h2><p>${esc(s.format || "Poster or diorama")} · ${esc(s.notes.scene || s.notes.sketch || "My scene idea: ________________________________________")}</p><h2>My paragraph</h2>${s.notes.draft.trim() ? `<p>${esc(s.notes.draft)}</p>` : Array.from({ length: 7 }, () => '<div class="writingLine"></div>').join("")}<div class="printChecks"><h2>My final check</h2><ul style="list-style:none;padding:0">${CHECKS.map((t, n) => `<li>${s.checks.includes(n) ? "[x]" : "[  ]"} ${t}</li>`).join("")}</ul>${s.notes.rehearse ? `<p>When I share: ${esc(s.notes.rehearse)}</p>` : ""}</div>`;
+    `<h1>Demeter and Persephone</h1><p>My Greek myth project · Tuesday, December 1, 2026</p><h2>My project plan</h2><p>${esc(projectLabel(s))} · ${esc(s.notes.scene || s.notes.sketch || "My scene idea: ________________________________________")}</p><h2>My paragraph</h2>${s.notes.draft.trim() ? `<p>${esc(s.notes.draft)}</p>` : Array.from({ length: 7 }, () => '<div class="writingLine"></div>').join("")}<div class="printChecks"><h2>My final check</h2><ul style="list-style:none;padding:0">${CHECKS.map((t, n) => `<li>${s.checks.includes(n) ? "[x]" : "[  ]"} ${t}</li>`).join("")}</ul>${s.notes.rehearse ? `<p>When I share: ${esc(s.notes.rehearse)}</p>` : ""}</div>`;
 }
 function showDialog(html) {
   const d = $("#backupDialog");
@@ -171,6 +172,14 @@ function act(action, v, target) {
     case "checkStory":
       state.storyTry = true;
       break;
+    case "meadowIdea":
+      if (Object.hasOwn(MEADOW_IDEAS, v)) state.meadowIdea = v;
+      break;
+    case "useShoebox":
+      state.format = "Diorama";
+      state.step = 3;
+      go("studio");
+      return;
     case "format":
       state.format = v;
       break;
@@ -246,6 +255,7 @@ function act(action, v, target) {
         let s = pending;
         closeDialog();
         state = s;
+        applyFamilyFormat();
         go(s.route);
       }
       return;
@@ -340,5 +350,6 @@ window.addEventListener("hashchange", () => {
 });
 if (validRoutes.has(location.hash.slice(1)))
   state.route = location.hash.slice(1);
+applyFamilyFormat();
 gradeSync.boot();
 render();
