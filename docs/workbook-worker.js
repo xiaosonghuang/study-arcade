@@ -1,7 +1,7 @@
 // Cache only the public, self-contained student workbook. The private progress
 // service and parent dashboard use their own online connections.
 const prefix = 'study-arcade-workbook-' + self.registration.scope + '-';
-const edition = prefix + '18d7e141fccbf439';
+const edition = prefix + '49be065c254d9603';
 const workbook = new URL('index.html',self.registration.scope).href;
 self.addEventListener('install',event => {
   event.waitUntil((async () => {

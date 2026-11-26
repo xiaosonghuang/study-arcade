@@ -66,8 +66,8 @@ function suggestion(){
   const lesson=learningState(),ledger=allGuideEvidence(),day=datedPlan();
   const support=u=>GuideSkills.status(ledger,u.id);
   const rest=day&&!day.catchup&&!day.tasks.length;
-  const tasks=assignedTasks(day);
-  const task=tasks.find(t=>!state.checks['block-'+t.id]&&!peers.done.includes(t.id));
+  const tasks=assignedTasks(day).filter(t=>!state.checks['block-'+t.id]&&!peers.done.includes(t.id));
+  const [task]=tasks;
   if(task){
     const skill=guideById[taskGuide[task.id]], stats=skill && support(skill);
     const familiar=skill && earlierPractice(skill.id);
@@ -206,9 +206,9 @@ function setupLearning(){
   document.addEventListener('click',event=>{
     const button=event.target.closest('button,a');if(!button)return;
     if(button.hasAttribute('data-checkin-save')){
-      const p=learningState(),finished=id('guideFinished').value;p.theme=id('guideInterest').value;
+      const p=learningState(),finished=id('guideFinished').value,previous=p.checkin;p.theme=id('guideInterest').value;
       p.checkin={finished,tricky:id('guideTricky').value,at:today()};
-      if(distinctTasks().some(t=>t.id===finished))state.checks['block-'+finished]=true;
+      if(finished!==previous?.finished && distinctTasks().some(t=>t.id===finished))state.checks['block-'+finished]=true;
       save();renderLearning();id('checkinMessage').textContent=' Saved. You can change your choices anytime.';id('guideStart').querySelector('summary').focus();return;
     }
     if(button.hasAttribute('data-today-plan') && datedPlan()){state.day=today();save(false);}
